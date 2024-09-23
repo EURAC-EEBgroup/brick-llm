@@ -1,0 +1,7 @@
+{
+    "dependencies": ["./brickllm"],
+    "graphs": {
+      "agent": "./brickllm/agent.py:graph"
+    },
+    "env": ".env"
+  }

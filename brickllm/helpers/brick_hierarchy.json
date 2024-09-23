@@ -1,0 +1,489 @@
+{
+    "Location": {
+        "Space": {
+            "Room": {
+                "Service_Room": {
+                    "Electrical_Room": {},
+                    "Mechanical_Room": {}
+                },
+                "Media_Room": {},
+                "Laboratory": {},
+                "Food_Service_Room": {},
+                "Office": {
+                    "Enclosed_Office": {}
+                },
+                "Security_Service_Room": {},
+                "Telecom_Room": {
+                    "Distribution_Frame": {}
+                },
+                "Medical_Room": {},
+                "Storage_Room": {}
+            },
+            "Common_Space": {
+                "Lobby": {},
+                "Lounge": {}
+            },
+            "Vertical_Space": {}
+        },
+        "Floor": {},
+        "Outdoor_Area": {},
+        "Zone": {},
+        "Building": {}
+    },
+    "Equipment": {
+        "HVAC_Equipment": {
+            "Chiller": {},
+            "Terminal_Unit": {
+                "Chilled_Beam": {},
+                "Air_Diffuser": {},
+                "Radiator": {
+                    "Baseboard_Radiator": {}
+                },
+                "Radiant_Panel": {},
+                "Variable_Air_Volume_Box": {}
+            },
+            "Fan": {},
+            "Heat_Exchanger": {
+                "Coil": {
+                    "Cooling_Coil": {},
+                    "Heating_Coil": {}
+                }
+            },
+            "Pump": {
+                "Water_Pump": {}
+            },
+            "HVAC_Valve": {},
+            "Bypass_Valve": {},
+            "Isolation_Valve": {},
+            "Boiler": {
+                "Natural_Gas_Boiler": {}
+            },
+            "Heating_Valve": {
+                "Hot_Water_Valve": {}
+            },
+            "Damper": {},
+            "Filter": {},
+            "AHU": {},
+            "Air_Plenum": {
+                "Supply_Air_Plenum": {}
+            },
+            "CRAC": {}
+        },
+        "Security_Equipment": {
+            "Access_Control_Equipment": {},
+            "Intercom_Equipment": {},
+            "Video_Surveillance_Equipment": {}
+        },
+        "Shading_Equipment": {},
+        "Electrical_Equipment": {
+            "Energy_Storage": {}
+        },
+        "Meter": {
+            "Building_Meter": {},
+            "Water_Meter": {}
+        },
+        "Water_Heater": {},
+        "Lighting_Equipment": {
+            "Interface": {
+                "Switch": {}
+            },
+            "Lighting": {}
+        },
+        "Safety_Equipment": {
+            "Emergency_Wash_Station": {}
+        },
+        "Motor": {
+            "VFD": {}
+        },
+        "Fire_Safety_Equipment": {
+            "Manual_Fire_Alarm_Activation_Equipment": {}
+        },
+        "Valve": {
+            "Water_Valve": {}
+        },
+        "PV_Panel": {},
+        "Furniture": {},
+        "Camera": {}
+    },
+    "Point": {
+        "Setpoint": {
+            "Time_Setpoint": {},
+            "Humidity_Setpoint": {},
+            "Pressure_Setpoint": {
+                "Static_Pressure_Setpoint": {
+                    "Discharge_Air_Static_Pressure_Setpoint": {}
+                }
+            },
+            "Flow_Setpoint": {
+                "Water_Flow_Setpoint": {
+                    "Chilled_Water_Flow_Setpoint": {},
+                    "Entering_Water_Flow_Setpoint": {},
+                    "Hot_Water_Flow_Setpoint": {},
+                    "Discharge_Water_Flow_Setpoint": {}
+                },
+                "Air_Flow_Setpoint": {
+                    "Air_Flow_Deadband_Setpoint": {},
+                    "Supply_Air_Flow_Setpoint": {
+                        "Cooling_Supply_Air_Flow_Setpoint": {},
+                        "Heating_Supply_Air_Flow_Setpoint": {}
+                    },
+                    "Air_Flow_Demand_Setpoint": {},
+                    "Exhaust_Air_Flow_Setpoint": {},
+                    "Discharge_Air_Flow_Setpoint": {
+                        "Cooling_Discharge_Air_Flow_Setpoint": {},
+                        "Heating_Discharge_Air_Flow_Setpoint": {}
+                    }
+                }
+            },
+            "Differential_Setpoint": {
+                "Differential_Pressure_Deadband_Setpoint": {},
+                "Differential_Pressure_Setpoint": {
+                    "Water_Differential_Pressure_Setpoint": {
+                        "Chilled_Water_Differential_Pressure_Setpoint": {},
+                        "Hot_Water_Differential_Pressure_Setpoint": {}
+                    },
+                    "Air_Differential_Pressure_Setpoint": {}
+                },
+                "Differential_Temperature_Setpoint": {},
+                "Temperature_Differential_Reset_Setpoint": {
+                    "Discharge_Air_Temperature_Reset_Differential_Setpoint": {}
+                }
+            },
+            "Demand_Setpoint": {},
+            "Temperature_Setpoint": {
+                "Cooling_Temperature_Setpoint": {
+                    "Discharge_Air_Temperature_Cooling_Setpoint": {}
+                },
+                "Radiant_Panel_Temperature_Setpoint": {
+                    "Embedded_Temperature_Setpoint": {}
+                },
+                "Air_Temperature_Setpoint": {
+                    "Outside_Air_Temperature_Setpoint": {},
+                    "Effective_Air_Temperature_Setpoint": {},
+                    "Occupied_Air_Temperature_Setpoint": {},
+                    "Return_Air_Temperature_Setpoint": {},
+                    "Room_Air_Temperature_Setpoint": {},
+                    "Supply_Air_Temperature_Setpoint": {},
+                    "Unoccupied_Air_Temperature_Setpoint": {},
+                    "Discharge_Air_Temperature_Setpoint": {
+                        "Discharge_Air_Temperature_Deadband_Setpoint": {}
+                    }
+                },
+                "Water_Temperature_Setpoint": {
+                    "Chilled_Water_Temperature_Setpoint": {},
+                    "Leaving_Water_Temperature_Setpoint": {},
+                    "Hot_Water_Temperature_Setpoint": {
+                        "Domestic_Hot_Water_Temperature_Setpoint": {}
+                    },
+                    "Entering_Water_Temperature_Setpoint": {},
+                    "Return_Water_Temperature_Setpoint": {}
+                },
+                "Heating_Temperature_Setpoint": {}
+            },
+            "Reset_Setpoint": {
+                "Temperature_High_Reset_Setpoint": {
+                    "Entering_Hot_Water_Temperature_High_Reset_Setpoint": {},
+                    "Leaving_Hot_Water_Temperature_High_Reset_Setpoint": {}
+                },
+                "Temperature_Low_Reset_Setpoint": {
+                    "Entering_Hot_Water_Temperature_Low_Reset_Setpoint": {},
+                    "Leaving_Hot_Water_Temperature_Low_Reset_Setpoint": {}
+                },
+                "Supply_Air_Flow_Reset_Setpoint": {},
+                "Discharge_Air_Flow_Reset_Setpoint": {}
+            },
+            "Load_Setpoint": {
+                "Load_Shed_Setpoint": {}
+            },
+            "Deadband_Setpoint": {
+                "Static_Pressure_Deadband_Setpoint": {}
+            },
+            "Speed_Setpoint": {},
+            "CO2_Setpoint": {}
+        },
+        "Sensor": {
+            "Power_Sensor": {
+                "Electric_Power_Sensor": {},
+                "Thermal_Power_Sensor": {}
+            },
+            "Air_Quality_Sensor": {
+                "CO2_Sensor": {},
+                "CO_Sensor": {},
+                "Particulate_Matter_Sensor": {
+                    "PM10_Sensor": {},
+                    "PM1_Sensor": {},
+                    "TVOC_Sensor": {}
+                },
+                "Radioactivity_Concentration_Sensor": {}
+            },
+            "Demand_Sensor": {
+                "Cooling_Demand_Sensor": {},
+                "Heating_Demand_Sensor": {}
+            },
+            "Pressure_Sensor": {
+                "Static_Pressure_Sensor": {
+                    "Exhaust_Air_Static_Pressure_Sensor": {}
+                },
+                "Differential_Pressure_Sensor": {
+                    "Air_Differential_Pressure_Sensor": {},
+                    "Hot_Water_Differential_Pressure_Sensor": {}
+                },
+                "Velocity_Pressure_Sensor": {}
+            },
+            "Flow_Sensor": {
+                "Air_Flow_Sensor": {
+                    "Supply_Air_Flow_Sensor": {},
+                    "Exhaust_Air_Flow_Sensor": {},
+                    "Discharge_Air_Flow_Sensor": {}
+                },
+                "Water_Flow_Sensor": {
+                    "Chilled_Water_Flow_Sensor": {},
+                    "Entering_Water_Flow_Sensor": {},
+                    "Condenser_Water_Flow_Sensor": {},
+                    "Hot_Water_Flow_Sensor": {},
+                    "Discharge_Water_Flow_Sensor": {}
+                }
+            },
+            "Temperature_Sensor": {
+                "Air_Temperature_Sensor": {
+                    "Zone_Air_Temperature_Sensor": {},
+                    "Outside_Air_Temperature_Sensor": {
+                        "Outside_Air_Temperature_Enable_Differential_Sensor": {}
+                    },
+                    "Air_Wet_Bulb_Temperature_Sensor": {},
+                    "Supply_Air_Temperature_Sensor": {},
+                    "Discharge_Air_Temperature_Sensor": {}
+                },
+                "Water_Temperature_Sensor": {
+                    "Chilled_Water_Temperature_Sensor": {},
+                    "Condenser_Water_Temperature_Sensor": {},
+                    "Domestic_Hot_Water_Temperature_Sensor": {},
+                    "Entering_Hot_Water_Temperature_Sensor": {},
+                    "Leaving_Water_Temperature_Sensor": {},
+                    "Leaving_Hot_Water_Temperature_Sensor": {},
+                    "Water_Differential_Temperature_Sensor": {},
+                    "Discharge_Water_Temperature_Sensor": {
+                        "Discharge_Hot_Water_Temperature_Setpoint": {},
+                        "Hot_Water_Discharge_Temperature_Sensor": {}
+                    },
+                    "Supply_Water_Temperature_Sensor": {
+                        "Hot_Water_Supply_Temperature_Sensor": {},
+                        "Supply_Hot_Water_Temperature_Setpoint": {}
+                    },
+                    "Return_Water_Temperature_Sensor": {
+                        "Hot_Water_Return_Temperature_Sensor": {}
+                    }
+                },
+                "Radiant_Panel_Temperature_Sensor": {
+                    "Embedded_Temperature_Sensor": {}
+                }
+            },
+            "Voltage_Sensor": {},
+            "Water_Level_Sensor": {},
+            "Imbalance_Sensor": {},
+            "Position_Sensor": {},
+            "Conductivity_Sensor": {},
+            "Speed_Sensor": {},
+            "Generation_Sensor": {},
+            "Energy_Sensor": {
+                "Electric_Energy_Sensor": {}
+            },
+            "Dewpoint_Sensor": {},
+            "Humidity_Sensor": {
+                "Relative_Humidity_Sensor": {}
+            },
+            "Usage_Sensor": {
+                "Water_Usage_Sensor": {}
+            },
+            "Current_Sensor": {
+                "Current_Output_Sensor": {}
+            },
+            "Torque_Sensor": {},
+            "Duration_Sensor": {},
+            "Frequency_Sensor": {},
+            "Enthalpy_Sensor": {
+                "Air_Enthalpy_Sensor": {}
+            },
+            "Air_Grains_Sensor": {},
+            "Illuminance_Sensor": {},
+            "Motion_Sensor": {},
+            "Angle_Sensor": {},
+            "Adjust_Sensor": {},
+            "Heat_Sensor": {},
+            "Direction_Sensor": {}
+        },
+        "Alarm": {
+            "Air_Alarm": {
+                "Air_Flow_Alarm": {
+                    "Low_Air_Flow_Alarm": {}
+                },
+                "Air_Temperature_Alarm": {
+                    "Discharge_Air_Temperature_Alarm": {}
+                }
+            },
+            "Water_Alarm": {
+                "Water_Level_Alarm": {}
+            },
+            "Leak_Alarm": {},
+            "Emergency_Alarm": {},
+            "Temperature_Alarm": {
+                "Water_Temperature_Alarm": {},
+                "High_Temperature_Alarm": {},
+                "Low_Temperature_Alarm": {}
+            },
+            "CO2_Alarm": {},
+            "Pressure_Alarm": {},
+            "Humidity_Alarm": {},
+            "Voltage_Alarm": {},
+            "Power_Alarm": {},
+            "Failure_Alarm": {},
+            "Cycle_Alarm": {},
+            "Smoke_Alarm": {}
+        },
+        "Parameter": {
+            "Delay_Parameter": {},
+            "Alarm_Sensitivity_Parameter": {},
+            "PID_Parameter": {
+                "Time_Parameter": {
+                    "Integral_Time_Parameter": {
+                        "Differential_Pressure_Integral_Time_Parameter": {},
+                        "Air_Temperature_Integral_Time_Parameter": {},
+                        "Exhaust_Air_Flow_Integral_Time_Parameter": {},
+                        "Static_Pressure_Integral_Time_Parameter": {}
+                    }
+                },
+                "Proportional_Band_Parameter": {
+                    "Differential_Pressure_Proportional_Band": {},
+                    "Supply_Air_Temperature_Proportional_Band_Parameter": {},
+                    "Exhaust_Air_Flow_Proportional_Band_Parameter": {},
+                    "Static_Pressure_Proportional_Band_Parameter": {},
+                    "Discharge_Air_Temperature_Proportional_Band_Parameter": {}
+                },
+                "Step_Parameter": {
+                    "Differential_Pressure_Step_Parameter": {},
+                    "Static_Pressure_Step_Parameter": {
+                        "Air_Static_Pressure_Step_Parameter": {}
+                    },
+                    "Temperature_Step_Parameter": {
+                        "Air_Temperature_Step_Parameter": {}
+                    }
+                },
+                "Gain_Parameter": {
+                    "Integral_Gain_Parameter": {},
+                    "Proportional_Gain_Parameter": {}
+                }
+            },
+            "Limit": {
+                "Static_Pressure_Setpoint_Limit": {},
+                "Differential_Pressure_Setpoint_Limit": {},
+                "Fresh_Air_Setpoint_Limit": {},
+                "Air_Flow_Setpoint_Limit": {
+                    "Max_Air_Flow_Setpoint_Limit": {
+                        "Max_Cooling_Supply_Air_Flow_Setpoint_Limit": {},
+                        "Max_Heating_Supply_Air_Flow_Setpoint_Limit": {},
+                        "Max_Cooling_Discharge_Air_Flow_Setpoint_Limit": {},
+                        "Max_Heating_Discharge_Air_Flow_Setpoint_Limit": {}
+                    },
+                    "Min_Air_Flow_Setpoint_Limit": {
+                        "Min_Cooling_Supply_Air_Flow_Setpoint_Limit": {},
+                        "Min_Heating_Supply_Air_Flow_Setpoint_Limit": {},
+                        "Min_Cooling_Discharge_Air_Flow_Setpoint_Limit": {},
+                        "Min_Heating_Discharge_Air_Flow_Setpoint_Limit": {}
+                    }
+                },
+                "Max_Limit": {
+                    "Max_Temperature_Setpoint_Limit": {}
+                },
+                "Min_Limit": {
+                    "Min_Temperature_Setpoint_Limit": {}
+                },
+                "Air_Temperature_Setpoint_Limit": {
+                    "Discharge_Air_Temperature_Setpoint_Limit": {}
+                }
+            },
+            "Humidity_Parameter": {},
+            "Temperature_Parameter": {
+                "Lockout_Temperature_Differential_Parameter": {
+                    "Outside_Air_Lockout_Temperature_Differential_Parameter": {}
+                }
+            },
+            "Load_Parameter": {}
+        },
+        "Command": {
+            "Mode_Command": {},
+            "Enable_Command": {
+                "System_Enable_Command": {
+                    "Hot_Water_System_Enable_Command": {}
+                }
+            },
+            "Override_Command": {},
+            "Damper_Command": {},
+            "Disable_Command": {},
+            "Fan_Command": {},
+            "Reset_Command": {},
+            "On_Off_Command": {},
+            "Frequency_Command": {},
+            "Position_Command": {},
+            "Load_Shed_Command": {
+                "Occupied_Load_Shed_Command": {},
+                "Standby_Load_Shed_Command": {},
+                "Unoccupied_Load_Shed_Command": {}
+            }
+        },
+        "Status": {
+            "Load_Shed_Status": {
+                "Differential_Pressure_Load_Shed_Status": {
+                    "Chilled_Water_Differential_Pressure_Load_Shed_Status": {},
+                    "Hot_Water_Differential_Pressure_Load_Shed_Status": {},
+                    "Medium_Temperature_Hot_Water_Differential_Pressure_Load_Shed_Status": {}
+                },
+                "Entering_Hot_Water_Temperature_Load_Shed_Status": {},
+                "Leaving_Hot_Water_Temperature_Load_Shed_Status": {}
+            },
+            "Off_Status": {
+                "On_Off_Status": {
+                    "Start_Stop_Status": {
+                        "Run_Status": {}
+                    },
+                    "Standby_Unit_On_Off_Status": {}
+                },
+                "Emergency_Power_Off_System_Status": {}
+            },
+            "System_Status": {},
+            "Fan_Status": {},
+            "Enable_Status": {},
+            "Fault_Status": {},
+            "Direction_Status": {},
+            "Mode_Status": {
+                "Cooling_Mode_Status": {},
+                "Heating_Mode_Status": {},
+                "Operating_Mode_Status": {}
+            },
+            "On_Status": {},
+            "Filter_Status": {},
+            "Pressure_Status": {},
+            "Occupancy_Status": {}
+        }
+    },
+    "Collection": {
+        "Loop": {
+            "Water_Loop": {}
+        },
+        "System": {
+            "Electrical_System": {
+                "Energy_System": {
+                    "Energy_Storage_System": {},
+                    "Energy_Generation_System": {}
+                }
+            },
+            "Shading_System": {},
+            "Heating_Ventilation_Air_Conditioning_System": {
+                "Water_System": {
+                    "Hot_Water_System": {}
+                },
+                "Air_System": {}
+            },
+            "Safety_System": {}
+        }
+    }
+}
