@@ -1,7 +1,7 @@
 {
     "dependencies": ["./brickllm"],
     "graphs": {
-      "agent": "./brickllm/agent.py:graph"
+      "agent": "./brickllm/compiled_graphs.py:brickschema_graph"
     },
     "env": ".env"
   }

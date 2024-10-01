@@ -1,8 +1,13 @@
-import json, os, re
+import json
+import os
+import re
 from collections import defaultdict
-from brickllm.helpers.query_brickschema import general_query
+from .query_brickschema import general_query
+import pkg_resources
 
-brick_hierarchy_path = os.path.join(os.getcwd(), 'brick_hierarchy.json')
+
+# Path to the JSON file
+brick_hierarchy_path = pkg_resources.resource_filename(__name__, os.path.join('..', 'ontologies', 'brick_hierarchy.json'))
 
 # Load the JSON file
 with open(brick_hierarchy_path) as f:
@@ -44,7 +49,7 @@ def flatten_hierarchy(current_data, parent=None, result=None):
     return result
 
 # Main function to get hierarchy info
-def get_hierarchy_info(key):
+def get_hierarchical_info(key):
     # Get parents
     found, parents = find_parents(data, key)
     # Get children
@@ -70,7 +75,7 @@ def get_children_hierarchy(key, flatten=False):
 
 # Function to filter elements based on the given conditions
 def filter_elements(elements):
-    elements_info = {element: get_hierarchy_info(element) for element in elements}
+    elements_info = {element: get_hierarchical_info(element) for element in elements}
     filtered_elements = []
 
     for element, (parents, children) in elements_info.items():
@@ -89,7 +94,7 @@ def create_hierarchical_dict(elements, properties=False):
     hierarchy = {}
 
     for category in elements:
-        parents, _ = get_hierarchy_info(category)
+        parents, _ = get_hierarchical_info(category)
         current_level = hierarchy
 
         for parent in parents:
