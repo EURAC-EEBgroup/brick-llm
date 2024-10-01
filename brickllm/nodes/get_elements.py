@@ -1,11 +1,8 @@
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from brickllm.states import State
-from brickllm.schemas import ElemListSchema
-from brickllm.helpers.prompts import get_elem_instructions
-from brickllm.utils.get_hierarchy_info import get_hierarchy_info
-from brickllm.helpers.llm_models import _get_model
-from brickllm.utils.query_brickschema import get_brick_definition
+from .. import State, ElemListSchema
+from ..helpers import get_elem_instructions, _get_model
+from ..utils import get_hierarchical_info, get_brick_definition
 
 
 def get_elements(state: State, config):
@@ -18,7 +15,7 @@ def get_elements(state: State, config):
     category_dict = {}
     # Get hierarchy info for each category
     for category in categories:
-        parents, children = get_hierarchy_info(category)
+        parents, children = get_hierarchical_info(category)
         # category_dict[category] = children
 
         # get definition for each child

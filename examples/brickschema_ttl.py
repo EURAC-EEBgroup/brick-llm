@@ -2,6 +2,7 @@ from brickllm.graphs import BrickSchemaGraph
 
 # Create an instance of BrickSchemaGraph
 brick_graph = BrickSchemaGraph()
+brick_graph.compile()
 
 # Specify the user prompt
 building_description = """
@@ -14,10 +15,10 @@ There are 2 rooms in each office and each room has three sensors:
 """
 
 # Display the graph
-brick_graph.display()
+# brick_graph.display()
 
 # Run the graph without streaming
-brick_graph.run(building_description, stream=False)
-
-# Run the graph with streaming
-brick_graph.run(building_description, stream=True)
+brick_graph.run(
+    prompt=building_description,
+    stream=False
+)

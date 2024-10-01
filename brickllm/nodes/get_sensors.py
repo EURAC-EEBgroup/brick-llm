@@ -1,4 +1,4 @@
-from brickllm.states import State
+from .. import State
 
 
 def get_sensors(state: State):

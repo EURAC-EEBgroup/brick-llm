@@ -1,12 +1,12 @@
 import random
 
-from brickllm.states import State
+from .. import State
 
 
 def validate_schema(state: State):
     print("---Validate Schema Node---")
 
-    ttl_output = state["ttl_output"]
+    # ttl_output = state["ttl_output"]
 
     # Validate the schema
     if random.random() < 0.5:

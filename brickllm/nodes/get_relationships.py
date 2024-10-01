@@ -4,11 +4,9 @@ from collections import defaultdict
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from brickllm.states import State
-from brickllm.schemas import RelationshipsSchema
-from brickllm.helpers.prompts import get_relationships_instructions
-from brickllm.utils.get_hierarchy_info import build_hierarchy, find_sensor_paths
-from brickllm.helpers.llm_models import _get_model
+from .. import State, RelationshipsSchema
+from ..helpers import get_relationships_instructions, _get_model
+from ..utils import build_hierarchy, find_sensor_paths
 
 
 def get_relationships(state: State, config):

@@ -2,10 +2,9 @@ import json
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from brickllm.states import State
-from brickllm.schemas import TTLSchema
-from brickllm.helpers.prompts import schema_to_ttl_instructions, ttl_example
-from brickllm.helpers.llm_models import _get_model
+from .. import State, TTLSchema
+from ..helpers import schema_to_ttl_instructions, ttl_example, _get_model
+
 
 def schema_to_ttl(state: State, config):
     print("---Schema To TTL Node---")
@@ -34,8 +33,6 @@ def schema_to_ttl(state: State, config):
 
     # Generate question
     answer = structured_llm.invoke([SystemMessage(content=system_message)]+[HumanMessage(content="Generate the TTL.")])
-    # print(answer.ttl_output)
-    # strip the answer from the backticks
-    # ttl_output = extract_ttl_content(answer.ttl_output)
+    print(answer.ttl_output)
 
     return {"ttl_output": answer.ttl_output}

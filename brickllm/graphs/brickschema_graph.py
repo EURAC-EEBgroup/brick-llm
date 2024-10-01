@@ -9,6 +9,9 @@ from ..edges import validate_condition
 from PIL import Image
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
 class BrickSchemaGraph:
     def __init__(self):
         """Initialize the StateGraph object and build the graph."""
@@ -32,6 +35,9 @@ class BrickSchemaGraph:
         self.workflow.add_conditional_edges("validate_schema", validate_condition)
         self.workflow.add_edge("get_relationships", "get_sensors")
         self.workflow.add_edge("get_sensors", END)
+        
+        # Initialize the compiled graph
+        self.graph = None
         
         # Hardcoding the thread_id for now
         self.config = {"configurable": {"thread_id": "1"}}
@@ -59,14 +65,14 @@ class BrickSchemaGraph:
         else:
             raise FileNotFoundError(f"Failed to generate the graph image file: {filename}")
 
-    def run(self, user_prompt, stream=False):
+    def run(self, prompt, stream=False):
         """Run the graph with the given user prompt.
 
         Args:
             user_prompt (str): The user-provided natural language prompt.
             stream (bool): Whether to stream the execution (True) or run without streaming (False).
         """
-        input_data = {"user_prompt": user_prompt}
+        input_data = {"user_prompt": prompt}
 
         if stream:
             # Stream the content of the graph state at each node
