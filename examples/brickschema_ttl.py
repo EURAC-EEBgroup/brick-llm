@@ -2,7 +2,6 @@ from brickllm.graphs import BrickSchemaGraph
 
 # Create an instance of BrickSchemaGraph
 brick_graph = BrickSchemaGraph()
-brick_graph.compile()
 
 # Specify the user prompt
 building_description = """

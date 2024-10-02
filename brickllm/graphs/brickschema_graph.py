@@ -36,15 +36,20 @@ class BrickSchemaGraph:
         self.workflow.add_edge("get_relationships", "get_sensors")
         self.workflow.add_edge("get_sensors", END)
         
-        # Initialize the compiled graph
-        self.graph = None
+        # Compile graph
+        try:
+            self.graph = self.workflow.compile()
+        except Exception as e:
+            raise ValueError(f"Failed to compile the graph: {e}")
         
         # Hardcoding the thread_id for now
         self.config = {"configurable": {"thread_id": "1"}}
 
-    def compile(self):
-        """Compile the workflow and update the compiled graph."""
-        self.graph = self.workflow.compile()
+    def _compiled_graph(self):
+        """Check if the graph is compiled and return the compiled graph."""
+        if self.graph is None:
+            raise ValueError("Graph is not compiled yet. Please compile the graph first.")
+        return self.graph
 
     def display(self, filename="graph.png"):
         """Display the compiled graph as an image.
