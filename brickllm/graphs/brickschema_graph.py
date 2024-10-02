@@ -1,4 +1,3 @@
-import json
 from langgraph.graph import START, END, StateGraph
 from .. import State, GraphConfig
 from ..nodes import (
@@ -51,7 +50,7 @@ class BrickSchemaGraph:
             raise ValueError("Graph is not compiled yet. Please compile the graph first.")
         return self.graph
 
-    def display(self, filename="graph.png"):
+    def display(self, filename="graph.png") -> None:
         """Display the compiled graph as an image.
         
         Args:
@@ -80,10 +79,21 @@ class BrickSchemaGraph:
         input_data = {"user_prompt": prompt}
 
         if stream:
+            events = []
             # Stream the content of the graph state at each node
             for event in self.graph.stream(input_data, self.config, stream_mode="values"):
-                print(json.dumps(event, indent=2))
+                events.append(event)
+            return events
         else:
             # Invoke the graph without streaming
             result = self.graph.invoke(input_data, self.config)
-            print(json.dumps(result, indent=2))
+            return result
+
+    def get_state_snapshots(self) -> list:
+        """Get all the state snapshots from the graph execution."""
+
+        all_states = []
+        for state in self.graph.get_state_history(self.config):
+            all_states.append(state)
+        
+        return all_states

@@ -1,8 +1,5 @@
 from brickllm.graphs import BrickSchemaGraph
 
-# Create an instance of BrickSchemaGraph
-brick_graph = BrickSchemaGraph()
-
 # Specify the user prompt
 building_description = """
 I have a building located in Bolzano.
@@ -13,11 +10,16 @@ There are 2 rooms in each office and each room has three sensors:
 - CO sensor.
 """
 
+# Create an instance of BrickSchemaGraph
+brick_graph = BrickSchemaGraph()
+
 # Display the graph
 brick_graph.display()
 
 # Run the graph without streaming
-brick_graph.run(
+result = brick_graph.run(
     prompt=building_description,
     stream=False
 )
+
+print(result)
