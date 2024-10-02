@@ -56,7 +56,7 @@ class BrickSchemaGraph:
             raise ValueError("Graph is not compiled yet. Please compile the graph first.")
         
         # Save the image to the specified file
-        self.graph.get_graph().draw_mermaid_png(filename)
+        self.graph.get_graph().draw_mermaid_png(output_file_path=filename)
 
         # Open the image using PIL (Pillow)
         if os.path.exists(filename):

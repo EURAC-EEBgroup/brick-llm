@@ -15,7 +15,7 @@ There are 2 rooms in each office and each room has three sensors:
 """
 
 # Display the graph
-# brick_graph.display()
+brick_graph.display()
 
 # Run the graph without streaming
 brick_graph.run(
