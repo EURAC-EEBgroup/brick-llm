@@ -23,3 +23,12 @@ result = brick_graph.run(
 )
 
 print(result)
+print(result.get('elem_hierarchy', None))
+
+ttl_output = result.get('ttl_output', None)
+
+# Save the output to a file
+if ttl_output:
+    print(ttl_output)
+    with open('output.ttl', 'w') as f:
+        f.write(ttl_output)
