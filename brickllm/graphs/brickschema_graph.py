@@ -1,3 +1,6 @@
+from typing import Union
+
+from langchain.chat_models.base import BaseChatModel
 from langgraph.graph import START, END, StateGraph
 from .. import State, GraphConfig
 from ..nodes import (
@@ -7,15 +10,19 @@ from ..nodes import (
 from ..edges import validate_condition
 from PIL import Image
 import os
+from ..helpers.llm_models import _get_model
 
 from dotenv import load_dotenv
 load_dotenv()
 
 class BrickSchemaGraph:
-    def __init__(self):
+    def __init__(self, model: Union[str, BaseChatModel] = "anthropic"):
         """Initialize the StateGraph object and build the graph."""
         # Define a new graph
         self.workflow = StateGraph(State, config_schema=GraphConfig)
+        
+        # Store the model
+        self.model = _get_model(model)
         
         # Build graph by adding nodes
         self.workflow.add_node("get_elements", get_elements)
@@ -41,7 +48,7 @@ class BrickSchemaGraph:
         except Exception as e:
             raise ValueError(f"Failed to compile the graph: {e}")
         
-        # Hardcoding the thread_id for now
+        # Update the config with the model
         self.config = {"configurable": {"thread_id": "1"}}
 
     def _compiled_graph(self):
