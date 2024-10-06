@@ -1,5 +1,6 @@
-from typing import TypedDict, Literal
+from typing import TypedDict, Literal, Union
+from langchain.chat_models.base import BaseChatModel
 
 # Define the config
 class GraphConfig(TypedDict):
-    model_name: Literal["anthropic", "openai", "fireworks"]
+    model: Union[Literal["anthropic", "openai", "fireworks"], BaseChatModel]
