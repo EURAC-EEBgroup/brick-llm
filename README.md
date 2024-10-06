@@ -2,7 +2,7 @@
   <img src="docs/assets/brickllm_logo2.png" alt="BrickLLM" style="width: 100%;">
 </p>
 
-# BrickLLM
+# 🧱 BrickLLM
 
 BrickLLM is a Python library for generating RDF files following the BrickSchema ontology using Large Language Models (LLMs).
 
@@ -13,7 +13,7 @@ BrickLLM is a Python library for generating RDF files following the BrickSchema 
 - Customizable graph execution with LangGraph
 - Easy-to-use API for integrating with existing projects
 
-## Installation
+## 💻 Installation
 
 You can install BrickLLM using pip:
 
@@ -21,7 +21,7 @@ You can install BrickLLM using pip:
 pip install brickllm
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
 Here's a simple example of how to use BrickLLM:
 
@@ -54,7 +54,8 @@ if ttl_output:
         f.write(ttl_output)
 ```
 
-## Using Custom LLM Models
+<details>
+<summary><b>Using Custom LLM Models</b></summary>
 
 BrickLLM supports using custom LLM models. Here's an example using OpenAI's GPT-4o:
 
@@ -67,16 +68,17 @@ brick_graph = BrickSchemaGraph(model=custom_model)
 
 result = brick_graph.run(prompt=building_description, stream=False)
 ```
+</details>
 
-## Documentation
+## 📖 Documentation
 
 For more detailed information on how to use BrickLLM, please refer to our [documentation](https://brickllm.com/docs).
 
-## Contributing
+## 🤝 Contributing
 
 We welcome contributions to BrickLLM! Please see our [contributing guidelines](CONTRIBUTING.md) for more information.
 
-## License
+## 📜 License
 
 BrickLLM is released under the MIT License. See the [LICENSE](LICENSE) file for details.
 
