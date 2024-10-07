@@ -1,4 +1,7 @@
 from typing import Union
+from dotenv import load_dotenv
+from PIL import Image
+import os
 
 from langchain.chat_models.base import BaseChatModel
 from langgraph.graph import START, END, StateGraph
@@ -8,16 +11,15 @@ from ..nodes import (
     schema_to_ttl, validate_schema, get_sensors
 )
 from ..edges import validate_condition
-from PIL import Image
-import os
 from ..helpers.llm_models import _get_model
-
-from dotenv import load_dotenv
-load_dotenv()
 
 class BrickSchemaGraph:
     def __init__(self, model: Union[str, BaseChatModel] = "anthropic"):
         """Initialize the StateGraph object and build the graph."""
+        
+        # Load environment variables
+        load_dotenv()
+        
         # Define a new graph
         self.workflow = StateGraph(State, config_schema=GraphConfig)
         
