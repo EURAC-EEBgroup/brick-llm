@@ -59,6 +59,9 @@ isort = "*"
 tox = "*"
 pre-commit = "*"
 types-setuptools = "^75.1.0.20240917"
+mkdocs = "^1.5"
+mkdocs-material = "^9.2"
+mkdocstrings-python = "^1.1"
 
 [tool.black]
 line-length = 88

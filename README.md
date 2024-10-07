@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/brickllm_logo2.png" alt="BrickLLM" style="width: 100%;">
+  <img src="docs/assets/brickllm_banner.png" alt="BrickLLM" style="width: 100%;">
 </p>
 
 # 🧱 BrickLLM

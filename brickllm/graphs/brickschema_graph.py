@@ -98,8 +98,11 @@ class BrickSchemaGraph:
         """Run the graph with the given user prompt.
 
         Args:
-            user_prompt (str): The user-provided natural language prompt.
-            stream (bool): Whether to stream the execution (True) or run without streaming (False).
+            prompt (str): The user prompt to run the graph.
+            stream (bool): Stream the graph execution.
+
+        Returns:
+            result (dict): The result of the graph execution.
         """
         input_data = {"user_prompt": prompt}
 
