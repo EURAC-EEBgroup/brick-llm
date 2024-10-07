@@ -14,7 +14,7 @@ from ..edges import validate_condition
 from ..helpers.llm_models import _get_model
 
 class BrickSchemaGraph:
-    def __init__(self, model: Union[str, BaseChatModel] = "anthropic"):
+    def __init__(self, model: Union[str, BaseChatModel] = "openai"):
         """Initialize the StateGraph object and build the graph."""
         
         # Load environment variables
