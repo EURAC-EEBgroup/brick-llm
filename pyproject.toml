@@ -48,11 +48,37 @@ langchain_core = "0.3.5"
 rdflib = ">=6.2.0,<7"
 pyshacl = "0.21"
 
-[tool.poetry.dev-dependencies]
-pytest = "8.0.0"
-pytest-mock = "3.14.0"
-pylint = "^3.2.5"
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4"
+pytest-sugar = "*"
+pytest-cov = "*"
+black = "*"
+mypy = "*"
+ruff = "*"
+isort = "*"
+tox = "*"
+pre-commit = "*"
+types-setuptools = "^75.1.0.20240917"
 
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "C"]
+ignore = ["E203", "E501"]  # Ignore conflicts with Black
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+disallow_untyped_calls = true
+ignore_missing_imports = true
 
 [build-system]
 requires = ["poetry-core"]

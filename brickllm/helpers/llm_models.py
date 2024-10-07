@@ -1,10 +1,10 @@
 from typing import Union
-from dotenv import load_dotenv
 
-from langchain_anthropic import ChatAnthropic
-from langchain_openai import ChatOpenAI
-from langchain_fireworks import ChatFireworks
+from dotenv import load_dotenv
 from langchain.chat_models.base import BaseChatModel
+from langchain_anthropic import ChatAnthropic
+from langchain_fireworks import ChatFireworks
+from langchain_openai import ChatOpenAI
 
 
 def _get_model(model: Union[str, BaseChatModel]):
@@ -17,10 +17,10 @@ def _get_model(model: Union[str, BaseChatModel]):
     Returns:
         BaseChatModel: The LLM model instance.
     """
-    
+
     if isinstance(model, BaseChatModel):
         return model
-    
+
     # Load environment variables
     load_dotenv()
 
@@ -29,6 +29,8 @@ def _get_model(model: Union[str, BaseChatModel]):
     elif model == "anthropic":
         return ChatAnthropic(temperature=0, model="claude-3-sonnet-20240229")
     elif model == "fireworks":
-        return ChatFireworks(temperature=0, model="accounts/fireworks/models/llama-v3p1-70b-instruct")
+        return ChatFireworks(
+            temperature=0, model="accounts/fireworks/models/llama-v3p1-70b-instruct"
+        )
     else:
         raise ValueError(f"Unsupported model type: {model}")

@@ -2,16 +2,20 @@ import json
 import os
 import re
 from collections import defaultdict
-from .query_brickschema import general_query
+
 import pkg_resources
 
+from .query_brickschema import general_query
 
 # Path to the JSON file
-brick_hierarchy_path = pkg_resources.resource_filename(__name__, os.path.join('..', 'ontologies', 'brick_hierarchy.json'))
+brick_hierarchy_path = pkg_resources.resource_filename(
+    __name__, os.path.join("..", "ontologies", "brick_hierarchy.json")
+)
 
 # Load the JSON file
 with open(brick_hierarchy_path) as f:
     data = json.load(f)
+
 
 # Function to recursively find parents
 def find_parents(current_data, target, parents=None):
@@ -37,6 +41,7 @@ def find_parents(current_data, target, parents=None):
                 return True, result
     return False, []
 
+
 # Function to get the children of a node
 def get_children(current_data, target):
     """
@@ -57,6 +62,7 @@ def get_children(current_data, target):
             if children:
                 return children
     return []
+
 
 # Function to flatten the hierarchy
 def flatten_hierarchy(current_data, parent=None, result=None):
@@ -80,6 +86,7 @@ def flatten_hierarchy(current_data, parent=None, result=None):
             flatten_hierarchy(value, key, result)
     return result
 
+
 # Main function to get hierarchy info
 def get_hierarchical_info(key):
     """
@@ -96,6 +103,7 @@ def get_hierarchical_info(key):
     # Get children
     children = get_children(data, key)
     return (parents, children)
+
 
 # Function to recursively get all children and subchildren
 def get_all_subchildren(current_data, target):
@@ -118,6 +126,7 @@ def get_all_subchildren(current_data, target):
                 return result
     return {}
 
+
 # Main function to get hierarchy dictionary
 def get_children_hierarchy(key, flatten=False):
     """
@@ -133,6 +142,7 @@ def get_children_hierarchy(key, flatten=False):
     if flatten:
         return flatten_hierarchy(get_all_subchildren(data, key))
     return get_all_subchildren(data, key)
+
 
 # Function to filter elements based on the given conditions
 def filter_elements(elements):
@@ -159,6 +169,7 @@ def filter_elements(elements):
         filtered_elements.append(element)
 
     return filtered_elements
+
 
 def create_hierarchical_dict(elements, properties=False):
     """
@@ -198,6 +209,7 @@ def create_hierarchical_dict(elements, properties=False):
 
     return hierarchy
 
+
 def find_sensor_paths(tree, path=None):
     """
     Find paths to sensor nodes in a hierarchical tree structure.
@@ -212,18 +224,19 @@ def find_sensor_paths(tree, path=None):
     if path is None:
         path = []
 
-    current_path = path + [tree['name']]
-    if 'children' not in tree or not tree['children']:
-        if re.search(r'Sensor', tree['name']):
-            sensor_path = '>'.join(current_path[:-1])
-            return [{'name': tree['name'], 'path': sensor_path}]
+    current_path = path + [tree["name"]]
+    if "children" not in tree or not tree["children"]:
+        if re.search(r"Sensor", tree["name"]):
+            sensor_path = ">".join(current_path[:-1])
+            return [{"name": tree["name"], "path": sensor_path}]
         return []
 
     sensor_paths = []
-    for child in tree['children']:
+    for child in tree["children"]:
         sensor_paths.extend(find_sensor_paths(child, current_path))
 
     return sensor_paths
+
 
 def build_hierarchy(relationships):
     """
@@ -235,9 +248,17 @@ def build_hierarchy(relationships):
     Returns:
         dict: A dictionary representing the hierarchical tree structure.
     """
+
     # Helper function to recursively build the tree structure
     def build_tree(node, tree_dict):
-        return {'name': node, 'children': [build_tree(child, tree_dict) for child in tree_dict[node]]} if tree_dict[node] else {'name': node}
+        return (
+            {
+                "name": node,
+                "children": [build_tree(child, tree_dict) for child in tree_dict[node]],
+            }
+            if tree_dict[node]
+            else {"name": node}
+        )
 
     # Create a dictionary to hold parent-children relationships
     tree_dict = defaultdict(list)
@@ -249,11 +270,14 @@ def build_hierarchy(relationships):
         nodes.update([parent, child])
 
     # Find the root (a node that is never a child)
-    root = next(node for node in tree_dict if all(node != child for _, child in relationships))
+    root = next(
+        node for node in tree_dict if all(node != child for _, child in relationships)
+    )
 
     # Build the hierarchical structure starting from the root
     hierarchy = build_tree(root, tree_dict)
     return hierarchy
+
 
 def extract_ttl_content(input_string: str) -> str:
     """

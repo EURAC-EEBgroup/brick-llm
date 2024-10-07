@@ -20,8 +20,16 @@ def validate_schema(state: State):
     max_iter -= 1
 
     if ttl_output is None:
-        return {"is_valid": False, "validation_report": "Empty TTL output.", "validation_max_iter": max_iter}
-    
+        return {
+            "is_valid": False,
+            "validation_report": "Empty TTL output.",
+            "validation_max_iter": max_iter,
+        }
+
     is_valid, report = validate_ttl(ttl_output)
 
-    return {"is_valid": is_valid, "validation_report": report, "validation_max_iter": max_iter}
+    return {
+        "is_valid": is_valid,
+        "validation_report": report,
+        "validation_max_iter": max_iter,
+    }

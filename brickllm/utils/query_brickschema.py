@@ -1,19 +1,23 @@
 import os
 import re
-from rdflib import Graph, URIRef, Namespace
+
 import pkg_resources
 import pyshacl
+from rdflib import Graph, Namespace, URIRef
 
 # Path to the Brick schema Turtle file
-brick_ttl_path = pkg_resources.resource_filename(__name__, os.path.join('..', 'ontologies', 'Brick.ttl'))
+brick_ttl_path = pkg_resources.resource_filename(
+    __name__, os.path.join("..", "ontologies", "Brick.ttl")
+)
 # Load the Brick schema Turtle file
 g = Graph()
-g.parse(brick_ttl_path, format='ttl')
+g.parse(brick_ttl_path, format="ttl")
 
 # Define the namespaces from the prefixes
 namespaces = {
-    'brick': Namespace('https://brickschema.org/schema/Brick#'),
+    "brick": Namespace("https://brickschema.org/schema/Brick#"),
 }
+
 
 # Function to get the definition from the TTL file
 def get_brick_definition(element_name: str) -> str:
@@ -26,15 +30,20 @@ def get_brick_definition(element_name: str) -> str:
     Returns:
         str: The definition of the element, or "No definition available" if not found.
     """
-    normalized_key = element_name.replace('_', '').lower()
+    normalized_key = element_name.replace("_", "").lower()
     for prefix, namespace in namespaces.items():
         uri = namespace[element_name]
-        for s, p, o in g.triples((uri, URIRef("http://www.w3.org/2004/02/skos/core#definition"), None)):
+        for s, p, o in g.triples(
+            (uri, URIRef("http://www.w3.org/2004/02/skos/core#definition"), None)
+        ):
             return str(o)
         uri = namespace[normalized_key]
-        for s, p, o in g.triples((uri, URIRef("http://www.w3.org/2004/02/skos/core#definition"), None)):
+        for s, p, o in g.triples(
+            (uri, URIRef("http://www.w3.org/2004/02/skos/core#definition"), None)
+        ):
             return str(o)
     return "No definition available"
+
 
 # Function to get the query result without using pandas
 def get_query_result(query):
@@ -52,13 +61,15 @@ def get_query_result(query):
     query_vars = list(result.vars)
     data = []
     for row in result:
-        data.append({str(var): str(row[var]) if row[var] else None for var in query_vars})
+        data.append(
+            {str(var): str(row[var]) if row[var] else None for var in query_vars}
+        )
     # Remove entries with None values and reset index
     cleaned_data = [
-        {key: value for key, value in row.items() if value is not None} 
-        for row in data
+        {key: value for key, value in row.items() if value is not None} for row in data
     ]
     return cleaned_data
+
 
 # Function to clean the result, extracting the needed part of the URI
 def clean_result(data):
@@ -71,7 +82,12 @@ def clean_result(data):
     Returns:
         list: A list of extracted parts from the URIs.
     """
-    return [re.findall(r'#(\w+)', value)[0] for value in data if re.findall(r'#(\w+)', value)]
+    return [
+        re.findall(r"#(\w+)", value)[0]
+        for value in data
+        if re.findall(r"#(\w+)", value)
+    ]
+
 
 # Function to create a SPARQL query for subclasses
 def query_subclass(element):
@@ -85,6 +101,7 @@ def query_subclass(element):
         str: The SPARQL query string.
     """
     return f"SELECT ?subclass WHERE {{ brick:{element} rdfs:subClassOf ?subclass . }}"
+
 
 # Function to create a SPARQL query for properties
 def query_properties(element):
@@ -106,6 +123,7 @@ def query_properties(element):
     }}
     """
 
+
 # Function to iteratively find subclasses
 def iterative_subclasses(element):
     """
@@ -119,16 +137,31 @@ def iterative_subclasses(element):
     """
     subclasses = []
     sub_class_data = get_query_result(query_subclass(element))
-    subClass = clean_result([row['subclass'] for row in sub_class_data]) if sub_class_data else []
+    subClass = (
+        clean_result([row["subclass"] for row in sub_class_data])
+        if sub_class_data
+        else []
+    )
 
     while subClass:
         subclasses.append(subClass[0])
-        if subClass[0] in {'Collection', 'Equipment', 'Location', 'Measureable', 'Point'}:
+        if subClass[0] in {
+            "Collection",
+            "Equipment",
+            "Location",
+            "Measureable",
+            "Point",
+        }:
             break
         sub_class_data = get_query_result(query_subclass(subClass[0]))
-        subClass = clean_result([row['subclass'] for row in sub_class_data]) if sub_class_data else []
+        subClass = (
+            clean_result([row["subclass"] for row in sub_class_data])
+            if sub_class_data
+            else []
+        )
 
     return subclasses
+
 
 # General query function to retrieve properties and relationships
 def general_query(element):
@@ -149,16 +182,19 @@ def general_query(element):
     relationships = {}
 
     for row in query_data:
-        property_name = clean_result([row['path']])[0]
+        property_name = clean_result([row["path"]])[0]
         if property_name not in relationships:
             relationships[property_name] = {
-                'message': row['message'],
-                'constraint': clean_result([row['class']])
+                "message": row["message"],
+                "constraint": clean_result([row["class"]]),
             }
         else:
-            relationships[property_name]['constraint'].extend(clean_result([row['class']]))
+            relationships[property_name]["constraint"].extend(
+                clean_result([row["class"]])
+            )
 
-    return {'property': relationships}
+    return {"property": relationships}
+
 
 def validate_ttl(ttl_file: str, method: str = "pyshacl"):
     """
@@ -174,22 +210,24 @@ def validate_ttl(ttl_file: str, method: str = "pyshacl"):
     # Load the ttl file
     output_graph = Graph()
     try:
-        output_graph.parse(ttl_file, format='ttl')
+        output_graph.parse(ttl_file, format="ttl")
     except Exception as e:
         return False, f"Failed to parse the TTL file. Content: {e}"
 
     if method == "pyshacl":
-        valid, results_graph, report = pyshacl.validate(output_graph,
-                                                        shacl_graph=g,
-                                                        ont_graph=g,
-                                                        inference='rdfs',
-                                                        abort_on_first=False,
-                                                        allow_infos=False,
-                                                        allow_warnings=False,
-                                                        meta_shacl=False,
-                                                        advanced=False,
-                                                        js=False,
-                                                        debug=False)
+        valid, results_graph, report = pyshacl.validate(
+            output_graph,
+            shacl_graph=g,
+            ont_graph=g,
+            inference="rdfs",
+            abort_on_first=False,
+            allow_infos=False,
+            allow_warnings=False,
+            meta_shacl=False,
+            advanced=False,
+            js=False,
+            debug=False,
+        )
         return valid, report
     else:
         return False, "Method not found"

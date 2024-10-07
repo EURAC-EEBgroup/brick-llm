@@ -1,6 +1,7 @@
-from brickllm.graphs import BrickSchemaGraph
-from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+
+from brickllm.graphs import BrickSchemaGraph
 
 # Load environment variables
 load_dotenv()

@@ -3,7 +3,7 @@ from collections import defaultdict
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from .. import State, RelationshipsSchema
+from .. import RelationshipsSchema, State
 from ..helpers import get_relationships_instructions
 from ..utils import build_hierarchy, find_sensor_paths
 
@@ -33,10 +33,15 @@ def get_relationships(state: State, config):
     # Enforce structured output
     structured_llm = llm.with_structured_output(RelationshipsSchema)
     # System message
-    system_message = get_relationships_instructions.format(prompt=user_prompt, building_structure=building_structure_json)
+    system_message = get_relationships_instructions.format(
+        prompt=user_prompt, building_structure=building_structure_json
+    )
 
     # Generate question
-    answer = structured_llm.invoke([SystemMessage(content=system_message)]+[HumanMessage(content="Find the relationships.")])
+    answer = structured_llm.invoke(
+        [SystemMessage(content=system_message)]
+        + [HumanMessage(content="Find the relationships.")]
+    )
 
     try:
         tree_dict = build_hierarchy(answer.relationships)
@@ -47,7 +52,7 @@ def get_relationships(state: State, config):
     sensor_paths = find_sensor_paths(tree_dict)
     grouped_sensors = defaultdict(list)
     for sensor in sensor_paths:
-        grouped_sensors[sensor['path']].append(sensor['name'])
+        grouped_sensors[sensor["path"]].append(sensor["name"])
     grouped_sensor_dict = dict(grouped_sensors)
 
     return {"sensors_dict": grouped_sensor_dict}

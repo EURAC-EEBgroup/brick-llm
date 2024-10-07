@@ -1,5 +1,7 @@
 from typing import Literal
+
 # from langgraph.graph import END
+
 
 def validate_condition(state) -> Literal["schema_to_ttl", "__end__"]:
     """
@@ -11,7 +13,7 @@ def validate_condition(state) -> Literal["schema_to_ttl", "__end__"]:
     Returns:
         Literal["schema_to_ttl", "__end__"]: The next node to visit.
     """
-    
+
     is_valid = state.get("is_valid")
     max_iter = state.get("validation_max_iter")
 

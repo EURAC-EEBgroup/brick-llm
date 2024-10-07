@@ -37,10 +37,13 @@ def schema_to_ttl(state: State, config):
         prompt=user_prompt,
         sensors_dict=sensors_dict_json,
         elem_hierarchy=elem_hierarchy_json,
-        ttl_example=ttl_example
+        ttl_example=ttl_example,
     )
 
     # Generate question
-    answer = structured_llm.invoke([SystemMessage(content=system_message)]+[HumanMessage(content="Generate the TTL.")])
+    answer = structured_llm.invoke(
+        [SystemMessage(content=system_message)]
+        + [HumanMessage(content="Generate the TTL.")]
+    )
 
     return {"ttl_output": answer.ttl_output}
