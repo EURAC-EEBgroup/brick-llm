@@ -10,7 +10,7 @@ There are 2 rooms in each office and each room has three sensors:
 """
 
 # Create an instance of BrickSchemaGraph with a predefined provider
-brick_graph = BrickSchemaGraph(model="anthropic")
+brick_graph = BrickSchemaGraph(model="openai")
 
 # Display the graph structure
 brick_graph.display()

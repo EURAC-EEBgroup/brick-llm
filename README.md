@@ -28,7 +28,6 @@ Here's a simple example of how to use BrickLLM:
 ``` python
 from brickllm.graphs import BrickSchemaGraph
 
-# Specify the building description
 building_description = """
 I have a building located in Bolzano.
 It has 3 floors and each floor has 1 office.
@@ -38,8 +37,11 @@ There are 2 rooms in each office and each room has three sensors:
 - CO sensor.
 """
 
-# Create an instance of BrickSchemaGraph
+# Create an instance of BrickSchemaGraph with a predefined provider
 brick_graph = BrickSchemaGraph(model="openai")
+
+# Display the graph structure
+brick_graph.display()
 
 # Run the graph
 result = brick_graph.run(prompt=building_description, stream=False)
@@ -47,11 +49,8 @@ result = brick_graph.run(prompt=building_description, stream=False)
 # Print the result
 print(result)
 
-# Save the TTL output to a file
-ttl_output = result.get('ttl_output', None)
-if ttl_output:
-    with open('output.ttl', 'w') as f:
-        f.write(ttl_output)
+# save the result to a file
+brick_graph.save_ttl_output("my_building.ttl")
 ```
 
 <details>
