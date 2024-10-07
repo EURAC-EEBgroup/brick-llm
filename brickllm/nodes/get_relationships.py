@@ -5,7 +5,7 @@ from collections import defaultdict
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import State, RelationshipsSchema
-from ..helpers import get_relationships_instructions, _get_model
+from ..helpers import get_relationships_instructions
 from ..utils import build_hierarchy, find_sensor_paths
 
 
@@ -19,8 +19,7 @@ def get_relationships(state: State, config):
     building_structure_json = json.dumps(building_structure, indent=2)
 
     # Get the model name from the config
-    model_name = config.get('configurable', {}).get("model_name", "fireworks")
-    llm = _get_model(model_name)
+    llm = config.get("configurable", {}).get("llm_model")
 
     # Enforce structured output
     structured_llm = llm.with_structured_output(RelationshipsSchema)

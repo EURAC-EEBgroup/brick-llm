@@ -1,5 +1,9 @@
 from brickllm.graphs import BrickSchemaGraph
 from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Specify the user prompt
 building_description = """
@@ -12,7 +16,7 @@ There are 2 rooms in each office and each room has three sensors:
 """
 
 # Create an instance of BrickSchemaGraph with a custom model
-custom_model = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
+custom_model = ChatOpenAI(temperature=0, model="gpt-4o")
 brick_graph = BrickSchemaGraph(model=custom_model)
 
 # Display the graph structure

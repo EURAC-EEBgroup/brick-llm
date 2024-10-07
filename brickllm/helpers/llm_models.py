@@ -1,15 +1,19 @@
-from functools import lru_cache
 from typing import Union
+from dotenv import load_dotenv
 
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
 from langchain_fireworks import ChatFireworks
 from langchain.chat_models.base import BaseChatModel
 
+
 def _get_model(model: Union[str, BaseChatModel]):
     if isinstance(model, BaseChatModel):
         return model
     
+    # Load environment variables
+    load_dotenv()
+
     if model == "openai":
         return ChatOpenAI(temperature=0, model="gpt-4o")
     elif model == "anthropic":

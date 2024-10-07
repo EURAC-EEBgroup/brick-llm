@@ -3,7 +3,7 @@ import json
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import State, TTLSchema
-from ..helpers import schema_to_ttl_instructions, ttl_example, _get_model
+from ..helpers import schema_to_ttl_instructions, ttl_example
 
 
 def schema_to_ttl(state: State, config):
@@ -17,8 +17,7 @@ def schema_to_ttl(state: State, config):
     elem_hierarchy_json = json.dumps(elem_hierarchy, indent=2)
 
     # Get the model name from the config
-    model_name = config.get('configurable', {}).get("model_name", "fireworks")
-    llm = _get_model(model_name)
+    llm = config.get("configurable", {}).get("llm_model")
 
     # Enforce structured output
     structured_llm = llm.with_structured_output(TTLSchema)

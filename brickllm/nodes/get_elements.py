@@ -1,7 +1,7 @@
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import State, ElemListSchema
-from ..helpers import get_elem_instructions, _get_model
+from ..helpers import get_elem_instructions
 from ..utils import get_hierarchical_info, get_brick_definition
 
 
@@ -26,8 +26,7 @@ def get_elements(state: State, config):
         category_dict[category] = children_dict
 
     # Get the model name from the config
-    model_name = config.get('configurable', {}).get("model_name", "fireworks")
-    llm = _get_model(model_name)
+    llm = config.get("configurable", {}).get("llm_model")
 
     # Enforce structured output
     structured_llm = llm.with_structured_output(ElemListSchema)

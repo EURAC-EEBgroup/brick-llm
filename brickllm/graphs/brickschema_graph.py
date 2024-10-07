@@ -1,5 +1,4 @@
 from typing import Union
-from dotenv import load_dotenv
 from PIL import Image
 import os
 
@@ -16,9 +15,6 @@ from ..helpers.llm_models import _get_model
 class BrickSchemaGraph:
     def __init__(self, model: Union[str, BaseChatModel] = "openai"):
         """Initialize the StateGraph object and build the graph."""
-        
-        # Load environment variables
-        load_dotenv()
         
         # Define a new graph
         self.workflow = StateGraph(State, config_schema=GraphConfig)
@@ -51,7 +47,7 @@ class BrickSchemaGraph:
             raise ValueError(f"Failed to compile the graph: {e}")
         
         # Update the config with the model
-        self.config = {"configurable": {"thread_id": "1"}}
+        self.config = {"configurable": {"thread_id": "1", "llm_model": self.model}}
 
         # Initialize the result
         self.result = None
