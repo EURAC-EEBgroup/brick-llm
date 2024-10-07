@@ -6,6 +6,17 @@ from ..utils import get_hierarchical_info, get_brick_definition
 
 
 def get_elements(state: State, config):
+    """
+    Process the user prompt to identify elements within specified categories
+    using a language model.
+
+    Args:
+        state (State): The current state containing the user prompt.
+        config (dict): Configuration dictionary containing the language model.
+
+    Returns:
+        dict: A dictionary containing the list of identified elements.
+    """
     print("---Get Elements Node---")
 
     user_prompt = state["user_prompt"]

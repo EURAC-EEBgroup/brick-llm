@@ -3,6 +3,15 @@ from ..utils import validate_ttl
 
 
 def validate_schema(state: State):
+    """
+    Validate the generated TTL output against the BrickSchema.
+
+    Args:
+        state (State): The current state containing the TTL output and validation parameters.
+
+    Returns:
+        dict: A dictionary containing the validation status and report.
+    """
     print("---Validate Schema Node---")
 
     ttl_output = state.get("ttl_output", None)

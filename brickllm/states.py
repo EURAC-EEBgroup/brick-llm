@@ -1,7 +1,7 @@
 from typing import Any, List, Dict
 from typing_extensions import TypedDict
 
-# graph state
+# state for BrickSchemaGraph class
 class State(TypedDict):
     user_prompt: str
     elem_list: List[str]

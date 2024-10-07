@@ -7,6 +7,16 @@ from ..helpers import schema_to_ttl_instructions, ttl_example
 
 
 def schema_to_ttl(state: State, config):
+    """
+    Generate a TTL (Turtle) script from the building description and component hierarchy.
+
+    Args:
+        state (State): The current state containing the user prompt, sensors, and element hierarchy.
+        config (dict): Configuration dictionary containing the language model.
+
+    Returns:
+        dict: A dictionary containing the generated TTL output.
+    """
     print("---Schema To TTL Node---")
 
     user_prompt = state["user_prompt"]

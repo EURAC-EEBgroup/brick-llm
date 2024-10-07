@@ -1,4 +1,3 @@
-
 import json
 from collections import defaultdict
 
@@ -10,6 +9,16 @@ from ..utils import build_hierarchy, find_sensor_paths
 
 
 def get_relationships(state: State, config):
+    """
+    Determine relationships between building components using a language model.
+
+    Args:
+        state (State): The current state containing the user prompt and element hierarchy.
+        config (dict): Configuration dictionary containing the language model.
+
+    Returns:
+        dict: A dictionary containing the grouped sensor paths.
+    """
     print("---Get Relationships Node---")
 
     user_prompt = state["user_prompt"]

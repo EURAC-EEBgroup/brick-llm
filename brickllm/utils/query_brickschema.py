@@ -17,6 +17,15 @@ namespaces = {
 
 # Function to get the definition from the TTL file
 def get_brick_definition(element_name: str) -> str:
+    """
+    Get the definition of an element from the Brick schema Turtle file.
+
+    Args:
+        element_name (str): The name of the element to get the definition for.
+
+    Returns:
+        str: The definition of the element, or "No definition available" if not found.
+    """
     normalized_key = element_name.replace('_', '').lower()
     for prefix, namespace in namespaces.items():
         uri = namespace[element_name]
@@ -29,6 +38,15 @@ def get_brick_definition(element_name: str) -> str:
 
 # Function to get the query result without using pandas
 def get_query_result(query):
+    """
+    Execute a SPARQL query on the Brick schema graph and return the results.
+
+    Args:
+        query (str): The SPARQL query to execute.
+
+    Returns:
+        list: A list of dictionaries representing the query results.
+    """
     result = g.query(query)
     # Convert the result to a list of dictionaries where keys are the variable names
     query_vars = list(result.vars)
@@ -44,14 +62,41 @@ def get_query_result(query):
 
 # Function to clean the result, extracting the needed part of the URI
 def clean_result(data):
+    """
+    Extract the relevant part of a URI from a list of data.
+
+    Args:
+        data (list): A list of URIs to clean.
+
+    Returns:
+        list: A list of extracted parts from the URIs.
+    """
     return [re.findall(r'#(\w+)', value)[0] for value in data if re.findall(r'#(\w+)', value)]
 
 # Function to create a SPARQL query for subclasses
 def query_subclass(element):
+    """
+    Create a SPARQL query to find subclasses of a given element.
+
+    Args:
+        element (str): The element to find subclasses for.
+
+    Returns:
+        str: The SPARQL query string.
+    """
     return f"SELECT ?subclass WHERE {{ brick:{element} rdfs:subClassOf ?subclass . }}"
 
 # Function to create a SPARQL query for properties
 def query_properties(element):
+    """
+    Create a SPARQL query to find properties of a given element.
+
+    Args:
+        element (str): The element to find properties for.
+
+    Returns:
+        str: The SPARQL query string.
+    """
     return f"""
     SELECT ?property ?message ?path ?class WHERE {{
         brick:{element} sh:property ?property .
@@ -63,6 +108,15 @@ def query_properties(element):
 
 # Function to iteratively find subclasses
 def iterative_subclasses(element):
+    """
+    Iteratively find all subclasses of a given element.
+
+    Args:
+        element (str): The element to find subclasses for.
+
+    Returns:
+        list: A list of subclasses.
+    """
     subclasses = []
     sub_class_data = get_query_result(query_subclass(element))
     subClass = clean_result([row['subclass'] for row in sub_class_data]) if sub_class_data else []
@@ -78,6 +132,15 @@ def iterative_subclasses(element):
 
 # General query function to retrieve properties and relationships
 def general_query(element):
+    """
+    Retrieve properties and relationships for a given element.
+
+    Args:
+        element (str): The element to retrieve properties and relationships for.
+
+    Returns:
+        dict: A dictionary containing properties and their constraints.
+    """
     subclasses = iterative_subclasses(element)
     if not subclasses:
         return {}
@@ -99,17 +162,15 @@ def general_query(element):
 
 def validate_ttl(ttl_file: str, method: str = "pyshacl"):
     """
-    Validate the ttl file using the specified method.
+    Validate a TTL file using the specified method.
 
     Args:
-        ttl_file (str): The ttl file to validate.
+        ttl_file (str): The TTL file to validate.
         method (str): The method to use for validation. Default is 'pyshacl'.
 
     Returns:
-        bool: True if the validation is successful, False otherwise.
-        str: The validation report.
+        tuple: A tuple containing a boolean indicating if the validation was successful and a validation report.
     """
-
     # Load the ttl file
     output_graph = Graph()
     try:

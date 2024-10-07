@@ -1,3 +1,7 @@
+"""
+Module containing the prompts used for the LLM models
+"""
+
 get_elem_instructions = """
     You are a BrickSchema ontology expert and you are provided with a user prompt which describes a building or facility.\n
     You are provided with a list of common elements that can be used to describe a building or facility.\n

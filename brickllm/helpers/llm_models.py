@@ -8,6 +8,16 @@ from langchain.chat_models.base import BaseChatModel
 
 
 def _get_model(model: Union[str, BaseChatModel]):
+    """
+    Get the LLM model based on the provided model type.
+
+    Args:
+        model (Union[str, BaseChatModel]): The model type as a string or an instance of BaseChatModel.
+
+    Returns:
+        BaseChatModel: The LLM model instance.
+    """
+    
     if isinstance(model, BaseChatModel):
         return model
     

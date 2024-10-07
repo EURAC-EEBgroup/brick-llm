@@ -15,6 +15,17 @@ with open(brick_hierarchy_path) as f:
 
 # Function to recursively find parents
 def find_parents(current_data, target, parents=None):
+    """
+    Recursively find the parent nodes of a target node in a hierarchical data structure.
+
+    Args:
+        current_data (dict): The current level of the hierarchy to search.
+        target (str): The target node to find parents for.
+        parents (list, optional): Accumulated list of parent nodes. Defaults to None.
+
+    Returns:
+        tuple: A tuple containing a boolean indicating if the target was found and a list of parent nodes.
+    """
     if parents is None:
         parents = []
     for key, value in current_data.items():
@@ -28,6 +39,16 @@ def find_parents(current_data, target, parents=None):
 
 # Function to get the children of a node
 def get_children(current_data, target):
+    """
+    Get the children of a target node in a hierarchical data structure.
+
+    Args:
+        current_data (dict): The current level of the hierarchy to search.
+        target (str): The target node to find children for.
+
+    Returns:
+        list: A list of child nodes.
+    """
     if target in current_data:
         return list(current_data[target].keys())
     for key, value in current_data.items():
@@ -39,6 +60,17 @@ def get_children(current_data, target):
 
 # Function to flatten the hierarchy
 def flatten_hierarchy(current_data, parent=None, result=None):
+    """
+    Flatten a hierarchical data structure into a list of parent-child tuples.
+
+    Args:
+        current_data (dict): The current level of the hierarchy to flatten.
+        parent (str, optional): The parent node. Defaults to None.
+        result (list, optional): Accumulated list of parent-child tuples. Defaults to None.
+
+    Returns:
+        list: A list of tuples representing parent-child relationships.
+    """
     if result is None:
         result = []
     for key, value in current_data.items():
@@ -50,6 +82,15 @@ def flatten_hierarchy(current_data, parent=None, result=None):
 
 # Main function to get hierarchy info
 def get_hierarchical_info(key):
+    """
+    Get the hierarchical information of a node, including its parents and children.
+
+    Args:
+        key (str): The target node to get information for.
+
+    Returns:
+        tuple: A tuple containing a list of parent nodes and a list of child nodes.
+    """
     # Get parents
     found, parents = find_parents(data, key)
     # Get children
@@ -58,6 +99,16 @@ def get_hierarchical_info(key):
 
 # Function to recursively get all children and subchildren
 def get_all_subchildren(current_data, target):
+    """
+    Recursively get all children and subchildren of a target node.
+
+    Args:
+        current_data (dict): The current level of the hierarchy to search.
+        target (str): The target node to find children for.
+
+    Returns:
+        dict: A dictionary representing the subtree of the target node.
+    """
     if target in current_data:
         return current_data[target]
     for key, value in current_data.items():
@@ -69,12 +120,31 @@ def get_all_subchildren(current_data, target):
 
 # Main function to get hierarchy dictionary
 def get_children_hierarchy(key, flatten=False):
+    """
+    Get the hierarchy of children for a target node, optionally flattening the result.
+
+    Args:
+        key (str): The target node to get children for.
+        flatten (bool, optional): Whether to flatten the hierarchy. Defaults to False.
+
+    Returns:
+        dict or list: A dictionary representing the hierarchy or a list of parent-child tuples if flattened.
+    """
     if flatten:
         return flatten_hierarchy(get_all_subchildren(data, key))
     return get_all_subchildren(data, key)
 
 # Function to filter elements based on the given conditions
 def filter_elements(elements):
+    """
+    Filter elements based on their hierarchical relationships.
+
+    Args:
+        elements (list): A list of elements to filter.
+
+    Returns:
+        list: A list of filtered elements.
+    """
     elements_info = {element: get_hierarchical_info(element) for element in elements}
     filtered_elements = []
 
@@ -91,6 +161,16 @@ def filter_elements(elements):
     return filtered_elements
 
 def create_hierarchical_dict(elements, properties=False):
+    """
+    Create a hierarchical dictionary from a list of elements, optionally including properties.
+
+    Args:
+        elements (list): A list of elements to include in the hierarchy.
+        properties (bool, optional): Whether to include properties in the hierarchy. Defaults to False.
+
+    Returns:
+        dict: A dictionary representing the hierarchical structure.
+    """
     hierarchy = {}
 
     for category in elements:
@@ -119,6 +199,16 @@ def create_hierarchical_dict(elements, properties=False):
     return hierarchy
 
 def find_sensor_paths(tree, path=None):
+    """
+    Find paths to sensor nodes in a hierarchical tree structure.
+
+    Args:
+        tree (dict): The hierarchical tree structure.
+        path (list, optional): Accumulated path to the current node. Defaults to None.
+
+    Returns:
+        list: A list of dictionaries containing sensor names and their paths.
+    """
     if path is None:
         path = []
 
@@ -136,6 +226,15 @@ def find_sensor_paths(tree, path=None):
     return sensor_paths
 
 def build_hierarchy(relationships):
+    """
+    Build a hierarchical tree structure from a list of parent-child relationships.
+
+    Args:
+        relationships (list): A list of tuples representing parent-child relationships.
+
+    Returns:
+        dict: A dictionary representing the hierarchical tree structure.
+    """
     # Helper function to recursively build the tree structure
     def build_tree(node, tree_dict):
         return {'name': node, 'children': [build_tree(child, tree_dict) for child in tree_dict[node]]} if tree_dict[node] else {'name': node}
@@ -157,8 +256,17 @@ def build_hierarchy(relationships):
     return hierarchy
 
 def extract_ttl_content(input_string: str) -> str:
-  # Use regex to match content between ```python and ```
-  match = re.search(r"```code\s*(.*?)\s*```", input_string, re.DOTALL)
-  if match:
-      return match.group(1).strip()
-  return ""
+    """
+    Extract content between code block markers in a string.
+
+    Args:
+        input_string (str): The input string containing code blocks.
+
+    Returns:
+        str: The extracted content between the code block markers.
+    """
+    # Use regex to match content between ```python and ```
+    match = re.search(r"```code\s*(.*?)\s*```", input_string, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    return ""

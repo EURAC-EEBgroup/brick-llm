@@ -2,8 +2,16 @@ from typing import Literal
 # from langgraph.graph import END
 
 def validate_condition(state) -> Literal["schema_to_ttl", "__end__"]:
+    """
+    Validate the condition for the next node to visit.
 
-    # Often, we will use state to decide on the next node to visit
+    Args:
+        state (State): The current state containing the validation result.
+
+    Returns:
+        Literal["schema_to_ttl", "__end__"]: The next node to visit.
+    """
+    
     is_valid = state.get("is_valid")
     max_iter = state.get("validation_max_iter")
 

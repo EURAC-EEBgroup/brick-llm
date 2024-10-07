@@ -2,6 +2,15 @@ from .. import State
 
 
 def get_sensors(state: State):
+    """
+    Retrieve sensor information for the building structure.
+
+    Args:
+        state (State): The current state.
+
+    Returns:
+        dict: A dictionary containing sensor UUIDs mapped to their locations.
+    """
     print("---Get Sensor Node---")
 
     uuid_dict = {

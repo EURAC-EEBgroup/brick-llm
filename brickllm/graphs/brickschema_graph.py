@@ -12,9 +12,15 @@ from ..nodes import (
 from ..edges import validate_condition
 from ..helpers.llm_models import _get_model
 
+
 class BrickSchemaGraph:
     def __init__(self, model: Union[str, BaseChatModel] = "openai"):
-        """Initialize the StateGraph object and build the graph."""
+        """
+        Initialize the StateGraph object and build the graph.
+
+        Args:
+            model (Union[str, BaseChatModel]): The model type as a string or an instance of BaseChatModel.
+        """
         
         # Define a new graph
         self.workflow = StateGraph(State, config_schema=GraphConfig)

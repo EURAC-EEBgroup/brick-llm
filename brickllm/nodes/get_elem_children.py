@@ -6,6 +6,16 @@ from ..utils import get_children_hierarchy, create_hierarchical_dict, filter_ele
 
 
 def get_elem_children(state: State, config):
+    """
+    Identify child elements for each category in the element list using a language model.
+
+    Args:
+        state (State): The current state containing the user prompt and element list.
+        config (dict): Configuration dictionary containing the language model.
+
+    Returns:
+        dict: A dictionary containing the hierarchical structure of identified elements.
+    """
     print("---Get Elem Children Node---")
 
     user_prompt = state["user_prompt"]
