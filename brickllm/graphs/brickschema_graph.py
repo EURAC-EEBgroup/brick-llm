@@ -51,6 +51,9 @@ class BrickSchemaGraph:
         # Update the config with the model
         self.config = {"configurable": {"thread_id": "1"}}
 
+        # Initialize the result
+        self.result = None
+
     def _compiled_graph(self):
         """Check if the graph is compiled and return the compiled graph."""
         if self.graph is None:
@@ -90,11 +93,14 @@ class BrickSchemaGraph:
             # Stream the content of the graph state at each node
             for event in self.graph.stream(input_data, self.config, stream_mode="values"):
                 events.append(event)
+            
+            # Store the last event as the result
+            self.result = events[-1]
             return events
         else:
             # Invoke the graph without streaming
-            result = self.graph.invoke(input_data, self.config)
-            return result
+            self.result = self.graph.invoke(input_data, self.config)
+            return self.result
 
     def get_state_snapshots(self) -> list:
         """Get all the state snapshots from the graph execution."""
@@ -104,3 +110,16 @@ class BrickSchemaGraph:
             all_states.append(state)
         
         return all_states
+    
+    def save_ttl_output(self, output_file="brick_schema_output.ttl"):
+        """Save the TTL output to a file."""
+        if self.result is None:
+            raise ValueError("No result found. Please run the graph first.")
+        
+        ttl_output = self.result.get('ttl_output', None)
+
+        if ttl_output:
+            with open(output_file, 'w') as f:
+                f.write(ttl_output)
+        else:
+            raise ValueError("No TTL output found in the result. Please run the graph with a valid prompt.")

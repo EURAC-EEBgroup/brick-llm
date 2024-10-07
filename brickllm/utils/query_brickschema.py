@@ -2,6 +2,7 @@ import os
 import re
 from rdflib import Graph, URIRef, Namespace
 import pkg_resources
+import pyshacl
 
 # Path to the Brick schema Turtle file
 brick_ttl_path = pkg_resources.resource_filename(__name__, os.path.join('..', 'ontologies', 'Brick.ttl'))
@@ -96,3 +97,38 @@ def general_query(element):
 
     return {'property': relationships}
 
+def validate_ttl(ttl_file: str, method: str = "pyshacl"):
+    """
+    Validate the ttl file using the specified method.
+
+    Args:
+        ttl_file (str): The ttl file to validate.
+        method (str): The method to use for validation. Default is 'pyshacl'.
+
+    Returns:
+        bool: True if the validation is successful, False otherwise.
+        str: The validation report.
+    """
+
+    # Load the ttl file
+    output_graph = Graph()
+    try:
+        output_graph.parse(ttl_file, format='ttl')
+    except Exception as e:
+        return False, f"Failed to parse the TTL file. Content: {e}"
+
+    if method == "pyshacl":
+        valid, results_graph, report = pyshacl.validate(output_graph,
+                                                        shacl_graph=g,
+                                                        ont_graph=g,
+                                                        inference='rdfs',
+                                                        abort_on_first=False,
+                                                        allow_infos=False,
+                                                        allow_warnings=False,
+                                                        meta_shacl=False,
+                                                        advanced=False,
+                                                        js=False,
+                                                        debug=False)
+        return valid, report
+    else:
+        return False, "Method not found"

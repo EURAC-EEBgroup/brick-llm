@@ -11,6 +11,7 @@ class State(TypedDict):
     # rel_tree: Dict[str, Any]
     sensors_dict: Dict[str, List[str]]
     is_valid: bool
+    validation_report: str
     validation_max_iter: int
     uuid_dict: Dict[str, Any]
     ttl_output: str

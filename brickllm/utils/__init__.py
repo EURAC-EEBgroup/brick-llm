@@ -19,7 +19,8 @@ from .query_brickschema import (
     query_subclass, 
     query_properties, 
     iterative_subclasses, 
-    general_query
+    general_query,
+    validate_ttl
 )
 
 __all__ = [
@@ -40,7 +41,8 @@ __all__ = [
     'query_subclass',
     'query_properties',
     'iterative_subclasses',
-    'general_query'
+    'general_query',
+    'validate_ttl'
 ]
 
 
