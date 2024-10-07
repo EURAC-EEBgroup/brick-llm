@@ -21,6 +21,33 @@ You can install BrickLLM using pip:
 pip install brickllm
 ```
 
+<details>
+<summary><b>Development Installation</b></summary>
+
+[Poetry](https://python-poetry.org/) is used for dependency management during development. To install BrickLLM for contributing, follow these steps:
+
+``` bash
+# Clone the repository
+git clone https://github.com/EURAC-EEBgroup/brickllm-lib.git
+cd brick-llm
+
+# Create a virtual environment
+python -m venv .venv
+
+# Activate the virtual environment
+source .venv/bin/activate # Linux/Mac
+.venv\Scripts\activate # Windows
+
+# Install Poetry and dependencies
+pip install poetry
+poetry install
+
+# Install pre-commit hooks
+pre-commit install
+```
+
+</details>
+
 ## 🚀 Quick Start
 
 Here's a simple example of how to use BrickLLM:
