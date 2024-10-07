@@ -32,6 +32,5 @@ def schema_to_ttl(state: State, config):
 
     # Generate question
     answer = structured_llm.invoke([SystemMessage(content=system_message)]+[HumanMessage(content="Generate the TTL.")])
-    print(answer.ttl_output)
 
     return {"ttl_output": answer.ttl_output}
