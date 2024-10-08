@@ -7,7 +7,7 @@ from langchain_fireworks import ChatFireworks
 from langchain_openai import ChatOpenAI
 
 
-def _get_model(model: Union[str, BaseChatModel]):
+def _get_model(model: Union[str, BaseChatModel]) -> BaseChatModel:
     """
     Get the LLM model based on the provided model type.
 

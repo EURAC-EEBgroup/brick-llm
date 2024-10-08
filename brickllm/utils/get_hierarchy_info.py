@@ -2,6 +2,7 @@ import json
 import os
 import re
 from collections import defaultdict
+from typing import Any, Dict, List, Tuple, Union
 
 import pkg_resources
 
@@ -18,7 +19,9 @@ with open(brick_hierarchy_path) as f:
 
 
 # Function to recursively find parents
-def find_parents(current_data, target, parents=None):
+def find_parents(
+    current_data: Dict[str, Any], target: str, parents: List[str] = None
+) -> Tuple[bool, List[str]]:
     """
     Recursively find the parent nodes of a target node in a hierarchical data structure.
 
@@ -43,7 +46,7 @@ def find_parents(current_data, target, parents=None):
 
 
 # Function to get the children of a node
-def get_children(current_data, target):
+def get_children(current_data: Dict[str, Any], target: str) -> List[str]:
     """
     Get the children of a target node in a hierarchical data structure.
 
@@ -65,7 +68,11 @@ def get_children(current_data, target):
 
 
 # Function to flatten the hierarchy
-def flatten_hierarchy(current_data, parent=None, result=None):
+def flatten_hierarchy(
+    current_data: Dict[str, Any],
+    parent: str = None,
+    result: List[Tuple[str, str]] = None,
+) -> List[Tuple[str, str]]:
     """
     Flatten a hierarchical data structure into a list of parent-child tuples.
 
@@ -88,7 +95,7 @@ def flatten_hierarchy(current_data, parent=None, result=None):
 
 
 # Main function to get hierarchy info
-def get_hierarchical_info(key):
+def get_hierarchical_info(key: str) -> Tuple[List[str], List[str]]:
     """
     Get the hierarchical information of a node, including its parents and children.
 
@@ -106,7 +113,7 @@ def get_hierarchical_info(key):
 
 
 # Function to recursively get all children and subchildren
-def get_all_subchildren(current_data, target):
+def get_all_subchildren(current_data: Dict[str, Any], target: str) -> Dict[str, Any]:
     """
     Recursively get all children and subchildren of a target node.
 
@@ -128,7 +135,9 @@ def get_all_subchildren(current_data, target):
 
 
 # Main function to get hierarchy dictionary
-def get_children_hierarchy(key, flatten=False):
+def get_children_hierarchy(
+    key: str, flatten: bool = False
+) -> Union[Dict[str, Any], List[Tuple[str, str]]]:
     """
     Get the hierarchy of children for a target node, optionally flattening the result.
 
@@ -145,7 +154,7 @@ def get_children_hierarchy(key, flatten=False):
 
 
 # Function to filter elements based on the given conditions
-def filter_elements(elements):
+def filter_elements(elements: List[str]) -> List[str]:
     """
     Filter elements based on their hierarchical relationships.
 
@@ -171,7 +180,9 @@ def filter_elements(elements):
     return filtered_elements
 
 
-def create_hierarchical_dict(elements, properties=False):
+def create_hierarchical_dict(
+    elements: List[str], properties: bool = False
+) -> Dict[str, Any]:
     """
     Create a hierarchical dictionary from a list of elements, optionally including properties.
 
@@ -210,7 +221,9 @@ def create_hierarchical_dict(elements, properties=False):
     return hierarchy
 
 
-def find_sensor_paths(tree, path=None):
+def find_sensor_paths(
+    tree: Dict[str, Any], path: List[str] = None
+) -> List[Dict[str, str]]:
     """
     Find paths to sensor nodes in a hierarchical tree structure.
 
@@ -238,7 +251,7 @@ def find_sensor_paths(tree, path=None):
     return sensor_paths
 
 
-def build_hierarchy(relationships):
+def build_hierarchy(relationships: List[Tuple[str, str]]) -> Dict[str, Any]:
     """
     Build a hierarchical tree structure from a list of parent-child relationships.
 
@@ -250,7 +263,7 @@ def build_hierarchy(relationships):
     """
 
     # Helper function to recursively build the tree structure
-    def build_tree(node, tree_dict):
+    def build_tree(node: str, tree_dict: Dict[str, List[str]]) -> Dict[str, Any]:
         return (
             {
                 "name": node,

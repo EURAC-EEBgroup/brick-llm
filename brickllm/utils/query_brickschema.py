@@ -46,7 +46,7 @@ def get_brick_definition(element_name: str) -> str:
 
 
 # Function to get the query result without using pandas
-def get_query_result(query):
+def get_query_result(query: str) -> list:
     """
     Execute a SPARQL query on the Brick schema graph and return the results.
 

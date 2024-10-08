@@ -2,7 +2,7 @@
 Module containing the prompts used for the LLM models
 """
 
-get_elem_instructions = """
+get_elem_instructions: str = """
     You are a BrickSchema ontology expert and you are provided with a user prompt which describes a building or facility.\n
     You are provided with a list of common elements that can be used to describe a building or facility.\n
     You are also provided with the elements description to understand what each element represents.\n
@@ -11,7 +11,7 @@ get_elem_instructions = """
     ELEMENTS: {elements_dict} \n
     """
 
-get_elem_children_instructions = """
+get_elem_children_instructions: str = """
     You are a BrickSchema ontology expert and you are provided with a user prompt which describes a building or facility.\n
     You are provided with a list of common elements that can be used to describe a building or facility.\n
     You are now asked to identify the elements presents in the user prompt.\n
@@ -24,7 +24,7 @@ get_elem_children_instructions = """
     ELEMENTS HIERARCHY: {elements_list} \n
     """
 
-get_relationships_instructions = """
+get_relationships_instructions: str = """
     You are a BrickSchema ontology expert and are provided with a detailed description of a building or facility.\n
     You are also provided with a hierarchical structure of identified building components.\n
     Your task is to determine the relationships between these components based on the context within the building description and the provided hierarchical structure.\n
@@ -37,7 +37,7 @@ get_relationships_instructions = """
     USER PROMPT: {prompt}
 """
 
-ttl_example = """
+ttl_example: str = """
     @prefix bldg: <urn:Building#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .
     @prefix prj: <http://example.com/Project#> .
@@ -86,7 +86,7 @@ ttl_example = """
         brick:isPartOf bldg:Milano_Residence_1 .
 """
 
-schema_to_ttl_instructions = """
+schema_to_ttl_instructions: str = """
     You are a BrickSchema ontology expert and you are provided with a user prompt which describes a building or facility.\n
     You are provided with a dictionary containing the detected components in the building description.\n
     You are also provided with the hierarchical structure of the building components with their constraints BrickSchema compliant.\n

@@ -1,8 +1,10 @@
+from typing import Any, Dict
+
 from .. import State
 from ..utils import validate_ttl
 
 
-def validate_schema(state: State):
+def validate_schema(state: State) -> Dict[str, Any]:
     """
     Validate the generated TTL output against the BrickSchema.
 

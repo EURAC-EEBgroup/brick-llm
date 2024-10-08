@@ -1,5 +1,5 @@
 import os
-from typing import Union
+from typing import Any, Dict, List, Union
 
 from langchain.chat_models.base import BaseChatModel
 from langgraph.graph import END, START, StateGraph
@@ -63,7 +63,7 @@ class BrickSchemaGraph:
         # Initialize the result
         self.result = None
 
-    def _compiled_graph(self):
+    def _compiled_graph(self) -> StateGraph:
         """Check if the graph is compiled and return the compiled graph."""
         if self.graph is None:
             raise ValueError(
@@ -71,7 +71,7 @@ class BrickSchemaGraph:
             )
         return self.graph
 
-    def display(self, filename="graph.png") -> None:
+    def display(self, filename: str = "graph.png") -> None:
         """Display the compiled graph as an image.
 
         Args:
@@ -94,7 +94,9 @@ class BrickSchemaGraph:
                 f"Failed to generate the graph image file: {filename}"
             )
 
-    def run(self, prompt, stream=False):
+    def run(
+        self, prompt: str, stream: bool = False
+    ) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
         """Run the graph with the given user prompt.
 
         Args:
@@ -122,7 +124,7 @@ class BrickSchemaGraph:
             self.result = self.graph.invoke(input_data, self.config)
             return self.result
 
-    def get_state_snapshots(self) -> list:
+    def get_state_snapshots(self) -> List[Dict[str, Any]]:
         """Get all the state snapshots from the graph execution."""
 
         all_states = []
@@ -131,7 +133,7 @@ class BrickSchemaGraph:
 
         return all_states
 
-    def save_ttl_output(self, output_file="brick_schema_output.ttl"):
+    def save_ttl_output(self, output_file: str = "brick_schema_output.ttl") -> None:
         """Save the TTL output to a file."""
         if self.result is None:
             raise ValueError("No result found. Please run the graph first.")

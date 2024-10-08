@@ -1,9 +1,9 @@
-from typing import Literal
+from typing import Any, Dict, Literal
 
 # from langgraph.graph import END
 
 
-def validate_condition(state) -> Literal["schema_to_ttl", "__end__"]:
+def validate_condition(state: Dict[str, Any]) -> Literal["schema_to_ttl", "__end__"]:
     """
     Validate the condition for the next node to visit.
 

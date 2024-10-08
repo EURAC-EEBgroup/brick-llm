@@ -1,3 +1,5 @@
+from typing import Any, Dict
+
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import ElemListSchema, State
@@ -5,7 +7,7 @@ from ..helpers import get_elem_instructions
 from ..utils import get_brick_definition, get_hierarchical_info
 
 
-def get_elements(state: State, config):
+def get_elements(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     """
     Process the user prompt to identify elements within specified categories
     using a language model.

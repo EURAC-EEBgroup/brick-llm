@@ -1,7 +1,9 @@
+from typing import Any, Dict
+
 from .. import State
 
 
-def get_sensors(state: State):
+def get_sensors(state: State) -> Dict[str, Any]:
     """
     Retrieve sensor information for the building structure.
 

@@ -1,4 +1,5 @@
 import json
+from typing import Any, Dict
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
@@ -6,7 +7,7 @@ from .. import State, TTLSchema
 from ..helpers import schema_to_ttl_instructions, ttl_example
 
 
-def schema_to_ttl(state: State, config):
+def schema_to_ttl(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     """
     Generate a TTL (Turtle) script from the building description and component hierarchy.
 

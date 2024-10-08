@@ -1,5 +1,6 @@
 import json
 from collections import defaultdict
+from typing import Any, Dict
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
@@ -8,7 +9,7 @@ from ..helpers import get_relationships_instructions
 from ..utils import build_hierarchy, find_sensor_paths
 
 
-def get_relationships(state: State, config):
+def get_relationships(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     """
     Determine relationships between building components using a language model.
 
