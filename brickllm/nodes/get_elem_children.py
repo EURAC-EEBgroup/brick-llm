@@ -27,7 +27,11 @@ def get_elem_children(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     for category in categories:
         children_list = get_children_hierarchy(category, flatten=True)
         children_string = "\n".join(
-            [f"{parent} -> {child}" for parent, child in children_list]
+            [
+                f"{parent} -> {child}"
+                for parent, child in children_list
+                if isinstance(parent, str) and isinstance(child, str)
+            ]
         )
         category_dict[category] = children_string
 

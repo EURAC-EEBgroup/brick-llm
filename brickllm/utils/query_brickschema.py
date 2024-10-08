@@ -1,9 +1,11 @@
 import os
 import re
+from typing import Dict, List, Optional, Tuple, Union
 
 import pkg_resources
 import pyshacl
 from rdflib import Graph, Namespace, URIRef
+from rdflib.query import ResultRow
 
 # Path to the Brick schema Turtle file
 brick_ttl_path = pkg_resources.resource_filename(
@@ -46,7 +48,7 @@ def get_brick_definition(element_name: str) -> str:
 
 
 # Function to get the query result without using pandas
-def get_query_result(query: str) -> list:
+def get_query_result(query: str) -> List[Dict[str, str]]:
     """
     Execute a SPARQL query on the Brick schema graph and return the results.
 
@@ -54,16 +56,17 @@ def get_query_result(query: str) -> list:
         query (str): The SPARQL query to execute.
 
     Returns:
-        list: A list of dictionaries representing the query results.
+        List[Dict[str, str]]: A list of dictionaries representing the query results.
     """
     result = g.query(query)
     # Convert the result to a list of dictionaries where keys are the variable names
-    query_vars = list(result.vars)
-    data = []
+    query_vars = list(result.vars) if result.vars is not None else []
+    data: List[Dict[str, Optional[str]]] = []
     for row in result:
-        data.append(
-            {str(var): str(row[var]) if row[var] else None for var in query_vars}
-        )
+        if isinstance(row, ResultRow):
+            data.append(
+                {str(var): str(row[var]) if row[var] else None for var in query_vars}
+            )
     # Remove entries with None values and reset index
     cleaned_data = [
         {key: value for key, value in row.items() if value is not None} for row in data
@@ -72,15 +75,15 @@ def get_query_result(query: str) -> list:
 
 
 # Function to clean the result, extracting the needed part of the URI
-def clean_result(data):
+def clean_result(data: List[str]) -> List[str]:
     """
     Extract the relevant part of a URI from a list of data.
 
     Args:
-        data (list): A list of URIs to clean.
+        data (List[str]): A list of URIs to clean.
 
     Returns:
-        list: A list of extracted parts from the URIs.
+        List[str]: A list of extracted parts from the URIs.
     """
     return [
         re.findall(r"#(\w+)", value)[0]
@@ -90,7 +93,7 @@ def clean_result(data):
 
 
 # Function to create a SPARQL query for subclasses
-def query_subclass(element):
+def query_subclass(element: str) -> str:
     """
     Create a SPARQL query to find subclasses of a given element.
 
@@ -104,7 +107,7 @@ def query_subclass(element):
 
 
 # Function to create a SPARQL query for properties
-def query_properties(element):
+def query_properties(element: str) -> str:
     """
     Create a SPARQL query to find properties of a given element.
 
@@ -125,7 +128,7 @@ def query_properties(element):
 
 
 # Function to iteratively find subclasses
-def iterative_subclasses(element):
+def iterative_subclasses(element: str) -> List[str]:
     """
     Iteratively find all subclasses of a given element.
 
@@ -133,9 +136,9 @@ def iterative_subclasses(element):
         element (str): The element to find subclasses for.
 
     Returns:
-        list: A list of subclasses.
+        List[str]: A list of subclasses.
     """
-    subclasses = []
+    subclasses: List[str] = []
     sub_class_data = get_query_result(query_subclass(element))
     subClass = (
         clean_result([row["subclass"] for row in sub_class_data])
@@ -164,7 +167,7 @@ def iterative_subclasses(element):
 
 
 # General query function to retrieve properties and relationships
-def general_query(element):
+def general_query(element: str) -> Dict[str, Dict[str, Union[str, List[str]]]]:
     """
     Retrieve properties and relationships for a given element.
 
@@ -172,14 +175,14 @@ def general_query(element):
         element (str): The element to retrieve properties and relationships for.
 
     Returns:
-        dict: A dictionary containing properties and their constraints.
+        Dict[str, Dict[str, Union[str, List[str]]]]: A dictionary containing properties and their constraints.
     """
     subclasses = iterative_subclasses(element)
     if not subclasses:
         return {}
 
     query_data = get_query_result(query_properties(subclasses[-1]))
-    relationships = {}
+    relationships: Dict[str, Dict[str, Union[str, List[str]]]] = {}
 
     for row in query_data:
         property_name = clean_result([row["path"]])[0]
@@ -189,14 +192,19 @@ def general_query(element):
                 "constraint": clean_result([row["class"]]),
             }
         else:
-            relationships[property_name]["constraint"].extend(
-                clean_result([row["class"]])
-            )
+            if isinstance(relationships[property_name]["constraint"], list):
+                relationships[property_name]["constraint"].extend(
+                    clean_result([row["class"]])
+                )
+            else:
+                relationships[property_name]["constraint"] = clean_result(
+                    [row["class"]]
+                )
 
     return {"property": relationships}
 
 
-def validate_ttl(ttl_file: str, method: str = "pyshacl"):
+def validate_ttl(ttl_file: str, method: str = "pyshacl") -> Tuple[bool, str]:
     """
     Validate a TTL file using the specified method.
 
@@ -205,7 +213,7 @@ def validate_ttl(ttl_file: str, method: str = "pyshacl"):
         method (str): The method to use for validation. Default is 'pyshacl'.
 
     Returns:
-        tuple: A tuple containing a boolean indicating if the validation was successful and a validation report.
+        Tuple[bool, str]: A tuple containing a boolean indicating if the validation was successful and a validation report or error message.
     """
     # Load the ttl file
     output_graph = Graph()

@@ -27,7 +27,7 @@ def _get_model(model: Union[str, BaseChatModel]) -> BaseChatModel:
     if model == "openai":
         return ChatOpenAI(temperature=0, model="gpt-4o")
     elif model == "anthropic":
-        return ChatAnthropic(temperature=0, model="claude-3-sonnet-20240229")
+        return ChatAnthropic(temperature=0, model_name="claude-3-sonnet-20240229")
     elif model == "fireworks":
         return ChatFireworks(
             temperature=0, model="accounts/fireworks/models/llama-v3p1-70b-instruct"

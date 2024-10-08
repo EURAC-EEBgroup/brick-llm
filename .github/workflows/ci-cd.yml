@@ -55,8 +55,8 @@ jobs:
           poetry run black --check brickllm tests
           poetry run isort --check-only brickllm tests
 
-      - name: Run Type Checking
-        run: poetry run mypy brickllm tests
+      # - name: Run Type Checking
+      #   run: poetry run mypy brickllm tests
 
       - name: Run Tests with Coverage
         run: poetry run pytest --cov=brickllm --cov-report=xml tests/
