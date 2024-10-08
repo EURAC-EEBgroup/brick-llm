@@ -16,4 +16,3 @@ cd brickllm-lib
 # Install dependencies
 poetry install
 ```
-
