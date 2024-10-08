@@ -1606,7 +1606,7 @@
           <tr class="doc-section-item">
             <td><code>state</code></td>
             <td>
-                  <code><span title="brickllm.states.State">State</span></code>
+                  <code><span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1645,7 +1645,9 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/edges/validate_condition.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
@@ -1660,21 +1662,19 @@
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">validate_condition</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;schema_to_ttl&quot;</span><span class="p">,</span> <span class="s2">&quot;__end__&quot;</span><span class="p">]:</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">validate_condition</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;schema_to_ttl&quot;</span><span class="p">,</span> <span class="s2">&quot;__end__&quot;</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Validate the condition for the next node to visit.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        state (State): The current state containing the validation result.</span>
+<span class="sd">        state (Dict[str, Any]): The current state containing the validation result.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Literal[&quot;schema_to_ttl&quot;, &quot;__end__&quot;]: The next node to visit.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">is_valid</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;is_valid&quot;</span><span class="p">)</span>
-    <span class="n">max_iter</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;validation_max_iter&quot;</span><span class="p">)</span>
+    <span class="n">is_valid</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;is_valid&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">max_iter</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;validation_max_iter&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">max_iter</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_valid</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;schema_to_ttl&quot;</span>

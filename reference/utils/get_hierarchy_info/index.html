@@ -1786,7 +1786,7 @@
           <tr class="doc-section-item">
             <td><code>relationships</code></td>
             <td>
-                  <code>list</code>
+                  <code><span title="typing.List">List</span>[<span title="typing.Tuple">Tuple</span>[str, str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1805,18 +1805,18 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>dict</code></td>            <td>
+            <td>
                   <code><span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A dictionary representing the hierarchical tree structure.</p>
+                <p>Dict[str, Any]: A dictionary representing the hierarchical tree structure.</p>
               </div>
             </td>
           </tr>
@@ -1825,11 +1825,7 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/utils/get_hierarchy_info.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">254</span>
-<span class="normal">255</span>
-<span class="normal">256</span>
-<span class="normal">257</span>
-<span class="normal">258</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">258</span>
 <span class="normal">259</span>
 <span class="normal">260</span>
 <span class="normal">261</span>
@@ -1863,15 +1859,22 @@
 <span class="normal">289</span>
 <span class="normal">290</span>
 <span class="normal">291</span>
-<span class="normal">292</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">build_hierarchy</span><span class="p">(</span><span class="n">relationships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">build_hierarchy</span><span class="p">(</span><span class="n">relationships</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Build a hierarchical tree structure from a list of parent-child relationships.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        relationships (list): A list of tuples representing parent-child relationships.</span>
+<span class="sd">        relationships (List[Tuple[str, str]]): A list of tuples representing parent-child relationships.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        dict: A dictionary representing the hierarchical tree structure.</span>
+<span class="sd">        Dict[str, Any]: A dictionary representing the hierarchical tree structure.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Helper function to recursively build the tree structure</span>
@@ -1882,11 +1885,11 @@
                 <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">build_tree</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">tree_dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">tree_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]],</span>
             <span class="p">}</span>
             <span class="k">if</span> <span class="n">tree_dict</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
-            <span class="k">else</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">node</span><span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">node</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[]}</span>
         <span class="p">)</span>
 
     <span class="c1"># Create a dictionary to hold parent-children relationships</span>
-    <span class="n">tree_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">tree_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
     <span class="n">nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="c1"># Fill the dictionary with data from relationships</span>
@@ -1895,9 +1898,12 @@
         <span class="n">nodes</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="n">parent</span><span class="p">,</span> <span class="n">child</span><span class="p">])</span>
 
     <span class="c1"># Find the root (a node that is never a child)</span>
-    <span class="n">root</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
-        <span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">tree_dict</span> <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">node</span> <span class="o">!=</span> <span class="n">child</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">relationships</span><span class="p">)</span>
-    <span class="p">)</span>
+    <span class="n">root_candidates</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">node</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="n">child</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">relationships</span><span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root_candidates</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No root found in relationships&quot;</span><span class="p">)</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">root_candidates</span><span class="p">))</span>
 
     <span class="c1"># Build the hierarchical structure starting from the root</span>
     <span class="n">hierarchy</span> <span class="o">=</span> <span class="n">build_tree</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">tree_dict</span><span class="p">)</span>
@@ -1936,7 +1942,7 @@
           <tr class="doc-section-item">
             <td><code>elements</code></td>
             <td>
-                  <code>list</code>
+                  <code><span title="typing.List">List</span>[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1969,18 +1975,18 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>dict</code></td>            <td>
+            <td>
                   <code><span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A dictionary representing the hierarchical structure.</p>
+                <p>Dict[str, Any]: A dictionary representing the hierarchical structure.</p>
               </div>
             </td>
           </tr>
@@ -1989,11 +1995,7 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/utils/get_hierarchy_info.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">183</span>
-<span class="normal">184</span>
-<span class="normal">185</span>
-<span class="normal">186</span>
-<span class="normal">187</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">187</span>
 <span class="normal">188</span>
 <span class="normal">189</span>
 <span class="normal">190</span>
@@ -2027,20 +2029,24 @@
 <span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
-<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_hierarchical_dict</span><span class="p">(</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_hierarchical_dict</span><span class="p">(</span>
     <span class="n">elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">properties</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a hierarchical dictionary from a list of elements, optionally including properties.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        elements (list): A list of elements to include in the hierarchy.</span>
+<span class="sd">        elements (List[str]): A list of elements to include in the hierarchy.</span>
 <span class="sd">        properties (bool, optional): Whether to include properties in the hierarchy. Defaults to False.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        dict: A dictionary representing the hierarchical structure.</span>
+<span class="sd">        Dict[str, Any]: A dictionary representing the hierarchical structure.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">hierarchy</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">hierarchy</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
         <span class="n">parents</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_hierarchical_info</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
@@ -2061,7 +2067,7 @@
                 <span class="c1"># remove &quot;message&quot; key from the dictionary</span>
                 <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">elem_property</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                     <span class="n">elem_property</span><span class="p">[</span><span class="n">prop</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>
-                <span class="n">current_level</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">elem_property</span>
+                <span class="n">current_level</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="n">elem_property</span><span class="p">}</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">current_level</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -2139,21 +2145,21 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/utils/get_hierarchy_info.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">295</span>
-<span class="normal">296</span>
-<span class="normal">297</span>
-<span class="normal">298</span>
-<span class="normal">299</span>
-<span class="normal">300</span>
-<span class="normal">301</span>
-<span class="normal">302</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">302</span>
 <span class="normal">303</span>
 <span class="normal">304</span>
 <span class="normal">305</span>
 <span class="normal">306</span>
 <span class="normal">307</span>
 <span class="normal">308</span>
-<span class="normal">309</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">extract_ttl_content</span><span class="p">(</span><span class="n">input_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">extract_ttl_content</span><span class="p">(</span><span class="n">input_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extract content between code block markers in a string.</span>
 
@@ -2163,7 +2169,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        str: The extracted content between the code block markers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Use regex to match content between ```python and ```</span>
+    <span class="c1"># Use regex to match content between ```code and ```</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;```code\s*(.*?)\s*```&quot;</span><span class="p">,</span> <span class="n">input_string</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -2202,7 +2208,7 @@
           <tr class="doc-section-item">
             <td><code>elements</code></td>
             <td>
-                  <code>list</code>
+                  <code><span title="typing.List">List</span>[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2221,18 +2227,18 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>list</code></td>            <td>
+            <td>
                   <code><span title="typing.List">List</span>[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list of filtered elements.</p>
+                <p>List[str]: A list of filtered elements.</p>
               </div>
             </td>
           </tr>
@@ -2241,11 +2247,7 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/utils/get_hierarchy_info.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span>
-<span class="normal">160</span>
-<span class="normal">161</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">161</span>
 <span class="normal">162</span>
 <span class="normal">163</span>
 <span class="normal">164</span>
@@ -2264,15 +2266,19 @@
 <span class="normal">177</span>
 <span class="normal">178</span>
 <span class="normal">179</span>
-<span class="normal">180</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">filter_elements</span><span class="p">(</span><span class="n">elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">filter_elements</span><span class="p">(</span><span class="n">elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Filter elements based on their hierarchical relationships.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        elements (list): A list of elements to filter.</span>
+<span class="sd">        elements (List[str]): A list of elements to filter.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        list: A list of filtered elements.</span>
+<span class="sd">        List[str]: A list of filtered elements.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">elements_info</span> <span class="o">=</span> <span class="p">{</span><span class="n">element</span><span class="p">:</span> <span class="n">get_hierarchical_info</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">}</span>
     <span class="n">filtered_elements</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2322,7 +2328,7 @@
           <tr class="doc-section-item">
             <td><code>current_data</code></td>
             <td>
-                  <code>dict</code>
+                  <code><span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2350,7 +2356,7 @@
           <tr class="doc-section-item">
             <td><code>parents</code></td>
             <td>
-                  <code>list</code>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2369,18 +2375,18 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
                   <code><span title="typing.Tuple">Tuple</span>[bool, <span title="typing.List">List</span>[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A tuple containing a boolean indicating if the target was found and a list of parent nodes.</p>
+                <p>Tuple[bool, List[str]]: A tuple containing a boolean indicating if the target was found and a list of parent nodes.</p>
               </div>
             </td>
           </tr>
@@ -2413,18 +2419,18 @@
 <span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">find_parents</span><span class="p">(</span>
-    <span class="n">current_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">current_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parents</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Recursively find the parent nodes of a target node in a hierarchical data structure.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        current_data (dict): The current level of the hierarchy to search.</span>
+<span class="sd">        current_data (Dict[str, Any]): The current level of the hierarchy to search.</span>
 <span class="sd">        target (str): The target node to find parents for.</span>
-<span class="sd">        parents (list, optional): Accumulated list of parent nodes. Defaults to None.</span>
+<span class="sd">        parents (Optional[List[str]], optional): Accumulated list of parent nodes. Defaults to None.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple: A tuple containing a boolean indicating if the target was found and a list of parent nodes.</span>
+<span class="sd">        Tuple[bool, List[str]]: A tuple containing a boolean indicating if the target was found and a list of parent nodes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">parents</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">parents</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2470,7 +2476,7 @@
           <tr class="doc-section-item">
             <td><code>tree</code></td>
             <td>
-                  <code>dict</code>
+                  <code><span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2484,7 +2490,7 @@
           <tr class="doc-section-item">
             <td><code>path</code></td>
             <td>
-                  <code>list</code>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2503,18 +2509,18 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>list</code></td>            <td>
+            <td>
                   <code><span title="typing.List">List</span>[<span title="typing.Dict">Dict</span>[str, str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list of dictionaries containing sensor names and their paths.</p>
+                <p>List[Dict[str, str]]: A list of dictionaries containing sensor names and their paths.</p>
               </div>
             </td>
           </tr>
@@ -2523,11 +2529,7 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/utils/get_hierarchy_info.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">224</span>
-<span class="normal">225</span>
-<span class="normal">226</span>
-<span class="normal">227</span>
-<span class="normal">228</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">228</span>
 <span class="normal">229</span>
 <span class="normal">230</span>
 <span class="normal">231</span>
@@ -2550,27 +2552,31 @@
 <span class="normal">248</span>
 <span class="normal">249</span>
 <span class="normal">250</span>
-<span class="normal">251</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">find_sensor_paths</span><span class="p">(</span>
-    <span class="n">tree</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">path</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">find_sensor_paths</span><span class="p">(</span>
+    <span class="n">tree</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find paths to sensor nodes in a hierarchical tree structure.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        tree (dict): The hierarchical tree structure.</span>
-<span class="sd">        path (list, optional): Accumulated path to the current node. Defaults to None.</span>
+<span class="sd">        tree (Dict[str, Any]): The hierarchical tree structure.</span>
+<span class="sd">        path (Optional[List[str]], optional): Accumulated path to the current node. Defaults to None.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        list: A list of dictionaries containing sensor names and their paths.</span>
+<span class="sd">        List[Dict[str, str]]: A list of dictionaries containing sensor names and their paths.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">path</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="n">current_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">tree</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span>
+    <span class="n">current_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)]</span>
     <span class="k">if</span> <span class="s2">&quot;children&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tree</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">tree</span><span class="p">[</span><span class="s2">&quot;children&quot;</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Sensor&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Sensor&quot;</span><span class="p">,</span> <span class="n">tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)):</span>
             <span class="n">sensor_path</span> <span class="o">=</span> <span class="s2">&quot;&gt;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-            <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tree</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">sensor_path</span><span class="p">}]</span>
+            <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">tree</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">sensor_path</span><span class="p">}]</span>
         <span class="k">return</span> <span class="p">[]</span>
 
     <span class="n">sensor_paths</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2612,7 +2618,7 @@
           <tr class="doc-section-item">
             <td><code>current_data</code></td>
             <td>
-                  <code>dict</code>
+                  <code><span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2626,7 +2632,7 @@
           <tr class="doc-section-item">
             <td><code>parent</code></td>
             <td>
-                  <code>str</code>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2640,7 +2646,7 @@
           <tr class="doc-section-item">
             <td><code>result</code></td>
             <td>
-                  <code>list</code>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<span title="typing.Tuple">Tuple</span>[str, str]]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2659,18 +2665,18 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>list</code></td>            <td>
+            <td>
                   <code><span title="typing.List">List</span>[<span title="typing.Tuple">Tuple</span>[str, str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list of tuples representing parent-child relationships.</p>
+                <p>List[Tuple[str, str]]: A list of tuples representing parent-child relationships.</p>
               </div>
             </td>
           </tr>
@@ -2704,19 +2710,19 @@
 <span class="normal">93</span>
 <span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">flatten_hierarchy</span><span class="p">(</span>
     <span class="n">current_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
-    <span class="n">parent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">result</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">result</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Flatten a hierarchical data structure into a list of parent-child tuples.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        current_data (dict): The current level of the hierarchy to flatten.</span>
-<span class="sd">        parent (str, optional): The parent node. Defaults to None.</span>
-<span class="sd">        result (list, optional): Accumulated list of parent-child tuples. Defaults to None.</span>
+<span class="sd">        current_data (Dict[str, Any]): The current level of the hierarchy to flatten.</span>
+<span class="sd">        parent (Optional[str], optional): The parent node. Defaults to None.</span>
+<span class="sd">        result (Optional[List[Tuple[str, str]]], optional): Accumulated list of parent-child tuples. Defaults to None.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        list: A list of tuples representing parent-child relationships.</span>
+<span class="sd">        List[Tuple[str, str]]: A list of tuples representing parent-child relationships.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2760,7 +2766,7 @@
           <tr class="doc-section-item">
             <td><code>current_data</code></td>
             <td>
-                  <code>dict</code>
+                  <code><span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2793,18 +2799,18 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>dict</code></td>            <td>
+            <td>
                   <code><span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A dictionary representing the subtree of the target node.</p>
+                <p>Dict[str, Any]: A dictionary representing the subtree of the target node.</p>
               </div>
             </td>
           </tr>
@@ -2831,19 +2837,27 @@
 <span class="normal">131</span>
 <span class="normal">132</span>
 <span class="normal">133</span>
-<span class="normal">134</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_all_subchildren</span><span class="p">(</span><span class="n">current_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_all_subchildren</span><span class="p">(</span><span class="n">current_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Recursively get all children and subchildren of a target node.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        current_data (dict): The current level of the hierarchy to search.</span>
+<span class="sd">        current_data (Dict[str, Any]): The current level of the hierarchy to search.</span>
 <span class="sd">        target (str): The target node to find children for.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        dict: A dictionary representing the subtree of the target node.</span>
+<span class="sd">        Dict[str, Any]: A dictionary representing the subtree of the target node.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">current_data</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">current_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+        <span class="n">sub_tree</span> <span class="o">=</span> <span class="n">current_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sub_tree</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">sub_tree</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">current_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">get_all_subchildren</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
@@ -2884,7 +2898,7 @@
           <tr class="doc-section-item">
             <td><code>current_data</code></td>
             <td>
-                  <code>dict</code>
+                  <code><span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2917,18 +2931,18 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>list</code></td>            <td>
+            <td>
                   <code><span title="typing.List">List</span>[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A list of child nodes.</p>
+                <p>List[str]: A list of child nodes.</p>
               </div>
             </td>
           </tr>
@@ -2960,11 +2974,11 @@
 <span class="sd">    Get the children of a target node in a hierarchical data structure.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        current_data (dict): The current level of the hierarchy to search.</span>
+<span class="sd">        current_data (Dict[str, Any]): The current level of the hierarchy to search.</span>
 <span class="sd">        target (str): The target node to find children for.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        list: A list of child nodes.</span>
+<span class="sd">        List[str]: A list of child nodes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">current_data</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">current_data</span><span class="p">[</span><span class="n">target</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
@@ -3052,7 +3066,7 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>dict or list: A dictionary representing the hierarchy or a list of parent-child tuples if flattened.</p>
+                <p>Union[Dict[str, Any], List[Tuple[str, str]]]: A dictionary representing the hierarchy or a list of parent-child tuples if flattened.</p>
               </div>
             </td>
           </tr>
@@ -3061,11 +3075,7 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/utils/get_hierarchy_info.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
@@ -3076,7 +3086,11 @@
 <span class="normal">150</span>
 <span class="normal">151</span>
 <span class="normal">152</span>
-<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_children_hierarchy</span><span class="p">(</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_children_hierarchy</span><span class="p">(</span>
     <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">flatten</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -3087,7 +3101,7 @@
 <span class="sd">        flatten (bool, optional): Whether to flatten the hierarchy. Defaults to False.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        dict or list: A dictionary representing the hierarchy or a list of parent-child tuples if flattened.</span>
+<span class="sd">        Union[Dict[str, Any], List[Tuple[str, str]]]: A dictionary representing the hierarchy or a list of parent-child tuples if flattened.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">flatten</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">flatten_hierarchy</span><span class="p">(</span><span class="n">get_all_subchildren</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">))</span>
@@ -3145,18 +3159,18 @@
     <table>
       <thead>
         <tr>
-<th>Name</th>          <th>Type</th>
+          <th>Type</th>
           <th>Description</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-<td><code>tuple</code></td>            <td>
+            <td>
                   <code><span title="typing.Tuple">Tuple</span>[<span title="typing.List">List</span>[str], <span title="typing.List">List</span>[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A tuple containing a list of parent nodes and a list of child nodes.</p>
+                <p>Tuple[List[str], List[str]]: A tuple containing a list of parent nodes and a list of child nodes.</p>
               </div>
             </td>
           </tr>
@@ -3187,7 +3201,7 @@
 <span class="sd">        key (str): The target node to get information for.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        tuple: A tuple containing a list of parent nodes and a list of child nodes.</span>
+<span class="sd">        Tuple[List[str], List[str]]: A tuple containing a list of parent nodes and a list of child nodes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Get parents</span>
     <span class="n">found</span><span class="p">,</span> <span class="n">parents</span> <span class="o">=</span> <span class="n">find_parents</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
