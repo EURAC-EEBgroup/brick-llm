@@ -1,6 +1,5 @@
 from typing import Union
 
-from dotenv import load_dotenv
 from langchain.chat_models.base import BaseChatModel
 from langchain_anthropic import ChatAnthropic
 from langchain_fireworks import ChatFireworks
@@ -20,9 +19,6 @@ def _get_model(model: Union[str, BaseChatModel]) -> BaseChatModel:
 
     if isinstance(model, BaseChatModel):
         return model
-
-    # Load environment variables
-    load_dotenv()
 
     if model == "openai":
         return ChatOpenAI(temperature=0, model="gpt-4o")

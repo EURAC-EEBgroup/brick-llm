@@ -1,5 +1,11 @@
+from dotenv import load_dotenv
+
 from brickllm.graphs import BrickSchemaGraph
 
+# Load environment variables
+load_dotenv()
+
+# Specify the user prompt
 building_description = """
 I have a building located in Bolzano.
 It has 3 floors and each floor has 1 office.
