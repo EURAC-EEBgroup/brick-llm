@@ -1,5 +1,6 @@
 import os
 import re
+from io import StringIO
 from typing import Dict, List, Optional, Tuple, Union
 
 import pkg_resources
@@ -218,7 +219,7 @@ def validate_ttl(ttl_file: str, method: str = "pyshacl") -> Tuple[bool, str]:
     # Load the ttl file
     output_graph = Graph()
     try:
-        output_graph.parse(ttl_file, format="ttl")
+        output_graph.parse(StringIO(ttl_file), format="ttl")
     except Exception as e:
         return False, f"Failed to parse the TTL file. Content: {e}"
 

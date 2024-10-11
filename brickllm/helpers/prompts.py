@@ -29,10 +29,10 @@ get_relationships_instructions: str = """
     You are also provided with a hierarchical structure of identified building components.\n
     Your task is to determine the relationships between these components based on the context within the building description and the provided hierarchical structure.\n
     The relationships should reflect direct connections or associations as described or implied in the prompt.\n
-    Each element must be followed by a hash symbol (#) and a number to differentiate between elements of the same type (e.g., Room#1, Room#2).\n
-    An example of output is the following: [('Building#1', 'Floor#1'), ('Floor#1', 'Room#1'), ('Building#1','Floor#2'), ...]\n
+    Each element must be followed by a dot symbol (.) and a number to differentiate between elements of the same type (e.g., Room.1, Room.2).\n
+    An example of output is the following: [('Building.1', 'Floor.1'), ('Floor.1', 'Room.1'), ('Building.1','Floor.2'), ...]\n
     DO NOT add relationships on the output but only the components names, always add first the parent and then the child.\n
-    If an element has no relationships, add an empty string in place of the missing component ("Room#1","").\n
+    If an element has no relationships, add an empty string in place of the missing component ("Room.1","").\n
     Hierarchical structure: {building_structure}\n
     USER PROMPT: {prompt}
 """
