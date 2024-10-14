@@ -16,7 +16,7 @@ def generation_local(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
         dict: A dictionary containing the output generated.
     """
 
-    print("---One shot generation---")
+    print("---One shot generation with local LLM Node---")
 
     instructions = state["instructions"]
     user_prompt = state["user_prompt"]
