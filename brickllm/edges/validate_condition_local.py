@@ -9,7 +9,7 @@ def validate_condition_local(state: Dict[str, Any]) -> Literal["generation_local
         state (Dict[str, Any]): The current state containing the validation result.
 
     Returns:
-        Literal["schema_to_ttl", "__end__"]: The next node to visit.
+        Literal["generation_local", "__end__"]: The next node to visit.
     """
 
     is_valid = state.get("is_valid", False)
