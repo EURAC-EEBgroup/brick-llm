@@ -1,5 +1,4 @@
 from typing import Any, Dict, List, Union
-from langchain.chat_models.base import BaseChatModel
 from langgraph.graph import END, START, StateGraph
 
 from .brickschema_graph import BrickSchemaGraph
