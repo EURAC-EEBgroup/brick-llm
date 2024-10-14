@@ -22,6 +22,8 @@ from .query_brickschema import (
     validate_ttl,
 )
 
+from .rdf_parser import extract_rdf_graph
+
 __all__ = [
     "find_parents",
     "get_children",
@@ -42,4 +44,5 @@ __all__ = [
     "iterative_subclasses",
     "general_query",
     "validate_ttl",
+    "extract_rdf_graph"
 ]
