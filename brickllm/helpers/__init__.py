@@ -5,6 +5,7 @@ from .prompts import (
     get_relationships_instructions,
     schema_to_ttl_instructions,
     ttl_example,
+    prompt_template_local
 )
 
 __all__ = [
@@ -14,4 +15,5 @@ __all__ = [
     "get_relationships_instructions",
     "schema_to_ttl_instructions",
     "ttl_example",
+    "prompt_template_local"
 ]
