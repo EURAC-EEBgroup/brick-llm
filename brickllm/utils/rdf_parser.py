@@ -35,6 +35,7 @@ def extract_rdf_graph(llm_response: str) -> str:
             last_line = lines[-1].strip() if lines else ''
             if any(word in last_line for word in ['note', 'Note', 'Please', 'please', 'Here', 'here']):
                 lines.pop()
+                # TODO: Extract user namespace from instructions and insert instead of bldg:
             elif not (last_line.startswith('bldg:') or last_line.startswith('ref:') or last_line.startswith('unit:') or last_line.startswith('brick:') or last_line.startswith('a')):  # or any(["note", "Note", "Please"]) in last_line:
                 lines.pop()
             elif '```' in last_line.strip():
@@ -43,8 +44,5 @@ def extract_rdf_graph(llm_response: str) -> str:
                 flag_last_line = True
         rdf_graph = '\n'.join(lines).strip()
 
-        # # TODO: Insert custom namespace based on user request
-        # if "@prefix bldg: <http://my-bldg#>" not in rdf_graph:
-        #     rdf_graph = "@prefix bldg: <http://my-bldg#> .\n" + rdf_graph
 
         return rdf_graph

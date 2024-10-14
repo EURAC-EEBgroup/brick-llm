@@ -108,7 +108,7 @@ instructions = """
 Your job is to generate a RDF graph in Turtle format from a description of energy systems and sensors of a building in the following input, using the Brick ontology.
 ### Instructions:
 - Each subject, object of predicate must start with a @prefix.
-- Use the prefix bldg3: with IRI <http://my-bldg-3#> for any created entities.
+- Use the prefix bldg: with IRI <http://my-bldg#> for any created entities.
 - Use the prefix brick: with IRI <https://brickschema.org/schema/Brick#> for any Brick entities and relationships used.
 - Use the prefix unit: with IRI <http://qudt.org/vocab/unit/> and its ontology for any unit of measure defined.
 - When encoding the timeseries ID of the sensor, you must use the following format: ref:hasExternalReference [ a ref:TimeseriesReference ; ref:hasTimeseriesId 'timeseriesID' ].
