@@ -99,7 +99,8 @@ result = brick_graph.run(prompt=building_description, stream=False)
 <details>
 <summary><b>Using Local LLM Models</b></summary>
 BrickLLM supports using local LLM models employing the [Ollama framework](https://ollama.com/). Currently, only our fine-tuned model is supported.
-To learn how to download our fine-tuned model, read the documentation [here](https://prova.com/).
+To use it, download the .gguf file [here](https://huggingface.co/Giudice7/llama31-8B-brick-v8/tree/main) and pull on Ollama.
+More documentation will be released soon.
 
 ``` python
 from brickllm.graphs import BrickSchemaGraphLocal
