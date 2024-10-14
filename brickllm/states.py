@@ -5,6 +5,7 @@ from typing_extensions import TypedDict
 
 # state for BrickSchemaGraph class
 class State(TypedDict):
+    instructions: str
     user_prompt: str
     elem_list: List[str]
     # elem_children_list: List[str]
