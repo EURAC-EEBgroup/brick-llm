@@ -19,10 +19,13 @@ There are 2 rooms in each office and each room has three sensors:
 brick_graph = BrickSchemaGraph(model="openai")
 
 # Display the graph structure
-brick_graph.display()
+brick_graph.display(file_name="graph_openai.png")
+
+# Prepare input data
+input_data = {"user_prompt": building_description}
 
 # Run the graph
-result = brick_graph.run(prompt=building_description, stream=False)
+result = brick_graph.run(input_data=input_data, stream=False)
 
 # Print the result
 print(result)

@@ -4,6 +4,7 @@ from langchain.chat_models.base import BaseChatModel
 from langchain_anthropic import ChatAnthropic
 from langchain_fireworks import ChatFireworks
 from langchain_openai import ChatOpenAI
+from langchain_community.llms import Ollama
 
 
 def _get_model(model: Union[str, BaseChatModel]) -> BaseChatModel:
@@ -28,5 +29,7 @@ def _get_model(model: Union[str, BaseChatModel]) -> BaseChatModel:
         return ChatFireworks(
             temperature=0, model="accounts/fireworks/models/llama-v3p1-70b-instruct"
         )
+    elif model == "llama3.1:8b-brick":
+        return Ollama(model="llama3.1:8b-brick-v8")
     else:
         raise ValueError(f"Unsupported model type: {model}")

@@ -23,8 +23,11 @@ brick_graph = BrickSchemaGraph(model=custom_model)
 # Display the graph structure
 brick_graph.display()
 
+# Prepare input data
+input_data = {"user_prompt": building_description}
+
 # Run the graph with the custom model
-result = brick_graph.run(prompt=building_description, stream=False)
+result = brick_graph.run(input_data=input_data, stream=False)
 
 # Print the result
 print(result)
