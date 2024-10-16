@@ -1,7 +1,9 @@
 from typing import Any, Dict, Literal
 
 
-def validate_condition_local(state: Dict[str, Any]) -> Literal["generation_local", "__end__"]:
+def validate_condition_local(
+    state: Dict[str, Any]
+) -> Literal["generation_local", "__end__"]:
     """
     Validate the condition for the next node to visit.
 

@@ -1,15 +1,16 @@
 from typing import Any, Dict
-from .. import State
+
+from .. import StateLocal
 from ..helpers import prompt_template_local
 from ..utils import extract_rdf_graph
 
 
-def generation_local(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
+def generation_local(state: StateLocal, config: Dict[str, Any]) -> Dict[str, Any]:
     """
     Generate the RDF graph using the local LLM from a prompt containing the building description and the instruction
 
     Args:
-        state (State): The current state containing the user prompt and the instructions.
+        state (StateLocal): The current state containing the user prompt and the instructions.
         config (dict): Configuration dictionary containing the language model.
 
     Returns:

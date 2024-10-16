@@ -70,8 +70,13 @@ brick_graph = BrickSchemaGraph(model="openai")
 # Display the graph structure
 brick_graph.display()
 
+# Prepare input data
+input_data = {
+    "user_prompt": building_description
+}
+
 # Run the graph
-result = brick_graph.run(prompt=building_description, stream=False)
+result = brick_graph.run(input_data=input_data, stream=False)
 
 # Print the result
 print(result)
@@ -92,15 +97,36 @@ from langchain_openai import ChatOpenAI
 custom_model = ChatOpenAI(temperature=0, model="gpt-4o")
 brick_graph = BrickSchemaGraph(model=custom_model)
 
-result = brick_graph.run(prompt=building_description, stream=False)
+# Prepare input data
+input_data = {
+    "user_prompt": building_description
+}
+
+# Run the graph with the custom model
+result = brick_graph.run(input_data=input_data, stream=False)
 ```
 </details>
 
 <details>
 <summary><b>Using Local LLM Models</b></summary>
-BrickLLM supports using local LLM models employing the [Ollama framework](https://ollama.com/). Currently, only our fine-tuned model is supported.
-To use it, download the .gguf file [here](https://huggingface.co/Giudice7/llama31-8B-brick-v8/tree/main) and pull on Ollama.
-More documentation will be released soon.
+<p>BrickLLM supports using local LLM models employing the <a href="https://ollama.com/">Ollama framework</a>. Currently, only our fine-tuned model is supported.</p>
+
+To use it, follow these steps:
+
+1. Download the .gguf file from <a href="https://huggingface.co/Giudice7/llama31-8B-brick-v8/tree/main">here</a>.
+2. Create a file named `Modelfile` with the following content:
+    ```bash
+    FROM ./unsloth.Q4_K_M.gguf
+    ```
+
+3. Place the downloaded .gguf file in the same folder as the `Modelfile`.
+4. Ensure Ollama is running on your system.
+5. Run the following command to create the model in Ollama:
+    ```bash
+    ollama create llama3.1:8b-brick-v8 -f Modelfile
+    ```
+
+Once you've set up the model in Ollama, you can use it in your code as follows:
 
 ``` python
 from brickllm.graphs import BrickSchemaGraphLocal
@@ -120,7 +146,7 @@ The response must be the RDF graph that includes all the @prefix of the ontologi
 """
 
 user_prompt = """
-The building (external ref: 'OB103'), with coordinates 33.9614, -118.3531, has a total area of 500 m². It has three zones, each with its own air temperature sensor. 
+The building (external ref: 'OB103'), with coordinates 33.9614, -118.3531, has a total area of 500 m². It has three zones, each with its own air temperature sensor.
 The building has an electrical meter that monitors data of a power sensor. An HVAC equipment serves all three zones and its power usage is measured by a power sensor.
 
 Timeseries IDs and unit of measure of the sensors:
@@ -131,17 +157,26 @@ Timeseries IDs and unit of measure of the sensors:
 - Temperature sensor zone 3: 'm93d-ljs9-83ks-29dh' in celsius.
 """
 
-# Create an instance of BrickSchemaGraphLocal with our fine-tuned model
-brick_graph = BrickSchemaGraphLocal(model="llama3.1:8b-brick")
+# Create an instance of BrickSchemaGraphLocal
+brick_graph_local = BrickSchemaGraphLocal(model="llama3.1:8b-brick")
+
+# Display the graph structure
+brick_graph_local.display()
+
+# Prepare input data
+input_data = {
+    "user_prompt": building_description,
+    "instructions": instructions
+}
 
 # Run the graph
-result = brick_graph.run(instructions=instructions, prompt=user_prompt, stream=False)
+result = brick_graph_local.run(input_data=input_data, stream=False)
 
-# Print the results
+# Print the result
 print(result)
 
-# save the result to a file
-brick_graph.save_ttl_output("my_building.ttl")
+# Save the result to a file
+brick_graph_local.save_ttl_output("my_building_local.ttl")
 ```
 </details>
 

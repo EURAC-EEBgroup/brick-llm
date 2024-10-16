@@ -5,7 +5,6 @@ from typing_extensions import TypedDict
 
 # state for BrickSchemaGraph class
 class State(TypedDict):
-    instructions: str
     user_prompt: str
     elem_list: List[str]
     # elem_children_list: List[str]
@@ -17,4 +16,14 @@ class State(TypedDict):
     validation_report: str
     validation_max_iter: int
     uuid_dict: Dict[str, Any]
+    ttl_output: str
+
+
+# state for BrickSchemaGraphLocal class
+class StateLocal(TypedDict):
+    instructions: str
+    user_prompt: str
+    is_valid: bool
+    validation_report: str
+    validation_max_iter: int
     ttl_output: str
