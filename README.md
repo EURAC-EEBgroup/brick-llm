@@ -115,7 +115,7 @@ result = brick_graph.run(input_data=input_data, stream=False)
 
 You can easily set up and run the Ollama environment using Docker Compose. The model file will be automatically downloaded inside the container. Follow these steps:
 
-1. Clone the repository and navigate to the directory containing the `Dockerfile` and `docker-compose.yml`.
+1. Clone the repository and navigate to the `containers` directory containing the `Dockerfile` and `docker-compose.yml`.
 2. Run the following command to build and start the container:
     ```bash
     docker-compose up --build -d
