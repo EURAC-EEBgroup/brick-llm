@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  ollama-llm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./llm:/root/.llm
+    container_name: brickllm-ollama
+    restart: unless-stopped
