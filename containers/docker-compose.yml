@@ -8,6 +8,6 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - ./llm:/root/.llm
+      - ./llm:/data
     container_name: brickllm-ollama
     restart: unless-stopped
