@@ -111,15 +111,29 @@ result = brick_graph.run(input_data=input_data, stream=False)
 <summary><b>Using Local LLM Models</b></summary>
 <p>BrickLLM supports using local LLM models employing the <a href="https://ollama.com/">Ollama framework</a>. Currently, only our fine-tuned model is supported.</p>
 
-To use it, follow these steps:
+### Option 1: Using Docker Compose
 
-1. Download the .gguf file from <a href="https://huggingface.co/Giudice7/llama31-8B-brick-v8/tree/main">here</a>.
+You can easily set up and run the Ollama environment using Docker Compose. The model file will be automatically downloaded inside the container. Follow these steps:
+
+1. Clone the repository and navigate to the directory containing the `Dockerfile` and `docker-compose.yml`.
+2. Run the following command to build and start the container:
+    ```bash
+    docker-compose up --build -d
+    ```
+
+This will download the model file, create the model in Ollama, and serve it on port `11434`. The necessary directories will be created automatically.
+
+### Option 2: Manual Setup
+
+If you prefer to set up the model manually, follow these steps:
+
+1. Download the `.gguf` file from <a href="https://huggingface.co/Giudice7/llama31-8B-brick-v8/tree/main">here</a>.
 2. Create a file named `Modelfile` with the following content:
     ```bash
     FROM ./unsloth.Q4_K_M.gguf
     ```
 
-3. Place the downloaded .gguf file in the same folder as the `Modelfile`.
+3. Place the downloaded `.gguf` file in the same folder as the `Modelfile`.
 4. Ensure Ollama is running on your system.
 5. Run the following command to create the model in Ollama:
     ```bash
