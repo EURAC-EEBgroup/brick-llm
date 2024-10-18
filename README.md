@@ -109,13 +109,13 @@ result = brick_graph.run(input_data=input_data, stream=False)
 
 <details>
 <summary><b>Using Local LLM Models</b></summary>
-<p>BrickLLM supports using local LLM models employing the <a href="https://ollama.com/">Ollama framework</a>. Currently, only our fine-tuned model is supported.</p>
+<p>BrickLLM supports using local LLM models employing the <a href="https://ollama.com/">Ollama framework</a>. Currently, only our finetuned model is supported.</p>
 
 ### Option 1: Using Docker Compose
 
-You can easily set up and run the Ollama environment using Docker Compose. The model file will be automatically downloaded inside the container. Follow these steps:
+You can easily set up and run the Ollama environment using Docker Compose. The finetuned model file will be automatically downloaded inside the container. Follow these steps:
 
-1. Clone the repository and navigate to the `containers` directory containing the `Dockerfile` and `docker-compose.yml`.
+1. Clone the repository and navigate to the `finetuned` directory containing the `Dockerfile` and `docker-compose.yml`.
 2. Run the following command to build and start the container:
     ```bash
     docker-compose up --build -d
