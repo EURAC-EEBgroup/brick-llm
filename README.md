@@ -159,7 +159,7 @@ Your job is to generate a RDF graph in Turtle format from a description of energ
 The response must be the RDF graph that includes all the @prefix of the ontologies used in the triples. The RDF graph must be created in Turtle format. Do not add any other text or comment to the response.
 """
 
-user_prompt = """
+building_description = """
 The building (external ref: 'OB103'), with coordinates 33.9614, -118.3531, has a total area of 500 m². It has three zones, each with its own air temperature sensor.
 The building has an electrical meter that monitors data of a power sensor. An HVAC equipment serves all three zones and its power usage is measured by a power sensor.
 
