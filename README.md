@@ -120,7 +120,35 @@ You can easily set up and run the Ollama environment using Docker Compose. The f
     ```bash
     docker-compose up --build -d
     ```
+3. Verify that the docker is running on localhost:11434:
+   ```bash
+   docker ps
+   ```
+   if result is:
+   ```
+   CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS          PORTS                     NAMES
+   1e9bff7c2f7b   finetuned-ollama-llm:latest   "/entrypoint.sh"         42 minutes ago   Up 42 minutes   11434/tcp                 compassionate_wing
+   ```
 
+   so run the docker image specifying the port:
+   ```bash
+   docker run -d -p 11434:11434 finetuned-ollama-llm:latest
+   docker ps
+   ```
+
+   the result will be like:
+   ```
+   CONTAINER ID   IMAGE                         COMMAND                  CREATED         STATUS          PORTS                      NAMES
+   df8b31d4ed86   finetuned-ollama-llm:latest   "/entrypoint.sh"         7 seconds ago   Up 7 seconds    0.0.0.0:11434->11434/tcp   eloquent_jennings
+   ```
+   check if ollama is runnin in the port 11434:
+   ```
+   curl http://localhost:11434  
+   ```
+   Result should be:
+   ```
+   Ollama is running
+   ```
 This will download the model file, create the model in Ollama, and serve it on port `11434`. The necessary directories will be created automatically.
 
 ### Option 2: Manual Setup
