@@ -2,122 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/installation/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/overview/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/usage/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/modules/brickllm/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/modules/edges/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/modules/graphs/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/modules/helpers/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/modules/nodes/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/modules/ontologies/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/modules/utils/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/brickllm/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/compiled_graphs/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/configs/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/schemas/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/states/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/edges/validate_condition/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/graphs/brickschema_graph/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/helpers/llm_models/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/helpers/prompts/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/nodes/get_elem_children/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/nodes/get_elements/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/nodes/get_relationships/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/nodes/get_sensors/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/nodes/schema_to_ttl/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/nodes/validate_schema/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/ontologies/Brick/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/ontologies/brick_hierarchy/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/utils/get_hierarchy_info/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
     <url>
          <loc>https://eurac-eebgroup.github.io/brickllm-lib/reference/utils/query_brickschema/</loc>
-         <lastmod>2024-10-18</lastmod>
+         <lastmod>2024-10-24</lastmod>
     </url>
 </urlset>
