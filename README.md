@@ -246,4 +246,4 @@ For any questions or support, please contact:
 
 BrickLLM is developed and maintained by the Energy Efficiency in Buildings group at EURAC Research. Thanks to the contribution of:
 - Moderate project: Horizon Europe research and innovation programme under grant agreement No 101069834
-- Politecnico of Turin, in particular to @Rocco Giudice for its works in developing model generation using local language model
+- Politecnico of Turin, in particular to @Rocco Giudice for his work in developing model generation using local language model
