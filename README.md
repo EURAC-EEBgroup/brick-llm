@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/brickllm_banner.png" alt="BrickLLM" style="width: 100%;">
+  <img src="https://raw.githubusercontent.com/EURAC-EEBgroup/brick-llm/refs/heads/main/docs/assets/brickllm_banner.png" alt="BrickLLM" style="width: 100%;">
 </p>
 
 # 🧱 BrickLLM
@@ -143,7 +143,7 @@ You can easily set up and run the Ollama environment using Docker Compose. The f
    ```
    check if ollama is runnin in the port 11434:
    ```
-   curl http://localhost:11434  
+   curl http://localhost:11434
    ```
    Result should be:
    ```
