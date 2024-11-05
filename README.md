@@ -230,6 +230,7 @@ For more detailed information on how to use BrickLLM, please refer to our [docum
 
 A web app is available to use the library directly through an interface at the following link (). 
 The application can also be used locally as described in the dedicated repository [BrickLLM App](https://github.com/EURAC-EEBgroup/Brick_ontology_tool). 
+
 **Note**: The tool is currently being deployed on our servers and on the MODERATE platform. It will be online shortly !
 
 ## 🤝 Contributing
