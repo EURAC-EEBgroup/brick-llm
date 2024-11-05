@@ -242,6 +242,12 @@ For any questions or support, please contact:
 - Daniele Antonucci <daniele.antonucci@eurac.edu>
 - Rocco Giudice <rocco.giudice@polito.it>
 
+## Citation
+
+Please cite us if you use the library
+ 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14039358.svg)](https://zenodo.org/doi/10.5281/zenodo.14039358)
+
 ## Acknowledgements
 
 BrickLLM is developed and maintained by the Energy Efficiency in Buildings group at EURAC Research. Thanks to the contribution of:
