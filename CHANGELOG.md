@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.1.1...v1.1.2) (2024-11-05)
+
+
+### Bug Fixes
+
+* add citation label ([27fc2c6](https://github.com/EURAC-EEBgroup/brick-llm/commit/27fc2c694fb9ed73110ec09b068d5fba5dffe111))
+
 ## [1.1.1](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.1.0...v1.1.1) (2024-11-05)
 
 
