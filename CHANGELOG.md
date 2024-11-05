@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.0.0...v1.0.1) (2024-11-05)
+
+
+### Bug Fixes
+
+* replaced banner for pypi ([218a60f](https://github.com/EURAC-EEBgroup/brick-llm/commit/218a60f00ddfc7c121e388f1805b75c28bd6200b))
+
 ## 1.0.0 (2024-11-05)
 
 
