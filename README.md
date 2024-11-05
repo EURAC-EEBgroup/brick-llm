@@ -226,6 +226,12 @@ brick_graph_local.save_ttl_output("my_building_local.ttl")
 
 For more detailed information on how to use BrickLLM, please refer to our [documentation](https://brickllm.com/docs).
 
+## ▶️ Web Application
+
+A web app is available to use the library directly through an interface at the following link (). 
+The application can also be used locally as described in the dedicated repository [BrickLLM App](https://github.com/EURAC-EEBgroup/Brick_ontology_tool). 
+**Note**: The tool is currently being deployed on our servers and on the MODERATE platform. It will be online shortly !
+
 ## 🤝 Contributing
 
 We welcome contributions to BrickLLM! Please see our [contributing guidelines](CONTRIBUTING.md) for more information.
