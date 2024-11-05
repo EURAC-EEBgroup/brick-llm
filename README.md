@@ -232,7 +232,7 @@ We welcome contributions to BrickLLM! Please see our [contributing guidelines](C
 
 ## 📜 License
 
-BrickLLM is released under the MIT License. See the [LICENSE](LICENSE) file for details.
+BrickLLM is released under the BSD-3-Clause License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
