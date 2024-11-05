@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.0.1...v1.1.0) (2024-11-05)
+
+
+### Features
+
+* BSD license ([656faf0](https://github.com/EURAC-EEBgroup/brick-llm/commit/656faf01911ccfc66e21c2ff6bda8a77b1dcd35c))
+
 ## [1.0.1](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.0.0...v1.0.1) (2024-11-05)
 
 
