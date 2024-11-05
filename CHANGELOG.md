@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.1.0...v1.1.1) (2024-11-05)
+
+
+### Bug Fixes
+
+* change for zenodo ([1194a52](https://github.com/EURAC-EEBgroup/brick-llm/commit/1194a528f3a023fa35f10a94d53a331df93b515c))
+
 ## [1.1.0](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.0.1...v1.1.0) (2024-11-05)
 
 
