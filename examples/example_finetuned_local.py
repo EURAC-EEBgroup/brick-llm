@@ -44,6 +44,7 @@ input_data = {"user_prompt": building_description, "instructions": instructions}
 # Run the graph
 result = brick_graph_local.run(input_data=input_data, stream=False)
 
+
 # Print the result
 print(result)
 
