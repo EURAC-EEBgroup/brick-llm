@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "brickllm"
-version = "0.0.1"
+version = "1.0.0"
 description = "Library for generating RDF files following BrickSchema ontology using LLM"
 authors = ["Marco Perini <marco.perini@eurac.edu>", "Daniele Antonucci <daniele.antonucci@eurac.edu>"]
 license = "MIT"
