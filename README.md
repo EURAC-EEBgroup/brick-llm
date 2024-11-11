@@ -6,7 +6,7 @@
 
 BrickLLM is a Python library for generating RDF files following the BrickSchema ontology using Large Language Models (LLMs).
 
-## 🚀 Features
+## 🧰 Features
 
 - Generate BrickSchema-compliant RDF files from natural language descriptions of buildings and facilities
 - Support for multiple LLM providers (OpenAI, Anthropic, Fireworks)

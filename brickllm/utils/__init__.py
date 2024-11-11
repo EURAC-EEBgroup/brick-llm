@@ -22,6 +22,7 @@ from .query_brickschema import (
     validate_ttl,
 )
 from .rdf_parser import extract_rdf_graph
+from .ttl_to_prompt import ttl_to_building_prompt
 
 __all__ = [
     "find_parents",
@@ -44,4 +45,5 @@ __all__ = [
     "general_query",
     "validate_ttl",
     "extract_rdf_graph",
+    "ttl_to_building_prompt",
 ]

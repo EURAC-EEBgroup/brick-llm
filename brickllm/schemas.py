@@ -16,3 +16,12 @@ class TTLSchema(BaseModel):
     ttl_output: str = Field(
         ..., description="The generated BrickSchema turtle/rdf script."
     )
+
+
+class TTLToBuildingPromptSchema(BaseModel):
+    building_description: str = Field(
+        ..., description="The generated building description."
+    )
+    key_elements: List[str] = Field(
+        ..., description="The generated list of key elements."
+    )

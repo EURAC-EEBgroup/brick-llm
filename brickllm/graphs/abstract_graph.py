@@ -1,12 +1,13 @@
 import os
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Tuple, Union
 
 from langchain.chat_models.base import BaseChatModel
 from langgraph.graph import StateGraph
 from PIL import Image
 
 from ..helpers.llm_models import _get_model
+from ..utils import ttl_to_building_prompt
 
 
 class AbstractBrickSchemaGraph(ABC):
@@ -17,6 +18,8 @@ class AbstractBrickSchemaGraph(ABC):
         self.config = {"configurable": {"thread_id": "1", "llm_model": self.model}}
         self.result = None
         self.ttl_output = None
+        self.generated_building_description = None
+        self.generated_key_elements = None
 
     @abstractmethod
     def build_graph(self):
@@ -81,3 +84,11 @@ class AbstractBrickSchemaGraph(ABC):
 
         with open(output_file, "w") as f:
             f.write(self.ttl_output)
+
+    def ttl_to_building_description(self) -> Tuple[str, List[str]]:
+        if self.ttl_output is None:
+            raise ValueError("No TTL output found. Please run the graph first.")
+        self.generated_building_description, self.generated_key_elements = (
+            ttl_to_building_prompt(self.ttl_output, self.model)
+        )
+        return self.generated_building_description, self.generated_key_elements
