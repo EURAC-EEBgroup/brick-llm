@@ -5,6 +5,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import State, TTLSchema
 from ..helpers import schema_to_ttl_instructions, ttl_example
+from ..logger import custom_logger
 
 
 def schema_to_ttl(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
@@ -18,7 +19,7 @@ def schema_to_ttl(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         dict: A dictionary containing the generated TTL output.
     """
-    print("---Schema To TTL Node---")
+    custom_logger.eurac("📝 Generating TTL from schema")
 
     user_prompt = state["user_prompt"]
     sensors_dict = state["sensors_dict"]

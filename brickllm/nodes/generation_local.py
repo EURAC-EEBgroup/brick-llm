@@ -2,6 +2,7 @@ from typing import Any, Dict
 
 from .. import StateLocal
 from ..helpers import prompt_template_local
+from ..logger import custom_logger
 from ..utils import extract_rdf_graph
 
 
@@ -17,7 +18,7 @@ def generation_local(state: StateLocal, config: Dict[str, Any]) -> Dict[str, Any
         dict: A dictionary containing the output generated.
     """
 
-    print("---One shot generation with local LLM Node---")
+    custom_logger.eurac("🤖 Starting one shot generation with local LLM")
 
     instructions = state["instructions"]
     user_prompt = state["user_prompt"]

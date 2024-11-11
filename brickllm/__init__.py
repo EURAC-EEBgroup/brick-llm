@@ -1,4 +1,5 @@
 from .configs import GraphConfig
+from .logger import custom_logger
 from .schemas import (
     ElemListSchema,
     RelationshipsSchema,
@@ -15,4 +16,5 @@ __all__ = [
     "State",
     "StateLocal",
     "GraphConfig",
+    "custom_logger",
 ]

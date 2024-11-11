@@ -4,6 +4,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import ElemListSchema, State
 from ..helpers import get_elem_children_instructions
+from ..logger import custom_logger
 from ..utils import create_hierarchical_dict, filter_elements, get_children_hierarchy
 
 
@@ -18,7 +19,9 @@ def get_elem_children(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         dict: A dictionary containing the hierarchical structure of identified elements.
     """
-    print("---Get Elem Children Node---")
+    custom_logger.eurac(
+        "📊 Getting children for each BrickSchema category in the element list"
+    )
 
     user_prompt = state["user_prompt"]
     categories = state["elem_list"]

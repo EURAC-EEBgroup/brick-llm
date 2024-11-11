@@ -6,6 +6,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import RelationshipsSchema, State
 from ..helpers import get_relationships_instructions
+from ..logger import custom_logger
 from ..utils import build_hierarchy, find_sensor_paths
 
 
@@ -20,7 +21,7 @@ def get_relationships(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         dict: A dictionary containing the grouped sensor paths.
     """
-    print("---Get Relationships Node---")
+    custom_logger.eurac("🔗 Getting relationships between building components")
 
     user_prompt = state["user_prompt"]
     building_structure = state["elem_hierarchy"]

@@ -4,6 +4,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import ElemListSchema, State
 from ..helpers import get_elem_instructions
+from ..logger import custom_logger
 from ..utils import get_brick_definition, get_hierarchical_info
 
 
@@ -19,7 +20,7 @@ def get_elements(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         dict: A dictionary containing the list of identified elements.
     """
-    print("---Get Elements Node---")
+    custom_logger.eurac("🔍 Getting elements from user prompt")
 
     user_prompt = state["user_prompt"]
 
