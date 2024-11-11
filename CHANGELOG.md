@@ -1,3 +1,32 @@
+## [1.2.0](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.1.2...v1.2.0) (2024-11-11)
+
+
+### Features
+
+* ttl_to_building_description function ([d83e66f](https://github.com/EURAC-EEBgroup/brick-llm/commit/d83e66f5851a4db71825c925389d3183cb10faaf))
+
+
+### Bug Fixes
+
+* improved ttl description generation ([bf4bdae](https://github.com/EURAC-EEBgroup/brick-llm/commit/bf4bdaecca779ff835e2349bfcdff7a3d17ead0e))
+
+
+### Docs
+
+* imporeved docs and ttl_output method ([24a7d8b](https://github.com/EURAC-EEBgroup/brick-llm/commit/24a7d8ba1d94fa25c0d6c5db33b38853bc2d5ff2))
+
+
+### Perf
+
+* add custom logging level ([82bead2](https://github.com/EURAC-EEBgroup/brick-llm/commit/82bead23929a23998f4d7504f31d83bf253927bf))
+
+
+### CI
+
+* **release:** 1.2.0-beta.1 [skip ci] ([3d36efa](https://github.com/EURAC-EEBgroup/brick-llm/commit/3d36efa916ae51a7d6f7fe068e2417c3c42b58e3))
+* **release:** 1.2.0-beta.2 [skip ci] ([67115f0](https://github.com/EURAC-EEBgroup/brick-llm/commit/67115f039ae0a828de5d03e27cfc6c8f329dce79))
+* **release:** 1.2.0-beta.3 [skip ci] ([a7d9112](https://github.com/EURAC-EEBgroup/brick-llm/commit/a7d911207eef70c7324b9448706fa12584654c25))
+
 ## [1.2.0-beta.3](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.2.0-beta.2...v1.2.0-beta.3) (2024-11-11)
 
 
