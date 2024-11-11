@@ -1,3 +1,10 @@
+## [1.2.0-beta.3](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.2.0-beta.2...v1.2.0-beta.3) (2024-11-11)
+
+
+### Perf
+
+* add custom logging level ([82bead2](https://github.com/EURAC-EEBgroup/brick-llm/commit/82bead23929a23998f4d7504f31d83bf253927bf))
+
 ## [1.2.0-beta.2](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.2.0-beta.1...v1.2.0-beta.2) (2024-11-11)
 
 
