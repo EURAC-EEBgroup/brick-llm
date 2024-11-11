@@ -1,3 +1,15 @@
+## [1.2.0-beta.1](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.1.2...v1.2.0-beta.1) (2024-11-11)
+
+
+### Features
+
+* ttl_to_building_description function ([d83e66f](https://github.com/EURAC-EEBgroup/brick-llm/commit/d83e66f5851a4db71825c925389d3183cb10faaf))
+
+
+### Docs
+
+* imporeved docs and ttl_output method ([24a7d8b](https://github.com/EURAC-EEBgroup/brick-llm/commit/24a7d8ba1d94fa25c0d6c5db33b38853bc2d5ff2))
+
 ## [1.1.2](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.1.1...v1.1.2) (2024-11-05)
 
 
