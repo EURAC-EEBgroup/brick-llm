@@ -56,7 +56,9 @@ class BrickSchemaGraph(AbstractBrickSchemaGraph):
             ):
                 events.append(event)
             self.result = events[-1]
+            self.ttl_output = self.result.get("ttl_output", None)
             return events
         else:
             self.result = self.graph.invoke(input_data, self.config)
+            self.ttl_output = self.result.get("ttl_output", None)
             return self.result

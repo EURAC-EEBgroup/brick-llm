@@ -16,6 +16,7 @@ class AbstractBrickSchemaGraph(ABC):
         self.graph = None
         self.config = {"configurable": {"thread_id": "1", "llm_model": self.model}}
         self.result = None
+        self.ttl_output = None
 
     @abstractmethod
     def build_graph(self):
@@ -75,12 +76,8 @@ class AbstractBrickSchemaGraph(ABC):
         if self.result is None:
             raise ValueError("No result found. Please run the graph first.")
 
-        ttl_output = self.result.get("ttl_output", None)
+        if self.ttl_output is None:
+            raise ValueError("No TTL output found. Please run the graph first.")
 
-        if ttl_output:
-            with open(output_file, "w") as f:
-                f.write(ttl_output)
-        else:
-            raise ValueError(
-                "No TTL output found in the result. Please run the graph with a valid prompt."
-            )
+        with open(output_file, "w") as f:
+            f.write(self.ttl_output)
