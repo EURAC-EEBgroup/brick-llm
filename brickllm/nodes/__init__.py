@@ -1,3 +1,4 @@
+from .generation_local import generation_local
 from .get_elem_children import get_elem_children
 from .get_elements import get_elements
 from .get_relationships import get_relationships
@@ -12,4 +13,5 @@ __all__ = [
     "get_sensors",
     "schema_to_ttl",
     "validate_schema",
+    "generation_local",
 ]

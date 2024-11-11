@@ -1,4 +1,8 @@
-get_elem_instructions = """
+"""
+Module containing the prompts used for the LLM models
+"""
+
+get_elem_instructions: str = """
     You are a BrickSchema ontology expert and you are provided with a user prompt which describes a building or facility.\n
     You are provided with a list of common elements that can be used to describe a building or facility.\n
     You are also provided with the elements description to understand what each element represents.\n
@@ -7,7 +11,7 @@ get_elem_instructions = """
     ELEMENTS: {elements_dict} \n
     """
 
-get_elem_children_instructions = """
+get_elem_children_instructions: str = """
     You are a BrickSchema ontology expert and you are provided with a user prompt which describes a building or facility.\n
     You are provided with a list of common elements that can be used to describe a building or facility.\n
     You are now asked to identify the elements presents in the user prompt.\n
@@ -20,20 +24,20 @@ get_elem_children_instructions = """
     ELEMENTS HIERARCHY: {elements_list} \n
     """
 
-get_relationships_instructions = """
+get_relationships_instructions: str = """
     You are a BrickSchema ontology expert and are provided with a detailed description of a building or facility.\n
     You are also provided with a hierarchical structure of identified building components.\n
     Your task is to determine the relationships between these components based on the context within the building description and the provided hierarchical structure.\n
     The relationships should reflect direct connections or associations as described or implied in the prompt.\n
-    Each element must be followed by a hash symbol (#) and a number to differentiate between elements of the same type (e.g., Room#1, Room#2).\n
-    An example of output is the following: [('Building#1', 'Floor#1'), ('Floor#1', 'Room#1'), ('Building#1','Floor#2'), ...]\n
+    Each element must be followed by a dot symbol (.) and a number to differentiate between elements of the same type (e.g., Room.1, Room.2).\n
+    An example of output is the following: [('Building.1', 'Floor.1'), ('Floor.1', 'Room.1'), ('Building.1','Floor.2'), ...]\n
     DO NOT add relationships on the output but only the components names, always add first the parent and then the child.\n
-    If an element has no relationships, add an empty string in place of the missing component ("Room#1","").\n
+    If an element has no relationships, add an empty string in place of the missing component ("Room.1","").\n
     Hierarchical structure: {building_structure}\n
     USER PROMPT: {prompt}
 """
 
-ttl_example = """
+ttl_example: str = """
     @prefix bldg: <urn:Building#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .
     @prefix prj: <http://example.com/Project#> .
@@ -82,7 +86,7 @@ ttl_example = """
         brick:isPartOf bldg:Milano_Residence_1 .
 """
 
-schema_to_ttl_instructions = """
+schema_to_ttl_instructions: str = """
     You are a BrickSchema ontology expert and you are provided with a user prompt which describes a building or facility.\n
     You are provided with a dictionary containing the detected components in the building description.\n
     You are also provided with the hierarchical structure of the building components with their constraints BrickSchema compliant.\n
@@ -98,4 +102,15 @@ schema_to_ttl_instructions = """
     USER DESCRIPTION: {prompt}\n
 
     COMPONENTS DICT: {sensors_dict}\n
+"""
+
+prompt_template_local: str = """
+    Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+    {instructions}
+
+    ### Input:
+    {user_prompt}
+
+    ### Response:
 """

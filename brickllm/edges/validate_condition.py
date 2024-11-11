@@ -1,14 +1,21 @@
-from typing import Literal
-from langgraph.graph import END
+from typing import Any, Dict, Literal
 
-def validate_condition(state) -> Literal["schema_to_ttl", "__end__"]:
 
-    # Often, we will use state to decide on the next node to visit
+def validate_condition(state: Dict[str, Any]) -> Literal["schema_to_ttl", "__end__"]:
+    """
+    Validate the condition for the next node to visit.
+
+    Args:
+        state (Dict[str, Any]): The current state containing the validation result.
+
+    Returns:
+        Literal["schema_to_ttl", "__end__"]: The next node to visit.
+    """
+
     is_valid = state.get("is_valid", False)
-    max_iter = state.get("validation_max_iter", 1)
+    max_iter = state.get("validation_max_iter", 0)
 
     if max_iter > 0 and not is_valid:
-        state["validation_max_iter"] = max_iter - 1
         return "schema_to_ttl"
 
-    return END
+    return "__end__"

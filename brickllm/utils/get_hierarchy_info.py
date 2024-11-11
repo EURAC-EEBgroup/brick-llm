@@ -2,19 +2,37 @@ import json
 import os
 import re
 from collections import defaultdict
-from .query_brickschema import general_query
+from typing import Any, Dict, List, Optional, Tuple, Union
+
 import pkg_resources
 
+from .query_brickschema import general_query
 
 # Path to the JSON file
-brick_hierarchy_path = pkg_resources.resource_filename(__name__, os.path.join('..', 'ontologies', 'brick_hierarchy.json'))
+brick_hierarchy_path = pkg_resources.resource_filename(
+    __name__, os.path.join("..", "ontologies", "brick_hierarchy.json")
+)
 
 # Load the JSON file
 with open(brick_hierarchy_path) as f:
     data = json.load(f)
 
+
 # Function to recursively find parents
-def find_parents(current_data, target, parents=None):
+def find_parents(
+    current_data: Dict[str, Any], target: str, parents: Optional[List[str]] = None
+) -> Tuple[bool, List[str]]:
+    """
+    Recursively find the parent nodes of a target node in a hierarchical data structure.
+
+    Args:
+        current_data (Dict[str, Any]): The current level of the hierarchy to search.
+        target (str): The target node to find parents for.
+        parents (Optional[List[str]], optional): Accumulated list of parent nodes. Defaults to None.
+
+    Returns:
+        Tuple[bool, List[str]]: A tuple containing a boolean indicating if the target was found and a list of parent nodes.
+    """
     if parents is None:
         parents = []
     for key, value in current_data.items():
@@ -26,8 +44,19 @@ def find_parents(current_data, target, parents=None):
                 return True, result
     return False, []
 
+
 # Function to get the children of a node
-def get_children(current_data, target):
+def get_children(current_data: Dict[str, Any], target: str) -> List[str]:
+    """
+    Get the children of a target node in a hierarchical data structure.
+
+    Args:
+        current_data (Dict[str, Any]): The current level of the hierarchy to search.
+        target (str): The target node to find children for.
+
+    Returns:
+        List[str]: A list of child nodes.
+    """
     if target in current_data:
         return list(current_data[target].keys())
     for key, value in current_data.items():
@@ -37,8 +66,24 @@ def get_children(current_data, target):
                 return children
     return []
 
+
 # Function to flatten the hierarchy
-def flatten_hierarchy(current_data, parent=None, result=None):
+def flatten_hierarchy(
+    current_data: Dict[str, Any],
+    parent: Optional[str] = None,
+    result: Optional[List[Tuple[str, str]]] = None,
+) -> List[Tuple[str, str]]:
+    """
+    Flatten a hierarchical data structure into a list of parent-child tuples.
+
+    Args:
+        current_data (Dict[str, Any]): The current level of the hierarchy to flatten.
+        parent (Optional[str], optional): The parent node. Defaults to None.
+        result (Optional[List[Tuple[str, str]]], optional): Accumulated list of parent-child tuples. Defaults to None.
+
+    Returns:
+        List[Tuple[str, str]]: A list of tuples representing parent-child relationships.
+    """
     if result is None:
         result = []
     for key, value in current_data.items():
@@ -48,18 +93,43 @@ def flatten_hierarchy(current_data, parent=None, result=None):
             flatten_hierarchy(value, key, result)
     return result
 
+
 # Main function to get hierarchy info
-def get_hierarchical_info(key):
+def get_hierarchical_info(key: str) -> Tuple[List[str], List[str]]:
+    """
+    Get the hierarchical information of a node, including its parents and children.
+
+    Args:
+        key (str): The target node to get information for.
+
+    Returns:
+        Tuple[List[str], List[str]]: A tuple containing a list of parent nodes and a list of child nodes.
+    """
     # Get parents
     found, parents = find_parents(data, key)
     # Get children
     children = get_children(data, key)
     return (parents, children)
 
+
 # Function to recursively get all children and subchildren
-def get_all_subchildren(current_data, target):
+def get_all_subchildren(current_data: Dict[str, Any], target: str) -> Dict[str, Any]:
+    """
+    Recursively get all children and subchildren of a target node.
+
+    Args:
+        current_data (Dict[str, Any]): The current level of the hierarchy to search.
+        target (str): The target node to find children for.
+
+    Returns:
+        Dict[str, Any]: A dictionary representing the subtree of the target node.
+    """
     if target in current_data:
-        return current_data[target]
+        sub_tree = current_data[target]
+        if isinstance(sub_tree, dict):
+            return sub_tree
+        else:
+            return {}
     for key, value in current_data.items():
         if isinstance(value, dict):
             result = get_all_subchildren(value, target)
@@ -67,14 +137,37 @@ def get_all_subchildren(current_data, target):
                 return result
     return {}
 
+
 # Main function to get hierarchy dictionary
-def get_children_hierarchy(key, flatten=False):
+def get_children_hierarchy(
+    key: str, flatten: bool = False
+) -> Union[Dict[str, Any], List[Tuple[str, str]]]:
+    """
+    Get the hierarchy of children for a target node, optionally flattening the result.
+
+    Args:
+        key (str): The target node to get children for.
+        flatten (bool, optional): Whether to flatten the hierarchy. Defaults to False.
+
+    Returns:
+        Union[Dict[str, Any], List[Tuple[str, str]]]: A dictionary representing the hierarchy or a list of parent-child tuples if flattened.
+    """
     if flatten:
         return flatten_hierarchy(get_all_subchildren(data, key))
     return get_all_subchildren(data, key)
 
+
 # Function to filter elements based on the given conditions
-def filter_elements(elements):
+def filter_elements(elements: List[str]) -> List[str]:
+    """
+    Filter elements based on their hierarchical relationships.
+
+    Args:
+        elements (List[str]): A list of elements to filter.
+
+    Returns:
+        List[str]: A list of filtered elements.
+    """
     elements_info = {element: get_hierarchical_info(element) for element in elements}
     filtered_elements = []
 
@@ -90,8 +183,21 @@ def filter_elements(elements):
 
     return filtered_elements
 
-def create_hierarchical_dict(elements, properties=False):
-    hierarchy = {}
+
+def create_hierarchical_dict(
+    elements: List[str], properties: bool = False
+) -> Dict[str, Any]:
+    """
+    Create a hierarchical dictionary from a list of elements, optionally including properties.
+
+    Args:
+        elements (List[str]): A list of elements to include in the hierarchy.
+        properties (bool, optional): Whether to include properties in the hierarchy. Defaults to False.
+
+    Returns:
+        Dict[str, Any]: A dictionary representing the hierarchical structure.
+    """
+    hierarchy: Dict[str, Any] = {}
 
     for category in elements:
         parents, _ = get_hierarchical_info(category)
@@ -112,36 +218,67 @@ def create_hierarchical_dict(elements, properties=False):
                 # remove "message" key from the dictionary
                 for prop in elem_property.keys():
                     elem_property[prop].pop("message")
-                current_level[category] = elem_property
+                current_level[category] = {"properties": elem_property}
             else:
                 current_level[category] = {}
 
     return hierarchy
 
-def find_sensor_paths(tree, path=None):
+
+def find_sensor_paths(
+    tree: Dict[str, Any], path: Optional[List[str]] = None
+) -> List[Dict[str, str]]:
+    """
+    Find paths to sensor nodes in a hierarchical tree structure.
+
+    Args:
+        tree (Dict[str, Any]): The hierarchical tree structure.
+        path (Optional[List[str]], optional): Accumulated path to the current node. Defaults to None.
+
+    Returns:
+        List[Dict[str, str]]: A list of dictionaries containing sensor names and their paths.
+    """
     if path is None:
         path = []
 
-    current_path = path + [tree['name']]
-    if 'children' not in tree or not tree['children']:
-        if re.search(r'Sensor', tree['name']):
-            sensor_path = '>'.join(current_path[:-1])
-            return [{'name': tree['name'], 'path': sensor_path}]
+    current_path = path + [tree.get("name", "")]
+    if "children" not in tree or not tree["children"]:
+        if re.search(r"Sensor", tree.get("name", "")):
+            sensor_path = ">".join(current_path[:-1])
+            return [{"name": tree.get("name", ""), "path": sensor_path}]
         return []
 
     sensor_paths = []
-    for child in tree['children']:
+    for child in tree["children"]:
         sensor_paths.extend(find_sensor_paths(child, current_path))
 
     return sensor_paths
 
-def build_hierarchy(relationships):
+
+def build_hierarchy(relationships: List[Tuple[str, str]]) -> Dict[str, Any]:
+    """
+    Build a hierarchical tree structure from a list of parent-child relationships.
+
+    Args:
+        relationships (List[Tuple[str, str]]): A list of tuples representing parent-child relationships.
+
+    Returns:
+        Dict[str, Any]: A dictionary representing the hierarchical tree structure.
+    """
+
     # Helper function to recursively build the tree structure
-    def build_tree(node, tree_dict):
-        return {'name': node, 'children': [build_tree(child, tree_dict) for child in tree_dict[node]]} if tree_dict[node] else {'name': node}
+    def build_tree(node: str, tree_dict: Dict[str, List[str]]) -> Dict[str, Any]:
+        return (
+            {
+                "name": node,
+                "children": [build_tree(child, tree_dict) for child in tree_dict[node]],
+            }
+            if tree_dict[node]
+            else {"name": node, "children": []}
+        )
 
     # Create a dictionary to hold parent-children relationships
-    tree_dict = defaultdict(list)
+    tree_dict: Dict[str, List[str]] = defaultdict(list)
     nodes = set()
 
     # Fill the dictionary with data from relationships
@@ -150,15 +287,30 @@ def build_hierarchy(relationships):
         nodes.update([parent, child])
 
     # Find the root (a node that is never a child)
-    root = next(node for node in tree_dict if all(node != child for _, child in relationships))
+    root_candidates = {
+        node for node in nodes if node not in {child for _, child in relationships}
+    }
+    if not root_candidates:
+        raise ValueError("No root found in relationships")
+    root = next(iter(root_candidates))
 
     # Build the hierarchical structure starting from the root
     hierarchy = build_tree(root, tree_dict)
     return hierarchy
 
+
 def extract_ttl_content(input_string: str) -> str:
-  # Use regex to match content between ```python and ```
-  match = re.search(r"```code\s*(.*?)\s*```", input_string, re.DOTALL)
-  if match:
-      return match.group(1).strip()
-  return ""
+    """
+    Extract content between code block markers in a string.
+
+    Args:
+        input_string (str): The input string containing code blocks.
+
+    Returns:
+        str: The extracted content between the code block markers.
+    """
+    # Use regex to match content between ```code and ```
+    match = re.search(r"```code\s*(.*?)\s*```", input_string, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    return ""

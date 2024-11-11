@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "brickllm"
-version = "0.0.1"
+version = "1.1.2"
 description = "Library for generating RDF files following BrickSchema ontology using LLM"
 authors = ["Marco Perini <marco.perini@eurac.edu>", "Daniele Antonucci <daniele.antonucci@eurac.edu>"]
-license = "MIT"
+license = "BSD-3-Clause"
 readme = "README.md"
 homepage = "https://brickllm.com/"
 repository = "https://github.com/EURAC-EEBgroup/brickllm-lib"
@@ -48,11 +48,39 @@ langchain_core = "0.3.5"
 rdflib = ">=6.2.0,<7"
 pyshacl = "0.21"
 
-[tool.poetry.dev-dependencies]
-pytest = "8.0.0"
-pytest-mock = "3.14.0"
-pylint = "^3.2.5"
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4"
+pytest-sugar = "*"
+pytest-cov = "*"
+black = "*"
+mypy = "*"
+ruff = "*"
+isort = "*"
+pre-commit = "*"
+types-setuptools = "^75.1.0.20240917"
+mkdocs = "^1.5"
+mkdocs-material = "^9.2"
+mkdocstrings-python = "^1.1"
 
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "C"]
+ignore = ["E203", "E501"]  # Ignore conflicts with Black
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+disallow_untyped_calls = true
+ignore_missing_imports = true
 
 [build-system]
 requires = ["poetry-core"]

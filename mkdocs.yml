@@ -1,0 +1,98 @@
+site_name: "BrickLLM Documentation"
+site_description: "Library for generating RDF files following BrickSchema ontology using LLM."
+site_url: "https://eurac-eebgroup.github.io/brickllm-lib/"
+repo_url: "https://github.com/EURAC-EEBgroup/brickllm-lib"
+repo_name: "EURAC-EEBgroup/brickllm-lib"
+site_dir: "site"
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Overview: overview.md
+      - Installation: installation.md
+      - Usage: usage.md
+  - Modules:
+      - BrickLLM: modules/brickllm.md
+      - Edges: modules/edges.md
+      - Graphs: modules/graphs.md
+      - Helpers: modules/helpers.md
+      - Nodes: modules/nodes.md
+      - Ontologies: modules/ontologies.md
+      - Utils: modules/utils.md
+  - API Reference:
+      - Edges:
+          - Validate Condition: reference/edges/validate_condition.md
+      - Graphs:
+          - Brickschema Graph: reference/graphs/brickschema_graph.md
+      - Helpers:
+          - LLM Models: reference/helpers/llm_models.md
+          - Prompts: reference/helpers/prompts.md
+      - Nodes:
+          - Get Element Children: reference/nodes/get_elem_children.md
+          - Get Elements: reference/nodes/get_elements.md
+          - Get Relationships: reference/nodes/get_relationships.md
+          - Get Sensors: reference/nodes/get_sensors.md
+          - Schema to TTL: reference/nodes/schema_to_ttl.md
+          - Validate Schema: reference/nodes/validate_schema.md
+      - Utils:
+          - Get Hierarchy Info: reference/utils/get_hierarchy_info.md
+          - Query Brickschema: reference/utils/query_brickschema.md
+      - Ontologies:
+          - Brick: reference/ontologies/Brick.md
+          - Brick Hierarchy: reference/ontologies/brick_hierarchy.md
+      - Root-Level:
+          - BrickLLM: reference/brickllm.md
+          - Compiled Graphs: reference/compiled_graphs.md
+          - Configs: reference/configs.md
+          - Schemas: reference/schemas.md
+          - States: reference/states.md
+
+theme:
+  name: material
+  logo: assets/brickllm_logo.png
+  favicon: assets/favicon.ico
+  features:
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: 'indigo'
+      accent: 'indigo'
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: 'indigo'
+      accent: 'indigo'
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          selection:
+            filters: ["!^_"]
+          rendering:
+            show_root_toc_entry: false
+            show_source: false
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: "§"
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
