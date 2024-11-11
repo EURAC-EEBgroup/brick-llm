@@ -1,6 +1,7 @@
 from typing import Any, Dict
 
 from .. import State
+from ..logger import custom_logger
 
 
 def get_sensors(state: State) -> Dict[str, Any]:
@@ -13,7 +14,7 @@ def get_sensors(state: State) -> Dict[str, Any]:
     Returns:
         dict: A dictionary containing sensor UUIDs mapped to their locations.
     """
-    print("---Get Sensor Node---")
+    custom_logger.eurac("📡 Getting sensors information")
 
     uuid_dict = {
         "Building#1>Floor#1>Office#1>Room#1": [

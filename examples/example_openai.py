@@ -32,3 +32,12 @@ print(result)
 
 # save the result to a file
 brick_graph.save_ttl_output("my_building.ttl")
+
+# Generate the building description from the generated ttl file
+building_description, key_elements = brick_graph.ttl_to_building_description()
+
+print("Generated building description:")
+print(building_description)
+print("--------------------------------")
+print("Generated key elements:")
+print(key_elements)

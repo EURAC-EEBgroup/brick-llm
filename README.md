@@ -6,7 +6,7 @@
 
 BrickLLM is a Python library for generating RDF files following the BrickSchema ontology using Large Language Models (LLMs).
 
-## Features
+## 🧰 Features
 
 - Generate BrickSchema-compliant RDF files from natural language descriptions of buildings and facilities
 - Support for multiple LLM providers (OpenAI, Anthropic, Fireworks)
@@ -224,12 +224,12 @@ brick_graph_local.save_ttl_output("my_building_local.ttl")
 
 ## 📖 Documentation
 
-For more detailed information on how to use BrickLLM, please refer to our [documentation](https://brickllm.com/docs).
+For more detailed information on how to use BrickLLM, please refer to our [documentation](https://eurac-eebgroup.github.io/brick-llm/).
 
 ## ▶️ Web Application
 
-A web app is available to use the library directly through an interface at the following link (). 
-The application can also be used locally as described in the dedicated repository [BrickLLM App](https://github.com/EURAC-EEBgroup/Brick_ontology_tool). 
+A web app is available to use the library directly through an interface at the following link ().
+The application can also be used locally as described in the dedicated repository [BrickLLM App](https://github.com/EURAC-EEBgroup/Brick_ontology_tool).
 
 **Note**: The tool is currently being deployed on our servers and on the MODERATE platform. It will be online shortly !
 
@@ -241,7 +241,7 @@ We welcome contributions to BrickLLM! Please see our [contributing guidelines](C
 
 BrickLLM is released under the BSD-3-Clause License. See the [LICENSE](LICENSE) file for details.
 
-## Contact
+## 📧 Contact
 
 For any questions or support, please contact:
 
@@ -249,17 +249,17 @@ For any questions or support, please contact:
 - Daniele Antonucci <daniele.antonucci@eurac.edu>
 - Rocco Giudice <rocco.giudice@polito.it>
 
-## Citation
+## 📝 Citation
 
 Please cite us if you use the library
- 
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14039358.svg)](https://zenodo.org/doi/10.5281/zenodo.14039358)
 
-## 💙 Aknwoledegments
-This work was carried out within European projects: 
+## 💙 Acknowledgements
+This work was carried out within European projects:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/EURAC-EEBgroup/brick-llm/refs/heads/main/docs/assets/moderate_logo.png" alt="Moderate" 
+  <img src="https://raw.githubusercontent.com/EURAC-EEBgroup/brick-llm/refs/heads/main/docs/assets/moderate_logo.png" alt="Moderate"
 </p>
 
 Moderate - Horizon Europe research and innovation programme under grant agreement No 101069834, with the aim of contributing to the development of open products useful for defining plausible scenarios for the decarbonization of the built environment

@@ -9,7 +9,7 @@ get_elem_instructions: str = """
     You are now asked to identify the elements presents in the user prompt, even if not explicitly mentioned.\n
     USER PROMPT: {prompt} \n
     ELEMENTS: {elements_dict} \n
-    """
+    """  # noqa
 
 get_elem_children_instructions: str = """
     You are a BrickSchema ontology expert and you are provided with a user prompt which describes a building or facility.\n
@@ -22,7 +22,7 @@ get_elem_children_instructions: str = """
 
     USER PROMPT: {prompt} \n
     ELEMENTS HIERARCHY: {elements_list} \n
-    """
+    """  # noqa
 
 get_relationships_instructions: str = """
     You are a BrickSchema ontology expert and are provided with a detailed description of a building or facility.\n
@@ -35,7 +35,7 @@ get_relationships_instructions: str = """
     If an element has no relationships, add an empty string in place of the missing component ("Room.1","").\n
     Hierarchical structure: {building_structure}\n
     USER PROMPT: {prompt}
-"""
+"""  # noqa
 
 ttl_example: str = """
     @prefix bldg: <urn:Building#> .
@@ -84,7 +84,7 @@ ttl_example: str = """
 
     bldg:livingroom a brick:Room ;
         brick:isPartOf bldg:Milano_Residence_1 .
-"""
+"""  # noqa
 
 schema_to_ttl_instructions: str = """
     You are a BrickSchema ontology expert and you are provided with a user prompt which describes a building or facility.\n
@@ -102,7 +102,28 @@ schema_to_ttl_instructions: str = """
     USER DESCRIPTION: {prompt}\n
 
     COMPONENTS DICT: {sensors_dict}\n
-"""
+"""  # noqa
+
+ttl_to_user_prompt: str = """
+    You are a BrickSchema ontology expert tasked with generating a clear and concise description of a building or facility from a TTL script.
+
+    Your output must follow these guidelines:
+    - Focus on the key building characteristics, components and relationships present in the TTL
+    - Maintain technical accuracy and use proper Brick terminology
+    - Keep descriptions clear and well-structured
+    - Only include information explicitly stated in the TTL script
+    - If no TTL content is provided, return an empty string
+
+    Eventually, the user can provide additional instructions to help you generate the building description.
+    <additional_instructions>
+    {additional_instructions}
+    </additional_instructions>
+
+    TTL script to analyze:
+    <ttl_script>
+    {ttl_script}
+    </ttl_script>
+"""  # noqa
 
 prompt_template_local: str = """
     Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
@@ -113,4 +134,4 @@ prompt_template_local: str = """
     {user_prompt}
 
     ### Response:
-"""
+"""  # noqa

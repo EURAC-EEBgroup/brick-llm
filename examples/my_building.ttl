@@ -1,0 +1,95 @@
+@prefix bldg: <urn:Building#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+
+bldg:Bolzano_Building a brick:Building ;
+    brick:hasLocation [ brick:value "Bolzano" ] .
+
+bldg:Floor_1 a brick:Floor ;
+    brick:isPartOf bldg:Bolzano_Building .
+
+bldg:Floor_2 a brick:Floor ;
+    brick:isPartOf bldg:Bolzano_Building .
+
+bldg:Floor_3 a brick:Floor ;
+    brick:isPartOf bldg:Bolzano_Building .
+
+bldg:Office_1 a brick:Office ;
+    brick:isPartOf bldg:Floor_1 .
+
+bldg:Office_2 a brick:Office ;
+    brick:isPartOf bldg:Floor_2 .
+
+bldg:Office_3 a brick:Office ;
+    brick:isPartOf bldg:Floor_3 .
+
+bldg:Room_1 a brick:Room ;
+    brick:isPartOf bldg:Office_1 .
+
+bldg:Room_2 a brick:Room ;
+    brick:isPartOf bldg:Office_1 .
+
+bldg:Room_3 a brick:Room ;
+    brick:isPartOf bldg:Office_2 .
+
+bldg:Room_4 a brick:Room ;
+    brick:isPartOf bldg:Office_2 .
+
+bldg:Room_5 a brick:Room ;
+    brick:isPartOf bldg:Office_3 .
+
+bldg:Room_6 a brick:Room ;
+    brick:isPartOf bldg:Office_3 .
+
+bldg:Temperature_Sensor_1 a brick:Temperature_Sensor ;
+    brick:isPointOf bldg:Room_1 .
+
+bldg:Humidity_Sensor_1 a brick:Humidity_Sensor ;
+    brick:isPointOf bldg:Room_1 .
+
+bldg:CO_Sensor_1 a brick:CO_Sensor ;
+    brick:isPointOf bldg:Room_1 .
+
+bldg:Temperature_Sensor_2 a brick:Temperature_Sensor ;
+    brick:isPointOf bldg:Room_2 .
+
+bldg:Humidity_Sensor_2 a brick:Humidity_Sensor ;
+    brick:isPointOf bldg:Room_2 .
+
+bldg:CO_Sensor_2 a brick:CO_Sensor ;
+    brick:isPointOf bldg:Room_2 .
+
+bldg:Temperature_Sensor_3 a brick:Temperature_Sensor ;
+    brick:isPointOf bldg:Room_3 .
+
+bldg:Humidity_Sensor_3 a brick:Humidity_Sensor ;
+    brick:isPointOf bldg:Room_3 .
+
+bldg:CO_Sensor_3 a brick:CO_Sensor ;
+    brick:isPointOf bldg:Room_3 .
+
+bldg:Temperature_Sensor_4 a brick:Temperature_Sensor ;
+    brick:isPointOf bldg:Room_4 .
+
+bldg:Humidity_Sensor_4 a brick:Humidity_Sensor ;
+    brick:isPointOf bldg:Room_4 .
+
+bldg:CO_Sensor_4 a brick:CO_Sensor ;
+    brick:isPointOf bldg:Room_4 .
+
+bldg:Temperature_Sensor_5 a brick:Temperature_Sensor ;
+    brick:isPointOf bldg:Room_5 .
+
+bldg:Humidity_Sensor_5 a brick:Humidity_Sensor ;
+    brick:isPointOf bldg:Room_5 .
+
+bldg:CO_Sensor_5 a brick:CO_Sensor ;
+    brick:isPointOf bldg:Room_5 .
+
+bldg:Temperature_Sensor_6 a brick:Temperature_Sensor ;
+    brick:isPointOf bldg:Room_6 .
+
+bldg:Humidity_Sensor_6 a brick:Humidity_Sensor ;
+    brick:isPointOf bldg:Room_6 .
+
+bldg:CO_Sensor_6 a brick:CO_Sensor ;
+    brick:isPointOf bldg:Room_6 .

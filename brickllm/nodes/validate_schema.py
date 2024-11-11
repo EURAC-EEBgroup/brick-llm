@@ -1,5 +1,6 @@
 from typing import Any, Dict
 
+from ..logger import custom_logger
 from ..utils import validate_ttl
 
 
@@ -13,7 +14,7 @@ def validate_schema(state) -> Dict[str, Any]:
     Returns:
         dict: A dictionary containing the validation status and report.
     """
-    print("---Validate Schema Node---")
+    custom_logger.eurac("✅ Validating TTL schema")
 
     ttl_output = state.get("ttl_output", None)
     max_iter = state.get("validation_max_iter", 2)

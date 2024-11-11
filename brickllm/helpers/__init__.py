@@ -6,6 +6,7 @@ from .prompts import (
     prompt_template_local,
     schema_to_ttl_instructions,
     ttl_example,
+    ttl_to_user_prompt,
 )
 
 __all__ = [
@@ -16,4 +17,5 @@ __all__ = [
     "schema_to_ttl_instructions",
     "ttl_example",
     "prompt_template_local",
+    "ttl_to_user_prompt",
 ]
