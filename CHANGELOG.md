@@ -1,3 +1,10 @@
+## [1.2.0-beta.2](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.2.0-beta.1...v1.2.0-beta.2) (2024-11-11)
+
+
+### Bug Fixes
+
+* improved ttl description generation ([bf4bdae](https://github.com/EURAC-EEBgroup/brick-llm/commit/bf4bdaecca779ff835e2349bfcdff7a3d17ead0e))
+
 ## [1.2.0-beta.1](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.1.2...v1.2.0-beta.1) (2024-11-11)
 
 
