@@ -1668,8 +1668,7 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/nodes/get_relationships.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
-<span class="normal">13</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
@@ -1715,7 +1714,8 @@
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_relationships</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_relationships</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determine relationships between building components using a language model.</span>
 
@@ -1726,7 +1726,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: A dictionary containing the grouped sensor paths.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Get Relationships Node---&quot;</span><span class="p">)</span>
+    <span class="n">custom_logger</span><span class="o">.</span><span class="n">eurac</span><span class="p">(</span><span class="s2">&quot;🔗 Getting relationships between building components&quot;</span><span class="p">)</span>
 
     <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;user_prompt&quot;</span><span class="p">]</span>
     <span class="n">building_structure</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;elem_hierarchy&quot;</span><span class="p">]</span>

@@ -1668,8 +1668,7 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/nodes/schema_to_ttl.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
-<span class="normal">11</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
@@ -1708,7 +1707,8 @@
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
-<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">schema_to_ttl</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="normal">50</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">schema_to_ttl</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a TTL (Turtle) script from the building description and component hierarchy.</span>
 
@@ -1719,7 +1719,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: A dictionary containing the generated TTL output.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Schema To TTL Node---&quot;</span><span class="p">)</span>
+    <span class="n">custom_logger</span><span class="o">.</span><span class="n">eurac</span><span class="p">(</span><span class="s2">&quot;📝 Generating TTL from schema&quot;</span><span class="p">)</span>
 
     <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;user_prompt&quot;</span><span class="p">]</span>
     <span class="n">sensors_dict</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;sensors_dict&quot;</span><span class="p">]</span>

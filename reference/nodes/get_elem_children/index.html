@@ -1668,8 +1668,7 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/nodes/get_elem_children.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
-<span class="normal">11</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
@@ -1726,7 +1725,10 @@
 <span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span>
-<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_elem_children</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_elem_children</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Identify child elements for each category in the element list using a language model.</span>
 
@@ -1737,7 +1739,9 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: A dictionary containing the hierarchical structure of identified elements.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Get Elem Children Node---&quot;</span><span class="p">)</span>
+    <span class="n">custom_logger</span><span class="o">.</span><span class="n">eurac</span><span class="p">(</span>
+        <span class="s2">&quot;📊 Getting children for each BrickSchema category in the element list&quot;</span>
+    <span class="p">)</span>
 
     <span class="n">user_prompt</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;user_prompt&quot;</span><span class="p">]</span>
     <span class="n">categories</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;elem_list&quot;</span><span class="p">]</span>

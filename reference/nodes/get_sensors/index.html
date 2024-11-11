@@ -1652,8 +1652,7 @@
 
             <details class="quote">
               <summary>Source code in <code>brickllm/nodes/get_sensors.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
-<span class="normal"> 7</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
@@ -1686,7 +1685,8 @@
 <span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span>
-<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_sensors</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="normal">40</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_sensors</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieve sensor information for the building structure.</span>
 
@@ -1696,7 +1696,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: A dictionary containing sensor UUIDs mapped to their locations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---Get Sensor Node---&quot;</span><span class="p">)</span>
+    <span class="n">custom_logger</span><span class="o">.</span><span class="n">eurac</span><span class="p">(</span><span class="s2">&quot;📡 Getting sensors information&quot;</span><span class="p">)</span>
 
     <span class="n">uuid_dict</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;Building#1&gt;Floor#1&gt;Office#1&gt;Room#1&quot;</span><span class="p">:</span> <span class="p">[</span>
