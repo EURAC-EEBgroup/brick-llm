@@ -114,6 +114,11 @@ ttl_to_user_prompt: str = """
     - Only include information explicitly stated in the TTL script
     - If no TTL content is provided, return an empty string
 
+    Eventually, the user can provide additional instructions to help you generate the building description.
+    <additional_instructions>
+    {additional_instructions}
+    </additional_instructions>
+
     TTL script to analyze:
     <ttl_script>
     {ttl_script}
