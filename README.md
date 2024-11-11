@@ -268,4 +268,4 @@ BrickLLM is developed and maintained by the Energy Efficiency in Buildings group
 - Politecnico of Turin, in particular to @Rocco Giudice for his work in developing model generation using local language model
 
 -----------------------------
-Thank you to [**BrickSchema**](https://brickschema.org/) for the great work it is doing
+Thank you to [**Brick**](https://brickschema.org/) for the great work it is doing
