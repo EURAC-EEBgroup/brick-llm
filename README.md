@@ -52,6 +52,9 @@ pre-commit install
 
 Here's a simple example of how to use BrickLLM:
 
+> [!NOTE]  
+> You must first create a [.env](.env.example) file with the API keys of the specified LLM provider (if not local) and load them in the environment
+
 ``` python
 from brickllm.graphs import BrickSchemaGraph
 
