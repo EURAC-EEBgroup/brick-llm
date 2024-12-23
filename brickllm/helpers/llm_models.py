@@ -34,7 +34,7 @@ def _get_model(model: Union[str, BaseChatModel]) -> BaseChatModel:
         )
     elif model == "llama3.1:8b-brick":
         return Ollama(model="llama3.1:8b-brick-v8")
-    elif model == "hf.co/Giudice7/llama32-3B-brick-demo:latest":
+    elif model == "llama32-3B-brick":
         return Ollama(model="hf.co/Giudice7/llama32-3B-brick-demo:latest")
 
     else:
