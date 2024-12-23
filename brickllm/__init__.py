@@ -5,6 +5,7 @@ from .schemas import (
     RelationshipsSchema,
     TTLSchema,
     TTLToBuildingPromptSchema,
+    SensorSchema
 )
 from .states import State, StateLocal
 
@@ -17,4 +18,5 @@ __all__ = [
     "StateLocal",
     "GraphConfig",
     "custom_logger",
+    "SensorSchema"
 ]

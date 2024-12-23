@@ -47,14 +47,21 @@ def get_relationships(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
 
     try:
         tree_dict = build_hierarchy(answer.relationships)
-    except Exception as e:
-        print(f"Error building the hierarchy: {e}")
+    except Exception:
+        custom_logger.warning(f"Error building the hierarchy. Trying again.")
 
     # Group sensors by their paths
-    sensor_paths = find_sensor_paths(tree_dict)
-    grouped_sensors = defaultdict(list)
-    for sensor in sensor_paths:
-        grouped_sensors[sensor["path"]].append(sensor["name"])
-    grouped_sensor_dict = dict(grouped_sensors)
+    sensor_paths = []
+    for root_node in tree_dict:
+        sensor_paths.extend(find_sensor_paths(tree_dict[root_node]))
 
-    return {"sensors_dict": grouped_sensor_dict}
+    grouped_sensors = {}
+
+    for sensor in sensor_paths:
+        grouped_sensors[sensor["name"]] = {"name": sensor["name"],
+                                           "uuid": None,
+                                           "unit": None}
+
+    return {
+        "rel_tree": tree_dict,
+        "sensors_dict": grouped_sensors}

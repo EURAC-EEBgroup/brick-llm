@@ -37,6 +37,18 @@ get_relationships_instructions: str = """
     USER PROMPT: {prompt}
 """  # noqa
 
+
+get_sensors_instructions: str = """
+    You are an expert in identifying information in a natural language prompt (USER PROMPT) that describes a building and/or energy systems.\n
+    Your task is to map information about sensors in the building into the provided hierarchical sensor structure (HIERARCHICAL SENSOR STRUCTURE).\n
+    You must look in the USER PROMPT for finding the UUID of the sensors and their unit of measures, if provided. If these information ar not provided in the USER PROMPT, return the HIERARCHICAL SENSOR STRUCTURE as it is.\n
+    The UUID of the sensors may be explicitly provided in the USER PROMPT or may be inferred from the context (they may be in parentheses or brackets).\n
+    To encode the unit of measures, use the names defined by the QUDT ontology.\n
+    Complete the HIERARCHICAL SENSOR STRUCTURE with the "uuid" and "unit" fields for each sensor, if provided in the USER PROMPT.\n
+    USER PROMPT: {prompt}
+    HIERARCHICAL SENSOR STRUCTURE: {sensor_structure}
+"""
+
 ttl_example: str = """
     @prefix bldg: <urn:Building#> .
     @prefix brick: <https://brickschema.org/schema/Brick#> .

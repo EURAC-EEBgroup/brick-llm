@@ -13,5 +13,5 @@ __all__ = [
     "get_sensors",
     "schema_to_ttl",
     "validate_schema",
-    "generation_local",
+    "generation_local"
 ]
