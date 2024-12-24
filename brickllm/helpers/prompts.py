@@ -6,7 +6,7 @@ get_elem_instructions: str = """
     You are an expert in indentifying semantic elements in a natural language prompt hich describes a building and/or energy systems.\n
     You are provided with a dictionary containing the entities of an ontology (ELEMENTS) in a hierarchical way, which can be used to describe the building and/or the energy systems. 
     You are also provided with the elements description to understand what each element represents.\n
-    You are now asked to identify the entities of the ENTITIES dictionary presented in the user prompt (USER PROMPT), choosing the most specific one if it is possible among the ones provided. Return the entities of ENTITIES presented in the USER PROMPT.\n
+    You are now asked to identify the entities of the ENTITIES dictionary presented in the user prompt (USER PROMPT), choosing the most specific one if it is possible among the ones provided. Return the entities of ENTITIES (with the proper underscores) presented in the USER PROMPT.\n
     USER PROMPT: {prompt} \n
     ENTITIES: {elements_dict} \n
     """  # noqa
@@ -45,6 +45,7 @@ get_sensors_instructions: str = """
     The UUID of the sensors may be explicitly provided in the USER PROMPT or may be inferred from the context (they may be in parentheses or brackets).\n
     To encode the unit of measures, use the names defined by the QUDT ontology.\n
     Complete the HIERARCHICAL SENSOR STRUCTURE with the "uuid" and "unit" fields for each sensor, if provided in the USER PROMPT.\n
+    Remember, only provide units and ID if explicitly provided in the user prompt! If those information are not provided, return the dictionary with the empty field.
     USER PROMPT: {prompt}
     HIERARCHICAL SENSOR STRUCTURE: {sensor_structure}
 """
@@ -98,9 +99,9 @@ schema_to_ttl_instructions: str = """
     Your task is to generate a RDF graph in Turtle format that is compliant with the hierarchy and relationships described in the input. Use only the elements identified in the COMPONENTS HIERARCHY and SENSOR LIST, connecting each entities with the appropriate properties (presented in each element of the hierarchy).\n
     DO NOT add information that are not present in the input.\n
     To encode the uuid of the sensors, use the following schema: 'sensor' ref:hasExternalReference [ a ref:TimeseriesReference ; ref:hasTimeseriesId 'uuid'^^xsd:string .].\n
-    To encode the unit of measure of the sensor, use the following schema: 'sensor' brick:hasUnit unit:'UNIT'.\n
+    To encode the unit of measure of the sensor, use the following schema: 'sensor' brick:hasUnit unit:UNIT, where unit is the @prefix of the unit ontology (@prefix unit: <http://qudt.org/vocab/unit/> .).\n
     Include all the @prefix declarations at the beginning of the output Turtle file.\n
-    I provide you an example of the output Turtle: the TTL SCRIPT EXAMPLE is useful to understand the overall structure of the output, not the actual content.\n
+    I provide you an example of the output Turtle: the TTL SCRIPT EXAMPLE is useful to understand the overall structure of the output, not the actual content. Do not copy any information from this example.\n
     TTL SCRIPT EXAMPLE: {ttl_example}\n
 
     COMPONENTS HIERARCHY: {elem_hierarchy}\n
