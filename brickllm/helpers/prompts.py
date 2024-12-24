@@ -6,7 +6,7 @@ get_elem_instructions: str = """
     You are an expert in indentifying semantic elements in a natural language prompt hich describes a building and/or energy systems.\n
     You are provided with a dictionary containing the entities of an ontology (ELEMENTS) in a hierarchical way, which can be used to describe the building and/or the energy systems. 
     You are also provided with the elements description to understand what each element represents.\n
-    You are now asked to identify the entities of the ENTITIES dictionary presented in the user prompt (USER PROMPT), choosing the most specific one if it is possible among the ones provided. Do not invent any entity!\n
+    You are now asked to identify the entities of the ENTITIES dictionary presented in the user prompt (USER PROMPT), choosing the most specific one if it is possible among the ones provided. Return the entities of ENTITIES presented in the USER PROMPT.\n
     USER PROMPT: {prompt} \n
     ENTITIES: {elements_dict} \n
     """  # noqa
@@ -97,7 +97,7 @@ schema_to_ttl_instructions: str = """
     You are also provided with the list of the sensors (SENSOR LIST) identified in the user prompts, with additional information about uuid and unit of measures, if avaiable.
     Your task is to generate a RDF graph in Turtle format that is compliant with the hierarchy and relationships described in the input. Use only the elements identified in the COMPONENTS HIERARCHY and SENSOR LIST, connecting each entities with the appropriate properties (presented in each element of the hierarchy).\n
     DO NOT add information that are not present in the input.\n
-    To encode the uuid of the sensors, use the following schema: 'sensor' ref:hasEternalReference [ a ref:TimeseriesReference ; ref:hasTimeseriesId 'uuid'^^xsd:string .].\n
+    To encode the uuid of the sensors, use the following schema: 'sensor' ref:hasExternalReference [ a ref:TimeseriesReference ; ref:hasTimeseriesId 'uuid'^^xsd:string .].\n
     To encode the unit of measure of the sensor, use the following schema: 'sensor' brick:hasUnit unit:'UNIT'.\n
     Include all the @prefix declarations at the beginning of the output Turtle file.\n
     I provide you an example of the output Turtle: the TTL SCRIPT EXAMPLE is useful to understand the overall structure of the output, not the actual content.\n
