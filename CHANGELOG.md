@@ -1,3 +1,31 @@
+## [1.3.0-beta.1](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.2.0...v1.3.0-beta.1) (2025-01-02)
+
+
+### Features
+
+* get_sensor implementation ([e100a88](https://github.com/EURAC-EEBgroup/brick-llm/commit/e100a886acb536077d4ec69bae07f7f84626178d))
+* get_sensor_presence edge ([b7a3e59](https://github.com/EURAC-EEBgroup/brick-llm/commit/b7a3e597e107844fd484068111037756d25d1cd4))
+* implementing ollama 3.2 through ChatOllama models ([bf3cf6b](https://github.com/EURAC-EEBgroup/brick-llm/commit/bf3cf6bab72add3f449a3932d51e360a76c18da3))
+
+
+### Bug Fixes
+
+* extract answer content in local generation ([a8f7e39](https://github.com/EURAC-EEBgroup/brick-llm/commit/a8f7e3954c25b1d2584a40c7329a64f9b77f199f))
+* poetry run pre-commit ([edf4664](https://github.com/EURAC-EEBgroup/brick-llm/commit/edf4664deda8a8faaa4e0b1d5ce92276f2bea137))
+* prompt correction ([cf5babd](https://github.com/EURAC-EEBgroup/brick-llm/commit/cf5babd71b703f4df2764b7e410524923df8253b))
+* prompt correction ([3e8d61a](https://github.com/EURAC-EEBgroup/brick-llm/commit/3e8d61a9e008e8e4f24153ab31bf781f910a6cd0))
+* prompt engineering ([a7ae3bc](https://github.com/EURAC-EEBgroup/brick-llm/commit/a7ae3bcfbf69fa369ef7a0a21c39596aa9c13791))
+
+
+### chore
+
+* added missing dependencies and linting ([4e4169c](https://github.com/EURAC-EEBgroup/brick-llm/commit/4e4169c053f48a3bd2bf3252a052c64565558ae2))
+
+
+### Docs
+
+* added env note ([23c57e2](https://github.com/EURAC-EEBgroup/brick-llm/commit/23c57e249931c71130ae8d1b880bee1950b1501d))
+
 ## [1.2.0](https://github.com/EURAC-EEBgroup/brick-llm/compare/v1.1.2...v1.2.0) (2024-11-11)
 
 

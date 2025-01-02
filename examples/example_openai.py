@@ -12,14 +12,14 @@ It has 3 floors and each floor has 1 office.
 There are 2 rooms in each office and each room has three sensors:
 - Temperature sensor;
 - Humidity sensor;
-- CO sensor.
+- CO2 sensor.
 """
 
 # Create an instance of BrickSchemaGraph with a predefined provider
 brick_graph = BrickSchemaGraph(model="openai")
 
 # Display the graph structure
-brick_graph.display(file_name="graph_openai.png")
+brick_graph.display(filename="graph_openai.png")
 
 # Prepare input data
 input_data = {"user_prompt": building_description}

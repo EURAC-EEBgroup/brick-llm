@@ -1,6 +1,5 @@
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
-
 from brickllm.graphs import BrickSchemaGraph
 
 # Load environment variables
@@ -13,7 +12,7 @@ It has 3 floors and each floor has 1 office.
 There are 2 rooms in each office and each room has three sensors:
 - Temperature sensor;
 - Humidity sensor;
-- CO sensor.
+- CO2 sensor.
 """
 
 # Create an instance of BrickSchemaGraph with a custom model

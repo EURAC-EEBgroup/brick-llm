@@ -30,6 +30,6 @@ def generation_local(state: StateLocal, config: Dict[str, Any]) -> Dict[str, Any
     )
 
     answer = llm.invoke(message)
-    ttl_output = extract_rdf_graph(answer)
+    ttl_output = extract_rdf_graph(answer.content)
 
     return {"ttl_output": ttl_output}
