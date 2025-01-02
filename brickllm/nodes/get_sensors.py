@@ -1,11 +1,11 @@
-from typing import Any, Dict
 import json
+from typing import Any, Dict
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
-from .. import State, SensorSchema
-from ..logger import custom_logger
+from .. import SensorSchema, State
 from ..helpers import get_sensors_instructions
+from ..logger import custom_logger
 
 
 def get_sensors(state: State, config: Dict[str, Any]) -> Dict[str, Any]:

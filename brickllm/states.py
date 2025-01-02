@@ -1,7 +1,8 @@
 from typing import Any, Dict, List
-from .schemas import Sensor
 
 from typing_extensions import TypedDict
+
+from .schemas import Sensor
 
 
 # state for BrickSchemaGraph class

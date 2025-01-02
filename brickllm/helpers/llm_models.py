@@ -2,9 +2,9 @@ from typing import Union
 
 from langchain.chat_models.base import BaseChatModel
 from langchain_anthropic import ChatAnthropic
-from langchain_ollama import ChatOllama
 from langchain_community.llms import Ollama
 from langchain_fireworks import ChatFireworks
+from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 
 
@@ -38,4 +38,6 @@ def _get_model(model: Union[str, BaseChatModel]) -> BaseChatModel:
         return Ollama(model="hf.co/Giudice7/llama32-3B-brick-demo:latest")
 
     else:
-        raise ValueError(f"Unsupported model type: {model}. Load your own BaseChatModel if this one is not supported.")
+        raise ValueError(
+            f"Unsupported model type: {model}. Load your own BaseChatModel if this one is not supported."
+        )

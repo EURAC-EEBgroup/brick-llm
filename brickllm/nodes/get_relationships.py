@@ -1,5 +1,4 @@
 import json
-from collections import defaultdict
 from typing import Any, Dict
 
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -48,7 +47,7 @@ def get_relationships(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     try:
         tree_dict = build_hierarchy(answer.relationships)
     except Exception:
-        custom_logger.warning(f"Error building the hierarchy. Trying again.")
+        custom_logger.warning("Error building the hierarchy. Trying again.")
 
     # Group sensors by their paths
     sensor_paths = []
@@ -58,10 +57,10 @@ def get_relationships(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     grouped_sensors = {}
 
     for sensor in sensor_paths:
-        grouped_sensors[sensor["name"]] = {"name": sensor["name"],
-                                           "uuid": None,
-                                           "unit": None}
+        grouped_sensors[sensor["name"]] = {
+            "name": sensor["name"],
+            "uuid": None,
+            "unit": None,
+        }
 
-    return {
-        "rel_tree": tree_dict,
-        "sensors_dict": grouped_sensors}
+    return {"rel_tree": tree_dict, "sensors_dict": grouped_sensors}

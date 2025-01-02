@@ -1,10 +1,12 @@
 from typing import Any, Dict, Literal
 
-from ..utils import get_hierarchical_info
 from ..logger import custom_logger
+from ..utils import get_hierarchical_info
 
 
-def check_sensor_presence(state: Dict[str, Any]) -> Literal["get_sensors", "schema_to_ttl"]:
+def check_sensor_presence(
+    state: Dict[str, Any]
+) -> Literal["get_sensors", "schema_to_ttl"]:
     """
     Check if the sensors are present in the building structure.
 

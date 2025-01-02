@@ -3,11 +3,11 @@ from .prompts import (
     get_elem_children_instructions,
     get_elem_instructions,
     get_relationships_instructions,
+    get_sensors_instructions,
     prompt_template_local,
     schema_to_ttl_instructions,
     ttl_example,
     ttl_to_user_prompt,
-    get_sensors_instructions
 )
 
 __all__ = [
@@ -19,5 +19,5 @@ __all__ = [
     "ttl_example",
     "prompt_template_local",
     "ttl_to_user_prompt",
-    "get_sensors_instructions"
+    "get_sensors_instructions",
 ]

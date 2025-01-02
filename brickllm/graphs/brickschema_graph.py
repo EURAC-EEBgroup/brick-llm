@@ -4,14 +4,14 @@ from langchain.chat_models.base import BaseChatModel
 from langgraph.graph import END, START, StateGraph
 
 from .. import GraphConfig, State
-from ..edges import validate_condition, check_sensor_presence
+from ..edges import check_sensor_presence, validate_condition
 from ..nodes import (
     get_elem_children,
     get_elements,
     get_relationships,
     get_sensors,
     schema_to_ttl,
-    validate_schema
+    validate_schema,
 )
 from .abstract_graph import AbstractBrickSchemaGraph
 
@@ -38,11 +38,11 @@ class BrickSchemaGraph(AbstractBrickSchemaGraph):
         self.workflow.add_edge(START, "get_elements")
         self.workflow.add_edge("get_elements", "get_elem_children")
         self.workflow.add_edge("get_elem_children", "get_relationships")
-        self.workflow.add_conditional_edges("get_relationships", check_sensor_presence,
-                                            {
-                                                "get_sensors": "get_sensors",
-                                                "schema_to_ttl": "schema_to_ttl"
-                                            })
+        self.workflow.add_conditional_edges(
+            "get_relationships",
+            check_sensor_presence,
+            {"get_sensors": "get_sensors", "schema_to_ttl": "schema_to_ttl"},
+        )
         self.workflow.add_edge("get_sensors", "schema_to_ttl")
         self.workflow.add_edge("schema_to_ttl", "validate_schema")
         self.workflow.add_conditional_edges("validate_schema", validate_condition)

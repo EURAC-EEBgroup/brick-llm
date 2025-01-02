@@ -1,6 +1,6 @@
-from typing import List, Tuple, Dict, Optional, Any
+from typing import List, Optional, Tuple
 
-from pydantic.v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 
 
 # pydantic schemas
