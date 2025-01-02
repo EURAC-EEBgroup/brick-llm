@@ -1,6 +1,6 @@
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
-from pydantic.v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 
 
 # pydantic schemas
@@ -10,6 +10,16 @@ class ElemListSchema(BaseModel):
 
 class RelationshipsSchema(BaseModel):
     relationships: List[Tuple[str, ...]]
+
+
+class Sensor(BaseModel):
+    name: str = Field("name of the sensor")
+    uuid: Optional[str] = Field("Identifier of the sensor")
+    unit: Optional[str] = Field("Unit of measure of the sensor")
+
+
+class SensorSchema(BaseModel):
+    sensors: List[Sensor] = Field("List of the sensors")
 
 
 class TTLSchema(BaseModel):

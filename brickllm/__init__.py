@@ -3,6 +3,7 @@ from .logger import custom_logger
 from .schemas import (
     ElemListSchema,
     RelationshipsSchema,
+    SensorSchema,
     TTLSchema,
     TTLToBuildingPromptSchema,
 )
@@ -17,4 +18,5 @@ __all__ = [
     "StateLocal",
     "GraphConfig",
     "custom_logger",
+    "SensorSchema",
 ]

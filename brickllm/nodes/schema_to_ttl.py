@@ -22,10 +22,13 @@ def schema_to_ttl(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     custom_logger.eurac("📝 Generating TTL from schema")
 
     user_prompt = state["user_prompt"]
-    sensors_dict = state["sensors_dict"]
+    try:
+        sensors_dict = state["uuid_list"]
+    except KeyError:
+        sensors_dict = []
     elem_hierarchy = state["elem_hierarchy"]
 
-    sensors_dict_json = json.dumps(sensors_dict, indent=2)
+    # sensors_dict_json = json.dumps(sensors_dict, indent=2)
     elem_hierarchy_json = json.dumps(elem_hierarchy, indent=2)
 
     # Get the model name from the config
@@ -37,7 +40,7 @@ def schema_to_ttl(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     # System message
     system_message = schema_to_ttl_instructions.format(
         prompt=user_prompt,
-        sensors_dict=sensors_dict_json,
+        uuid_list=sensors_dict,
         elem_hierarchy=elem_hierarchy_json,
         ttl_example=ttl_example,
     )

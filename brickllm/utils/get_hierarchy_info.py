@@ -292,11 +292,12 @@ def build_hierarchy(relationships: List[Tuple[str, str]]) -> Dict[str, Any]:
     }
     if not root_candidates:
         raise ValueError("No root found in relationships")
-    root = next(iter(root_candidates))
 
-    # Build the hierarchical structure starting from the root
-    hierarchy = build_tree(root, tree_dict)
-    return hierarchy
+    hierarchy_dict = {}
+    for root in root_candidates:
+        # Build the hierarchical structure starting from the root
+        hierarchy_dict[root] = build_tree(root, tree_dict)
+    return hierarchy_dict
 
 
 def extract_ttl_content(input_string: str) -> str:
