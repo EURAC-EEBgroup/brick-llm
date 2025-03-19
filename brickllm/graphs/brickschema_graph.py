@@ -1,5 +1,6 @@
 from typing import Any, Dict, List, Union
 
+import rdflib
 from langchain.chat_models.base import BaseChatModel
 from langgraph.graph import END, START, StateGraph
 
@@ -12,6 +13,7 @@ from ..nodes import (
     get_sensors,
     schema_to_ttl,
     validate_schema,
+    model_refactoring
 )
 from .abstract_graph import AbstractBrickSchemaGraph
 
@@ -29,10 +31,9 @@ class BrickSchemaGraph(AbstractBrickSchemaGraph):
         self.workflow.add_node("get_elements", get_elements)
         self.workflow.add_node("get_elem_children", get_elem_children)
         self.workflow.add_node("get_relationships", get_relationships)
-        self.workflow.add_node("schema_to_ttl", schema_to_ttl)
-        # self.workflow.add_node("sensor_presence", sensor_presence)
         self.workflow.add_node("validate_schema", validate_schema)
         self.workflow.add_node("get_sensors", get_sensors)
+        self.workflow.add_node("model_refactoring", model_refactoring)
 
         # Add edges to define the flow logic
         self.workflow.add_edge(START, "get_elements")
@@ -41,12 +42,14 @@ class BrickSchemaGraph(AbstractBrickSchemaGraph):
         self.workflow.add_conditional_edges(
             "get_relationships",
             check_sensor_presence,
-            {"get_sensors": "get_sensors", "schema_to_ttl": "schema_to_ttl"},
+            {"get_sensors": "get_sensors", "validate_schema": "validate_schema"},
         )
-        self.workflow.add_edge("get_sensors", "schema_to_ttl")
-        self.workflow.add_edge("schema_to_ttl", "validate_schema")
-        self.workflow.add_conditional_edges("validate_schema", validate_condition)
-        self.workflow.add_edge("validate_schema", END)
+        self.workflow.add_edge("get_sensors", "validate_schema")
+        self.workflow.add_conditional_edges(
+            "validate_schema",
+            validate_condition,
+            {"model_refactoring": "model_refactoring", "__end__": END})
+        self.workflow.add_edge("model_refactoring", "validate_schema")
 
     def run(
         self, input_data: Dict[str, Any], stream: bool = False
@@ -61,9 +64,11 @@ class BrickSchemaGraph(AbstractBrickSchemaGraph):
             ):
                 events.append(event)
             self.result = events[-1]
-            self.ttl_output = self.result.get("ttl_output", None)
+            ttl_output = self.result.get("graph", rdflib.Graph()).serialize(format="ttl")
+            self.ttl_output = ttl_output
             return events
         else:
             self.result = self.graph.invoke(input_data, self.config)
-            self.ttl_output = self.result.get("ttl_output", None)
+            ttl_output = self.result.get("graph", rdflib.Graph()).serialize(format="ttl")
+            self.ttl_output = ttl_output
             return self.result

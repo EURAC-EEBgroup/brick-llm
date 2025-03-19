@@ -1,6 +1,8 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 
 from typing_extensions import TypedDict
+
+from rdflib import Graph
 
 from .schemas import Sensor
 
@@ -9,11 +11,9 @@ from .schemas import Sensor
 class State(TypedDict):
     user_prompt: str
     elem_list: List[str]
-    # elem_children_list: List[str]
     elem_hierarchy: Dict[str, Any]
-    # relationships: List[Tuple[str, str]]
-    rel_tree: Dict[str, Any]
-    sensors_dict: Dict[str, List[str]]
+    relationships: List[Tuple[str, str]]
+    graph :Graph
     is_sensor: bool
     is_valid: bool
     validation_report: str

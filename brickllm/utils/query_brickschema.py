@@ -205,7 +205,7 @@ def general_query(element: str) -> Dict[str, Dict[str, Union[str, List[str]]]]:
     return {"property": relationships}
 
 
-def validate_ttl(ttl_file: str, method: str = "pyshacl") -> Tuple[bool, str]:
+def validate_ttl(graph: Graph, method: str = "pyshacl") -> Tuple[bool, str]:
     """
     Validate a TTL file using the specified method.
 
@@ -216,19 +216,13 @@ def validate_ttl(ttl_file: str, method: str = "pyshacl") -> Tuple[bool, str]:
     Returns:
         Tuple[bool, str]: A tuple containing a boolean indicating if the validation was successful and a validation report or error message.
     """
-    # Load the ttl file
-    output_graph = Graph()
-    try:
-        output_graph.parse(StringIO(ttl_file), format="ttl")
-    except Exception as e:
-        return False, f"Failed to parse the TTL file. Content: {e}"
 
     if method == "pyshacl":
         valid, results_graph, report = pyshacl.validate(
-            output_graph,
+            data_graph=graph,
             shacl_graph=g,
             ont_graph=g,
-            inference="both",
+            inference="rdfs",
             abort_on_first=False,
             allow_infos=True,
             allow_warnings=True,

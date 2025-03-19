@@ -12,14 +12,26 @@ class RelationshipsSchema(BaseModel):
     relationships: List[Tuple[str, ...]]
 
 
+class EntityType(BaseModel):
+    ontology_concept: str = Field("The ontological concept")
+
+
+class Relationship(BaseModel):
+    relationship: str = Field("The relationship between the two entities")
+
+
 class Sensor(BaseModel):
     name: str = Field("name of the sensor")
-    uuid: Optional[str] = Field("Identifier of the sensor")
+    id: Optional[str] = Field("Identifier of the sensor")
     unit: Optional[str] = Field("Unit of measure of the sensor")
 
 
 class SensorSchema(BaseModel):
     sensors: List[Sensor] = Field("List of the sensors")
+
+
+class TriplesSchema(BaseModel):
+    triples: List[Tuple[str, ...]] = Field("List of tuples of type (str, str, str)")
 
 
 class TTLSchema(BaseModel):

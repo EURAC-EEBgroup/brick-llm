@@ -1,7 +1,7 @@
 from typing import Any, Dict, Literal
 
 
-def validate_condition(state: Dict[str, Any]) -> Literal["schema_to_ttl", "__end__"]:
+def validate_condition(state: Dict[str, Any]) -> Literal["model_refactoring", "__end__"]:
     """
     Validate the condition for the next node to visit.
 
@@ -16,6 +16,6 @@ def validate_condition(state: Dict[str, Any]) -> Literal["schema_to_ttl", "__end
     max_iter = state.get("validation_max_iter", 0)
 
     if max_iter > 0 and not is_valid:
-        return "schema_to_ttl"
+        return "model_refactoring"
 
     return "__end__"

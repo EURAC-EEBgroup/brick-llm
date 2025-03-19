@@ -1,4 +1,5 @@
 from typing import Any, Dict
+import json
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
@@ -20,7 +21,7 @@ def get_elements(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         dict: A dictionary containing the list of identified elements.
     """
-    custom_logger.eurac("🔍 Getting elements from user prompt")
+    custom_logger.eurac("🔍 Getting Brick entities from user prompt")
 
     user_prompt = state["user_prompt"]
 
@@ -44,16 +45,31 @@ def get_elements(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
 
     # Enforce structured output
     structured_llm = llm.with_structured_output(ElemListSchema)
+    entities_list = []
 
-    # System message
-    system_message = get_elem_instructions.format(
-        prompt=user_prompt, elements_dict=category_dict
-    )
+    for category in category_dict:
+        category_dict_json = json.dumps(category_dict[category], indent=2)
 
-    # Generate question
-    answer = structured_llm.invoke(
-        [SystemMessage(content=system_message)]
-        + [HumanMessage(content="Find the elements.")]
-    )
+        # System message
+        system_message = get_elem_instructions.format(
+            user_prompt=user_prompt, elements_dict=category_dict_json
+        )
 
-    return {"elem_list": answer.elem_list}
+        # Generate question
+        answer = structured_llm.invoke(
+            [SystemMessage(content=system_message)]
+        )
+
+        entities_list.extend(answer.elem_list)
+
+    entities_list = list(set(entities_list))
+
+    # Subset the answer.elem_list to only include the ones that are in category_dict
+    admitted_elements = []
+    for category in category_dict:
+        for child in category_dict[category]:
+            admitted_elements.append(child)
+
+    elem_list = [elem for elem in entities_list if elem in admitted_elements]
+
+    return {"elem_list": elem_list}

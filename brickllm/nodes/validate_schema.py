@@ -16,19 +16,19 @@ def validate_schema(state) -> Dict[str, Any]:
     """
     custom_logger.eurac("✅ Validating TTL schema")
 
-    ttl_output = state.get("ttl_output", None)
-    max_iter = state.get("validation_max_iter", 2)
+    graph = state.get("graph", None)
+    max_iter = state.get("validation_max_iter", 3)
 
     max_iter -= 1
 
-    if ttl_output is None:
+    if graph is None:
         return {
             "is_valid": False,
             "validation_report": "Empty TTL output.",
             "validation_max_iter": max_iter,
         }
 
-    is_valid, report = validate_ttl(ttl_output)
+    is_valid, report = validate_ttl(graph)
 
     return {
         "is_valid": is_valid,
