@@ -254,6 +254,8 @@ For any questions or support, please contact:
 
 ## 📝 Citation
 
+SoftwareX paper: [here](https://www.sciencedirect.com/science/article/pii/S2352711025000883).
+
 Please cite us if you use the library
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14039358.svg)](https://zenodo.org/doi/10.5281/zenodo.14039358)
@@ -268,7 +270,7 @@ This work was carried out within European projects:
 Moderate - Horizon Europe research and innovation programme under grant agreement No 101069834, with the aim of contributing to the development of open products useful for defining plausible scenarios for the decarbonization of the built environment
 BrickLLM is developed and maintained by the Energy Efficiency in Buildings group at EURAC Research. Thanks to the contribution of:
 - Moderate project: Horizon Europe research and innovation programme under grant agreement No 101069834
-- Politecnico of Turin, in particular to @Rocco Giudice for his work in developing model generation using local language model
+- Politecnico of Turin, in particular to Rocco Giudice, Marco Savino Piscitelli and Alfonso Capozzoli from BAEDALab.
 
 -----------------------------
-Thank you to [**Brick**](https://brickschema.org/) for the great work it is doing
+Thank you to [**Brick**](https://brickschema.org/) for the great work it is doing.

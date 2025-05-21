@@ -6,6 +6,9 @@ from .schemas import (
     SensorSchema,
     TTLSchema,
     TTLToBuildingPromptSchema,
+    EntityType,
+    Relationship,
+    TriplesSchema
 )
 from .states import State, StateLocal
 
@@ -19,4 +22,7 @@ __all__ = [
     "GraphConfig",
     "custom_logger",
     "SensorSchema",
+    "EntityType",
+    "Relationship",
+    "TriplesSchema"
 ]

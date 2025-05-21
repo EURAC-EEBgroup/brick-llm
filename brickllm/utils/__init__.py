@@ -21,6 +21,7 @@ from .query_brickschema import (
     query_subclass,
     validate_ttl,
 )
+from .brick_constraints import find_rel_constraint, get_rel_definition, get_uom_dict
 from .rdf_parser import extract_rdf_graph
 from .ttl_to_prompt import ttl_to_building_prompt
 
@@ -46,4 +47,7 @@ __all__ = [
     "validate_ttl",
     "extract_rdf_graph",
     "ttl_to_building_prompt",
+    "get_rel_definition",
+    "find_rel_constraint",
+    "get_uom_dict",
 ]

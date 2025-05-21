@@ -20,7 +20,7 @@ def get_elem_children(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
         dict: A dictionary containing the hierarchical structure of identified elements.
     """
     custom_logger.eurac(
-        "📊 Getting children for each BrickSchema category in the element list"
+        "📊 Getting the Brick hierarchy for the identified elements."
     )
 
     user_prompt = state["user_prompt"]
@@ -66,6 +66,6 @@ def get_elem_children(state: State, config: Dict[str, Any]) -> Dict[str, Any]:
     filtered_children = filter_elements(identified_children)
 
     # create hierarchical dictionary
-    hierarchical_dict = create_hierarchical_dict(filtered_children, properties=True)
+    hierarchical_dict = create_hierarchical_dict(filtered_children, properties=False)
 
     return {"elem_hierarchy": hierarchical_dict}

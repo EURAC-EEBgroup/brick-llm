@@ -8,6 +8,9 @@ from .prompts import (
     schema_to_ttl_instructions,
     ttl_example,
     ttl_to_user_prompt,
+    model_refactor_instructions,
+    find_entities_type,
+    find_relationship
 )
 
 __all__ = [
@@ -20,4 +23,7 @@ __all__ = [
     "prompt_template_local",
     "ttl_to_user_prompt",
     "get_sensors_instructions",
+    "model_refactor_instructions",
+    "find_entities_type",
+    "find_relationship"
 ]

@@ -5,6 +5,7 @@ from .get_relationships import get_relationships
 from .get_sensors import get_sensors
 from .schema_to_ttl import schema_to_ttl
 from .validate_schema import validate_schema
+from .model_refactoring import model_refactoring
 
 __all__ = [
     "get_elem_children",
@@ -14,4 +15,5 @@ __all__ = [
     "schema_to_ttl",
     "validate_schema",
     "generation_local",
+    "model_refactoring",
 ]

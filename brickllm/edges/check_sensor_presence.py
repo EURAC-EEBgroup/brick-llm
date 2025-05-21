@@ -1,12 +1,21 @@
+import os
+import json
+import pkg_resources
 from typing import Any, Dict, Literal
+from rdflib import Graph
 
 from ..logger import custom_logger
 from ..utils import get_hierarchical_info
 
+ontology_path = pkg_resources.resource_filename(
+    __name__, os.path.join("..", "ontologies", "Brick.ttl"))
 
-def check_sensor_presence(
-    state: Dict[str, Any]
-) -> Literal["get_sensors", "schema_to_ttl"]:
+hierarchy_path = pkg_resources.resource_filename(
+    __name__, os.path.join("..", "ontologies", "brick_hierarchy.json"))
+brick_hierarchy = json.load(open(hierarchy_path))
+
+
+def check_sensor_presence(state: Dict[str, Any]) -> Literal["get_sensors", "validate_schema"]:
     """
     Check if the sensors are present in the building structure.
 
@@ -19,24 +28,37 @@ def check_sensor_presence(
 
     custom_logger.eurac("📡 Checking for sensor presence")
 
-    elem_list = state.get("elem_list", [])
+    graph = state["graph"]
 
-    parents, children = get_hierarchical_info("Point")
+    g = Graph()
 
-    children_dict = {}
-    for child in children:
-        children_dict[child] = get_hierarchical_info(child)[1]
+    # Leave graph untouched to not add Brick in it
+    if graph is not None:
+        for triple in graph:
+            g.add(triple)
 
-    # Flatten the dictionary in a list
-    children_list = [elem for sublist in children_dict.values() for elem in sublist]
+    g.parse(ontology_path, format="turtle")
 
-    is_sensor = False
+    # Query subclass of Point
+    query = """
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX brick: <https://brickschema.org/schema/Brick#>
+    
+    SELECT ?point
+    WHERE {
+        ?point rdf:type/rdfs:subClassOf* brick:Point .
+    }
+    """
 
-    for elem in elem_list:
-        if elem in children_list:
-            is_sensor = True
+    res_query = g.query(query)
+
+    if len(res_query) == 0:
+        is_sensor = False
+    else:
+        is_sensor = True
 
     if is_sensor:
         return "get_sensors"
     else:
-        return "schema_to_ttl"
+        return "validate_schema"

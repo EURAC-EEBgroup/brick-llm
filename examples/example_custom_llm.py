@@ -7,16 +7,22 @@ load_dotenv()
 
 # Specify the user prompt
 building_description = """
-I have a building located in Bolzano.
-It has 3 floors and each floor has 1 office.
-There are 2 rooms in each office and each room has three sensors:
-- Temperature sensor;
-- Humidity sensor;
-- CO2 sensor.
+I have a building located that  is composed by 2 floors. 
+Each floor is composed by 1 room.
+The room at the first floor has three sensors:
+- Temperature sensor (°C) (ID: "hfws-xdf2");
+- Humidity sensor (ID: "regs-452z");
+- CO2 sensor (PPM) (ID: "gwq2-FH53).
+
+The room at the second floor has two sensors:
+- Temperature sensor (°C) (ID: "542c-743s");
+- CO2 sensor (PPM) (ID: "deqz-63sr).
+
+A general meter is installed in the building,  and collects the data of all the sensors in the building.
 """
 
 # Create an instance of BrickSchemaGraph with a custom model
-custom_model = ChatOpenAI(temperature=0, model="gpt-4o")
+custom_model = ChatOpenAI(temperature=0, model="gpt-4o-mini")
 brick_graph = BrickSchemaGraph(model=custom_model)
 
 # Display the graph structure
@@ -29,7 +35,7 @@ input_data = {"user_prompt": building_description}
 result = brick_graph.run(input_data=input_data, stream=False)
 
 # Print the result
-print(result)
+print(result["graph"].serialize())
 
 # save the result to a file
 brick_graph.save_ttl_output("my_building_custom.ttl")
